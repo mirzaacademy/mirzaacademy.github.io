@@ -368,86 +368,80 @@ body::after {
 
 
 /* ════════════════════════════════════════════════════════
-   § CINEMATIC LOADER — 3D Ring System
+   § ULTRA-PREMIUM MINIMAL SPLASH SCREEN (2.0s Synchronized)
    ════════════════════════════════════════════════════════ */
 #loader {
   position:fixed; inset:0; z-index:10000;
-  background:var(--bg);
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:var(--sp-6);
-  transition: opacity .2s var(--ease-smooth), visibility .2s;
-  perspective:800px;
+  background:#020208;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:var(--sp-6);
+  opacity:1; visibility:visible;
+  transition: opacity .4s cubic-bezier(0.16,1,0.3,1), visibility .4s;
+  pointer-events:all;
+  contain:strict;
 }
-#loader.hide { opacity:0; visibility:hidden; pointer-events:none; }
+#loader.hide {
+  opacity:0; visibility:hidden; pointer-events:none;
+}
 
-.ld-wordmark {
-  font-family:'Cinzel Decorative',serif;
-  font-size: clamp(18px, 4vw, 36px);
-  font-weight:900; letter-spacing:clamp(8px, 1.5vw, 14px);
-  color:var(--t); text-transform:uppercase;
+.splash-content {
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; max-width:min(90vw, 680px);
+  will-change:opacity, transform;
+  animation:splashIn .6s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes splashIn {
+  from { opacity:0; transform:translateY(6px); }
+  to   { opacity:1; transform:none; }
+}
+
+.splash-brand {
+  font-family:'Cinzel Decorative', 'Cinzel', serif;
+  font-size:clamp(22px, 4vw, 38px);
+  font-weight:700;
+  letter-spacing:clamp(6px, 1.4vw, 14px);
+  color:#FFFFFF;
+  text-transform:uppercase;
+  line-height:1.2;
+  margin-bottom:clamp(10px, 1.4vh, 16px);
+  padding-left:clamp(6px, 1.4vw, 14px);
+}
+
+.splash-quote {
+  font-family:'Cormorant Garamond', 'Cinzel', serif;
+  font-style:italic;
+  font-weight:400;
+  font-size:clamp(15px, 1.8vw, 20px);
+  letter-spacing:clamp(1.5px, 0.4vw, 3px);
+  color:var(--a, #D4AF37);
+  line-height:1.45;
+  opacity:.95;
+}
+
+/* Ultra-thin Synchronized 2.0s Laser Line */
+.splash-laser-track {
+  width:min(260px, 65vw);
+  height:1.5px;
+  background:rgba(212,175,55,0.15);
+  border-radius:9999px;
+  margin-top:clamp(28px, 4.5vh, 44px);
+  overflow:hidden;
   position:relative;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-  animation: ld-glow 2.4s ease-in-out infinite;
-}
-.ld-wordmark::before, .ld-wordmark::after {
-  content:''; position:absolute; width:44px; height:1px;
-  background:linear-gradient(90deg, transparent, var(--a)); top:50%;
-}
-.ld-wordmark::before { right:calc(100% + 20px); }
-.ld-wordmark::after  { left:calc(100% + 20px); transform:rotate(180deg); }
-@keyframes ld-glow {
-  0%,100% { text-shadow:0 1px 0 #b3922c, 0 2px 0 #9f8023, 0 3px 0 #8c6e1a, 0 0 24px var(--glow), 0 6px 12px rgba(0,0,0,.8); }
-  50%     { text-shadow:0 1px 0 #b3922c, 0 2px 0 #9f8023, 0 3px 0 #8c6e1a, 0 0 56px var(--glow), 0 8px 16px rgba(0,0,0,.9); }
 }
 
-.ld-rings {
-  position:relative; width:96px; height:96px; 
-  display:flex; align-items:center; justify-content:center;
-  transform-style:preserve-3d;
-  perspective:300px;
+.splash-laser-line {
+  height:100%; width:100%;
+  transform-origin:left;
+  transform:scaleX(0);
+  background:linear-gradient(90deg, rgba(212,175,55,0.2) 0%, #D4AF37 70%, #FFF8D6 100%);
+  box-shadow:0 0 6px rgba(212,175,55,0.6);
+  will-change:transform;
+  animation:splashLaser 2s linear forwards;
 }
-.ld-r1 {
-  position:absolute; inset:0; border-radius:50%;
-  border:1.5px solid var(--bd2); border-top-color:var(--a);
-  animation:spin3d-1 2s linear infinite;
-}
-.ld-r2 {
-  position:absolute; inset:16px; border-radius:50%;
-  border:1px solid var(--bd); border-bottom-color:var(--a2);
-  animation:spin3d-2 2.8s linear infinite; opacity:.5;
-}
-.ld-r3 {
-  position:absolute; inset:32px; border-radius:50%;
-  border:1px solid var(--bd); border-left-color:var(--a3);
-  animation:spin3d-3 3.6s linear infinite; opacity:.25;
-}
-.ld-dot-c {
-  width:8px; height:8px; border-radius:50%;
-  background:var(--a); box-shadow:0 0 20px var(--a), 0 0 40px var(--glow);
-  animation:ld-pulse 1.4s ease-in-out infinite;
-}
-@keyframes spin3d-1 { to { transform:rotateX(25deg) rotateY(360deg); } }
-@keyframes spin3d-2 { to { transform:rotateX(-30deg) rotateZ(360deg); } }
-@keyframes spin3d-3 { to { transform:rotateY(20deg) rotateX(360deg); } }
-@keyframes spin { to { transform:rotate(360deg) } }
-@keyframes ld-pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(.3);opacity:.2} }
 
-.ld-progress-wrap { width:min(260px, 70vw); }
-.ld-progress-track { width:100%; height:2px; background:var(--bd); border-radius:2px; overflow:hidden; }
-.ld-progress-fill {
-  height:100%; width:0%;
-  background:linear-gradient(90deg, var(--a3), var(--a), var(--a2));
-  box-shadow: 0 0 14px var(--glow), 4px 0 24px var(--a);
-  transition: width .08s linear;
-}
-.ld-pct {
-  font-family:'Orbitron',monospace; font-size:var(--fs-micro); letter-spacing:4px;
-  color:var(--t3); text-align:right; margin-top:var(--sp-2);
-}
-.ld-status {
-  font-family:'Orbitron',monospace; font-size:var(--fs-micro); letter-spacing:clamp(3px, 0.5vw, 5px);
-  color:var(--t3); text-transform:uppercase; text-align:center;
+@keyframes splashLaser {
+  0%   { transform:scaleX(0); }
+  100% { transform:scaleX(1); }
 }
 
 
@@ -801,28 +795,38 @@ body:hover #cur-trail { opacity:1; }
 
 
 /* ════════════════════════════════════════════════════════
-   § MAIN BODY — Vertical Stack
+   § MAIN BODY — 2-Column Split Layout (Desktop)
    ════════════════════════════════════════════════════════ */
 .body {
   grid-row:2;
-  display:flex; flex-direction:column;
+  display:flex; flex-direction:row;
   overflow:hidden;
   min-height:0;
+  height:100%;
 }
 
 
 /* ════════════════════════════════════════════════════════
-   § HERO — Top Section with 3D Depth
+   § HERO — Left Column (Desktop Fixed Sidebar)
    ════════════════════════════════════════════════════════ */
 .hero {
-  position:relative; overflow:hidden;
-  display:flex; align-items:center; justify-content:center;
-  padding: clamp(20px, 4vh, 40px) var(--sp-8);
-  border-bottom:1px solid var(--bd);
-  transition: border-color var(--dur-slow);
+  position:relative;
+  overflow-y:auto; overflow-x:hidden;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  width:clamp(320px, 28vw, 400px);
+  min-width:300px;
   flex-shrink:0;
+  height:100%;
+  padding:clamp(20px, 3vh, 36px) clamp(16px, 2vw, 28px);
+  border-right:1px solid var(--bd);
+  border-bottom:none;
+  transition:border-color var(--dur-slow);
   background:var(--hero-bg);
+  scrollbar-width:thin;
+  scrollbar-color:var(--bd) transparent;
 }
+.hero::-webkit-scrollbar { width:3px; }
+.hero::-webkit-scrollbar-thumb { background:var(--bd); border-radius:3px; }
 
 /* Scan grid */
 .hero::before {
@@ -903,12 +907,13 @@ body:hover #cur-trail { opacity:1; }
   animation:orbit-breathe 14s ease-in-out infinite;
 }
 
-/* Hero inner — horizontal layout with 3D transform */
+/* Hero inner — vertical layout inside desktop sidebar */
 .hero-inner {
   position:relative; z-index:4;
-  display:flex; align-items:center;
-  gap: clamp(var(--sp-5), 5vw, var(--sp-10));
-  max-width:1200px; width:100%;
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  gap:clamp(12px, 1.8vh, 20px);
+  max-width:360px; width:100%;
+  margin:auto 0;
   transition: transform .08s linear;
 }
 
@@ -1146,9 +1151,13 @@ body:hover #cur-trail { opacity:1; }
 }
 
 .hero-ctas {
-  display:flex; gap:var(--sp-3); flex-wrap:wrap;
+  display:flex; flex-direction:column; gap:var(--sp-3);
+  width:100%; align-items:stretch;
   opacity:0; animation:up .5s .78s both;
-  margin-top:var(--sp-1);
+  margin-top:var(--sp-3);
+}
+.hero-ctas .btn {
+  width:100%; justify-content:center;
 }
 @keyframes up { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
 
@@ -1745,6 +1754,254 @@ body:hover #cur-trail { opacity:1; }
   0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-12px) rotate(180deg)}
 }
 
+/* ────────────────────────────────────────────────────────
+   § APPS PORTFOLIO — Multi-App Showcase & Category Grid
+   ──────────────────────────────────────────────────────── */
+.apps-portfolio-wrap {
+  width:100%; max-width:1080px; margin:0 auto;
+  display:flex; flex-direction:column; gap:var(--sp-5);
+  position:relative; z-index:2;
+}
+
+.apps-headline-row {
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:var(--sp-3);
+  margin-bottom:var(--sp-1);
+}
+.apps-headline-left { display:flex; flex-direction:column; }
+.apps-live-count {
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:'Orbitron',monospace; font-size:var(--fs-micro);
+  letter-spacing:2px; text-transform:uppercase;
+  color:var(--a); background:rgba(212,175,55,0.06);
+  border:1px solid var(--bd2); border-radius:var(--r-full);
+  padding:5px 14px;
+}
+.apps-live-dot {
+  width:6px; height:6px; border-radius:50%;
+  background:var(--a); box-shadow:0 0 8px var(--a);
+  animation:badge-glow 2s infinite;
+}
+
+/* Category Filter Bar */
+.apps-filter-bar {
+  display:flex; align-items:center; gap:8px;
+  flex-wrap:wrap; overflow-x:auto; padding-bottom:4px;
+  -webkit-overflow-scrolling:touch;
+}
+.app-filter-btn {
+  font-family:'Orbitron',monospace;
+  font-size:var(--fs-micro); font-weight:700;
+  letter-spacing:1.8px; text-transform:uppercase;
+  color:var(--t3); background:transparent;
+  border:1px solid var(--bd); border-radius:var(--r-full);
+  padding:clamp(6px, 0.8vh, 8px) clamp(12px, 1.6vw, 18px);
+  cursor:pointer;
+  transition:all .25s var(--ease-smooth);
+  white-space:nowrap;
+}
+.app-filter-btn:hover {
+  color:var(--t); border-color:var(--bd2);
+  background:rgba(212,175,55,0.06);
+}
+.app-filter-btn.on {
+  color:var(--a); border-color:var(--a);
+  background:rgba(212,175,55,0.14);
+  box-shadow:0 0 16px var(--glow2);
+}
+
+/* Apps Responsive Grid */
+.apps-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+  gap:clamp(14px, 1.8vw, 20px);
+  width:100%;
+}
+
+/* Individual App Card — 3D Glass Elevation */
+.app-card {
+  position:relative; overflow:hidden;
+  background:var(--bg2);
+  border:1px solid var(--bd);
+  border-radius:var(--r-lg);
+  padding:clamp(16px, 1.8vw, 20px);
+  display:flex; flex-direction:column; justify-content:space-between;
+  gap:var(--sp-3);
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  box-shadow:0 4px 16px var(--3d-shadow);
+  transition:transform .35s var(--ease-spring), border-color .3s, box-shadow .35s, opacity .3s;
+}
+.app-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg, transparent, var(--a), transparent);
+  opacity:0; transition:opacity .35s;
+}
+.app-card:hover {
+  transform:translateY(-5px);
+  border-color:var(--bd2);
+  box-shadow:0 16px 40px var(--glow2), 0 0 2px var(--a);
+}
+.app-card:hover::before { opacity:1; }
+
+.app-card.hidden {
+  display:none !important;
+}
+
+/* Card Header */
+.app-card-header {
+  display:flex; align-items:center; gap:14px;
+}
+.app-card-icon {
+  width:56px; height:56px; border-radius:14px;
+  object-fit:cover; flex-shrink:0;
+  border:1px solid var(--bd2);
+  box-shadow:0 4px 14px rgba(0,0,0,.35);
+  transition:transform .3s var(--ease-spring), box-shadow .3s;
+}
+.app-card:hover .app-card-icon {
+  transform:scale(1.08) rotate(-2deg);
+  box-shadow:0 8px 24px var(--glow);
+}
+.app-card-icon-svg-wrap {
+  width:56px; height:56px; border-radius:14px;
+  background:linear-gradient(135deg, #D4AF37 0%, #8B6914 50%, #D4AF37 100%);
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0; border:1px solid var(--bd2);
+  box-shadow:0 4px 14px rgba(0,0,0,.35);
+  transition:transform .3s var(--ease-spring), box-shadow .3s;
+}
+.app-card:hover .app-card-icon-svg-wrap {
+  transform:scale(1.08) rotate(-2deg);
+  box-shadow:0 8px 24px var(--glow);
+}
+
+.app-card-meta { flex:1; min-width:0; }
+.app-card-meta-top {
+  display:flex; align-items:center; justify-content:space-between; gap:6px;
+  margin-bottom:3px;
+}
+.app-card-badge {
+  font-family:'Orbitron',monospace; font-size:9px; font-weight:700;
+  letter-spacing:1.5px; text-transform:uppercase;
+  color:#000; background:var(--a);
+  padding:2px 8px; border-radius:var(--r-full);
+  box-shadow:0 0 10px var(--glow);
+}
+.app-card-title {
+  font-family:'Cinzel',serif; font-size:clamp(15px, 1.4vw, 17px);
+  font-weight:700; color:var(--t); line-height:1.25;
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.app-card-cat {
+  font-family:'Orbitron',monospace; font-size:var(--fs-micro);
+  letter-spacing:1.8px; text-transform:uppercase;
+  color:var(--a); margin-top:2px;
+}
+
+/* Card Body */
+.app-card-desc {
+  font-family:'Rajdhani',sans-serif; font-size:var(--fs-sm);
+  color:var(--t2); line-height:1.5; font-weight:500;
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+/* Feature tags */
+.app-card-tags {
+  display:flex; flex-wrap:wrap; gap:6px;
+}
+.app-tag {
+  font-family:'Orbitron',monospace; font-size:9px;
+  letter-spacing:1px; color:var(--a2);
+  background:rgba(212,175,55,0.04);
+  border:1px solid var(--bd3); border-radius:var(--r-full);
+  padding:3px 8px; white-space:nowrap;
+}
+[data-theme="ivory"] .app-tag {
+  background:rgba(139,115,50,0.06);
+  border-color:var(--bd);
+}
+
+/* Download CTA Button */
+.app-card-action {
+  margin-top:auto; padding-top:var(--sp-2);
+}
+.btn-app-dl {
+  width:100%; display:inline-flex; align-items:center; justify-content:center;
+  gap:9px; font-family:'Orbitron',monospace; font-size:var(--fs-micro);
+  font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  color:var(--t); background:rgba(212,175,55,0.06);
+  border:1px solid var(--bd2); border-radius:var(--r-md);
+  padding:9px 14px; position:relative; overflow:hidden;
+  transition:all .3s cubic-bezier(0.16,1,0.3,1);
+}
+.btn-app-dl::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.18) 50%, transparent 70%);
+  transform:translateX(-100%); transition:transform .5s ease; pointer-events:none;
+}
+.btn-app-dl:hover::before { transform:translateX(100%); }
+.btn-app-dl:hover {
+  background:linear-gradient(135deg, #C8941C 0%, #E8C040 45%, #D4AF37 65%, #A87A20 100%);
+  color:#0A0800; border-color:var(--a);
+  box-shadow:0 6px 20px var(--glow);
+  transform:translateY(-2px);
+}
+.btn-app-dl .play-triangle {
+  width:0; height:0;
+  border-left:7px solid currentColor;
+  border-top:4px solid transparent; border-bottom:4px solid transparent;
+  flex-shrink:0;
+}
+
+/* Developer Store Banner */
+.dev-store-banner {
+  width:100%; border:1px solid var(--bd2);
+  border-radius:var(--r-lg);
+  background:linear-gradient(135deg, rgba(212,175,55,0.08) 0%, rgba(212,175,55,0.02) 100%);
+  padding:clamp(16px, 2.5vw, 24px);
+  display:flex; align-items:center; justify-content:space-between;
+  flex-wrap:wrap; gap:var(--sp-4);
+  position:relative; overflow:hidden;
+  box-shadow:0 8px 32px var(--3d-shadow);
+  margin-top:var(--sp-2);
+}
+.dev-store-banner::after {
+  content:''; position:absolute; right:-20px; top:-20px;
+  width:160px; height:160px; border-radius:50%;
+  background:radial-gradient(circle, var(--glow) 0%, transparent 70%);
+  pointer-events:none;
+}
+.dev-store-info { flex:1; min-width:260px; position:relative; z-index:1; }
+.dev-store-tag {
+  font-family:'Orbitron',monospace; font-size:var(--fs-micro);
+  letter-spacing:3px; color:var(--a); text-transform:uppercase;
+  margin-bottom:4px;
+}
+.dev-store-title {
+  font-family:'Cinzel',serif; font-size:clamp(17px, 2vw, 22px);
+  font-weight:700; color:var(--t); margin-bottom:4px;
+}
+.dev-store-desc {
+  font-family:'Rajdhani',sans-serif; font-size:var(--fs-sm);
+  color:var(--t2); font-weight:500;
+}
+.dev-store-btn {
+  position:relative; z-index:1;
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:'Orbitron',monospace; font-size:var(--fs-xs);
+  font-weight:800; letter-spacing:2px; text-transform:uppercase;
+  color:#0A0800;
+  background:linear-gradient(135deg, #C8941C 0%, #E8C040 45%, #D4AF37 65%, #A87A20 100%);
+  padding:12px 24px; border-radius:var(--r-md);
+  box-shadow:0 4px 18px var(--glow);
+  transition:transform .3s var(--ease-spring), box-shadow .3s;
+}
+.dev-store-btn:hover {
+  transform:translateY(-2px);
+  box-shadow:0 8px 28px var(--glow);
+}
+
 
 /* ════════════════════════════════════════════════════════
    § FOOTER — Status Bar with 3D Elevation
@@ -1812,9 +2069,31 @@ footer {
    • Safe area insets for notch phones
    ════════════════════════════════════════════════════════ */
 
-/* ── Tablet ── */
+/* ── Tablet & Small Laptops (Stack layout) ── */
 @media(max-width:960px) {
-  .apps-grid { grid-template-columns:repeat(auto-fill, minmax(min(130px, 45%), 1fr)); }
+  .body { flex-direction:column; }
+  .hero {
+    width:100%; min-width:0; height:auto; flex-shrink:0;
+    border-right:none; border-bottom:1px solid var(--bd);
+    padding:clamp(8px, 1.2vh, 12px) var(--sp-4);
+    overflow:visible;
+  }
+  .hero-inner {
+    flex-direction:column; text-align:center;
+    gap:clamp(4px, 0.6vh, 8px); margin:0 auto; max-width:600px;
+  }
+  .hero-text { align-items:center; }
+  .brand-name { font-size:clamp(18px, 3.5vw, 24px); margin-bottom:2px; }
+  .name-rule { margin:3px auto; }
+  .role-line { font-size:var(--fs-xs); margin-bottom:3px; }
+  .avail-badge { padding:2px 8px; font-size:9px; }
+  .hero-ctas {
+    flex-direction:row; width:auto; justify-content:center; align-items:center;
+    gap:8px; margin-top:6px;
+  }
+  .hero-ctas .btn { width:auto; padding:5px 14px; font-size:var(--fs-xs); }
+  .bottom { flex:1; min-height:0; height:auto; }
+  .apps-grid { grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); }
   .geo-shape { display:none; }
 }
 
@@ -1823,11 +2102,12 @@ footer {
   .nav { padding:0 var(--sp-4); }
   .nav-logo { font-size: var(--fs-sm); letter-spacing:clamp(3px, 0.6vw, 5px); }
   .lsel { font-size: var(--fs-micro); padding:5px 24px 5px 8px; }
-  .hero { padding:var(--sp-3) var(--sp-4); }
-  .hero-inner { flex-direction:column; text-align:center; gap:var(--sp-2); }
+  .hero { padding:clamp(6px, 1vh, 10px) var(--sp-4); }
+  .hero-inner { flex-direction:column; text-align:center; gap:3px; }
   .hero-text { align-items:center; }
-  .name-rule { margin:var(--sp-1) auto; }
-  .hero-ctas { justify-content:center; }
+  .name-rule { margin:2px auto; }
+  .hero-ctas { justify-content:center; flex-direction:row; gap:6px; margin-top:4px; }
+  .apps-grid { grid-template-columns:1fr; }
   .logo-img { width:clamp(70px, 28vw, 130px); }
   .panel { padding:var(--sp-3) var(--sp-4) var(--sp-3); }
   #cur,#rng,#cur-trail { display:none; }
@@ -2004,23 +2284,16 @@ footer {
 <div class="volumetric-light" aria-hidden="true"></div>
 
 <!-- ═══════════════════════════════════════════
-     CINEMATIC LOADER with 3D Rings
+     ULTRA-PREMIUM MINIMAL SPLASH SCREEN (2.0s)
 ═══════════════════════════════════════════════ -->
-<div id="loader">
-  <div class="ld-rings">
-    <div class="ld-r1"></div>
-    <div class="ld-r2"></div>
-    <div class="ld-r3"></div>
-    <div class="ld-dot-c"></div>
-  </div>
-  <div class="ld-wordmark">Mirza Academy</div>
-  <div class="ld-progress-wrap">
-    <div class="ld-progress-track">
-      <div class="ld-progress-fill" id="ldFill"></div>
+<div id="loader" role="dialog" aria-modal="true" aria-label="Splash Screen">
+  <div class="splash-content">
+    <div class="splash-brand">MIRZA ACADEMY</div>
+    <div class="splash-quote">&ldquo;What we do in life echoes in eternity.&rdquo;</div>
+    <div class="splash-laser-track" aria-hidden="true">
+      <div class="splash-laser-line"></div>
     </div>
-    <div class="ld-pct" id="ldPct">0%</div>
   </div>
-  <div class="ld-status" id="ldstatus">INITIALIZING SYSTEM...</div>
 </div>
 
 <!-- THEME RIPPLE -->
@@ -2194,72 +2467,459 @@ footer {
           </div>
         </div>
 
-        <!-- PANEL 03: APPS — Featured App Showcase -->
+        <!-- PANEL 03: APPS — Google Play Store Portfolio -->
         <div class="panel" id="p2" role="tabpanel" aria-labelledby="tab2">
-          <div class="p-header">
-            <span class="p-num">03</span>
-            <span class="p-label" data-k="appEye">Portfolio</span>
-          </div>
-          <div class="p-title" data-k="appTit">Featured App</div>
+          <div class="apps-portfolio-wrap">
+            <div class="p-header">
+              <span class="p-num">03</span>
+              <span class="p-label" data-k="appEye">Portfolio</span>
+            </div>
 
-          <div class="app-showcase">
-            <div class="showcase-glow-border">
-            <div class="showcase-card" id="showcaseCard">
-              <span class="showcase-badge">LIVE</span>
-              <div class="showcase-holo"></div>
-
-              <!-- Floating hourglass decoration -->
-              <svg class="showcase-deco-hourglass" viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M4 4h32v8L22 30l14 18v8H4v-8l14-18L4 12V4z" stroke="currentColor" stroke-width="1.5" fill="none" opacity=".5"/>
-                <path d="M12 8h16L20 22 12 8z" fill="currentColor" opacity=".15"/>
-              </svg>
-
-              <div class="showcase-header">
-                <!-- App Icon with hourglass -->
-                <div class="showcase-icon">
-                  <svg class="showcase-icon-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="8" y="4" width="32" height="4" rx="1" fill="#000" opacity=".7"/>
-                    <rect x="8" y="40" width="32" height="4" rx="1" fill="#000" opacity=".7"/>
-                    <path d="M12 8v6l12 10L12 34v6h24v-6L24 24l12-10V8H12z" fill="#000" opacity=".6"/>
-                    <path d="M16 10h16l-8 8-8-8z" fill="#FFF" opacity=".3"/>
-                    <path d="M22 24l-6 8h16l-6-8" fill="#D4AF37" opacity=".4"/>
-                    <circle cx="24" cy="24" r="2" fill="#FFF" opacity=".8"/>
-                  </svg>
-                </div>
-
-                <div class="showcase-info">
-                  <div class="showcase-app-name">Zamanname</div>
-                  <div class="showcase-app-sub" data-k="appSub">Timer &#8226; Pomodoro &#8226; Focus Timer</div>
-                  <div class="showcase-app-cat" data-k="appCat">PRODUCTIVITY</div>
-                </div>
+            <div class="apps-headline-row">
+              <div class="apps-headline-left">
+                <div class="p-title" data-k="appTit">Mobile Applications</div>
               </div>
-
-              <div class="showcase-features" id="showcaseFeatures">
-                <span class="feature-pill"><span class="feature-pill-dot"></span>Timer</span>
-                <span class="feature-pill"><span class="feature-pill-dot"></span>Pomodoro</span>
-                <span class="feature-pill"><span class="feature-pill-dot"></span>Countdown</span>
-                <span class="feature-pill"><span class="feature-pill-dot"></span>Focus</span>
-                <span class="feature-pill"><span class="feature-pill-dot"></span>Stylish Design</span>
-                <span class="feature-pill"><span class="feature-pill-dot"></span>Max Efficiency</span>
-              </div>
-
-              <div class="showcase-desc" data-k="appDesc">
-                <strong>Zamanname</strong> — Stylish design, maximum efficiency.
-                A premium countdown timer and Pomodoro focus app that helps you master your time with elegance.
-              </div>
-
-              <div class="showcase-cta">
-                <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.zamanname" target="_blank" rel="noopener" class="btn-download">
-                  <span class="play-icon"></span>
-                  <span data-k="appDl">GET ON GOOGLE PLAY</span>
-                </a>
+              <div class="apps-live-count">
+                <span class="apps-live-dot"></span>
+                <span>15+ Live on Google Play</span>
               </div>
             </div>
-            </div><!-- /.showcase-glow-border -->
 
-            <div class="showcase-dev-link">
-              <a href="https://play.google.com/store/apps/dev?id=6432494574479024880" target="_blank" rel="noopener" data-k="appDev">
-                VIEW DEVELOPER PAGE &#8594;
+            <!-- CATEGORY FILTERS -->
+            <div class="apps-filter-bar" role="group" aria-label="Filter applications">
+              <button class="app-filter-btn on" data-filter="all" onclick="filterApps('all',this)">All Apps (15)</button>
+              <button class="app-filter-btn" data-filter="productivity" onclick="filterApps('productivity',this)">Productivity</button>
+              <button class="app-filter-btn" data-filter="health" onclick="filterApps('health',this)">Health &amp; Wellness</button>
+              <button class="app-filter-btn" data-filter="tools" onclick="filterApps('tools',this)">Tools &amp; Utilities</button>
+              <button class="app-filter-btn" data-filter="games" onclick="filterApps('games',this)">Games &amp; Brain</button>
+            </div>
+
+            <!-- APPS GRID (All 11 official apps from Google Play developer page + Zamanname) -->
+            <div class="apps-grid" id="appsGrid">
+              <!-- 1. Sudoku AI -->
+              <div class="app-card" data-cat="games">
+                <div class="app-card-header">
+                  <img src="https://play-lh.googleusercontent.com/DR9c0MB8IulBADeTklup3gpNEQRk_1ZR_GJaVntm62_qtlv_4LhKL-uJs5jFy8NSyoTG-pBU06fJDJk6jdwA=s256" alt="Sudoku AI" class="app-card-icon" loading="lazy" />
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">BRAIN &amp; PUZZLE</span>
+                      <span class="app-card-badge">FEATURED</span>
+                    </div>
+                    <div class="app-card-title">Sudoku AI - Play Sudoku</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">Relax with classic Sudoku puzzles you can play anytime, completely offline with smart AI hints and customizable difficulties.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">Classic Sudoku</span>
+                  <span class="app-tag">AI Hints</span>
+                  <span class="app-tag">100% Offline</span>
+                  <span class="app-tag">Daily Challenges</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.sudokuai" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Sudoku AI on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 2. Zikirmatik -->
+              <div class="app-card" data-cat="tools">
+                <div class="app-card-header">
+                  <img src="https://play-lh.googleusercontent.com/4IAZHO9O_mJ62x4dRvnFviCnOQJra4cb87Y93LMA7uwa2qt4i7R3Vo5vN0xDWJgWHdv13WqLzuTuer-qMIKs=s256" alt="Zikirmatik" class="app-card-icon" loading="lazy" />
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">LIFESTYLE &amp; UTILITY</span>
+                      <span class="app-card-badge">POPULAR</span>
+                    </div>
+                    <div class="app-card-title">Zikirmatik - Dhikr &amp; Tasbeeh</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">Smart digital tasbeeh counter featuring real haptic feedback, customizable target limits and 12+ luxury themes.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">Haptic Vibration</span>
+                  <span class="app-tag">12+ Themes</span>
+                  <span class="app-tag">Target Limits</span>
+                  <span class="app-tag">Offline Ready</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.zikirmatik" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Zikirmatik on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 3. Kalemzar -->
+              <div class="app-card" data-cat="tools">
+                <div class="app-card-header">
+                  <img src="https://play-lh.googleusercontent.com/Ey2Q2_iEPfky5mKvYolhSVEiLJaMr3J3Gzn4N4eeZ5GIAdoj74S-YDwY-7CWv8lyx2x2oP8vhixzTAbYeDjclZU=s256" alt="Kalemzar" class="app-card-icon" loading="lazy" />
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">ART &amp; DESIGN</span>
+                      <span class="app-card-badge">AR TECH</span>
+                    </div>
+                    <div class="app-card-title">Kalemzar - AR Trace &amp; Draw</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">Turn your smartphone into an augmented reality drawing projector. Trace sketches onto paper with surgical precision.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">AR Projection</span>
+                  <span class="app-tag">Camera Tracing</span>
+                  <span class="app-tag">Sketch Filters</span>
+                  <span class="app-tag">Art Library</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.kalemzar" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Kalemzar on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 4. Mind Craft -->
+              <div class="app-card" data-cat="productivity">
+                <div class="app-card-header">
+                  <img src="https://play-lh.googleusercontent.com/V73wry7TI1gJRVw179LVNaq8IX3Sg_WT6EtQUrbPWF5PLLBvxbkgWD9qHCn6q37bpXZoDZGbT94R2nJ-3paE=s256" alt="Mind Craft" class="app-card-icon" loading="lazy" />
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">PRODUCTIVITY</span>
+                      <span class="app-card-badge">PRO</span>
+                    </div>
+                    <div class="app-card-title">Mind Craft - Mind &amp; Ideas Maps</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">Visualize thoughts, build brainstorming node graphs, and organize complex project hierarchies on an infinite canvas.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">Visual Nodes</span>
+                  <span class="app-tag">Infinite Canvas</span>
+                  <span class="app-tag">Brainstorming</span>
+                  <span class="app-tag">Fast Export</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.mindcraft" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Mind Craft on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 5. Waterly -->
+              <div class="app-card" data-cat="health">
+                <div class="app-card-header">
+                  <img src="https://play-lh.googleusercontent.com/hktIFpzsRMC2-ez3AcddcailTVf7qUvZbSlvcTziaV0JYQ8Tym-HzfqpnvUTW75DdcekKKweK2PQI-9fu5pWq5Y=s256" alt="Waterly" class="app-card-icon" loading="lazy" />
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">HEALTH &amp; FITNESS</span>
+                      <span class="app-card-badge">DAILY</span>
+                    </div>
+                    <div class="app-card-title">Waterly - Water Reminder</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">Daily hydration tracker and smart drink reminder with personalized intake goals, streaks, and battery-friendly alerts.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">Smart Reminders</span>
+                  <span class="app-tag">Intake Goals</span>
+                  <span class="app-tag">Hydration Stats</span>
+                  <span class="app-tag">Quick Log</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.waterly" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Waterly on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 6. Calmio -->
+              <div class="app-card" data-cat="health">
+                <div class="app-card-header">
+                  <img src="https://play-lh.googleusercontent.com/B16ef5LK-44iCMHluGylCgkcEq4oImH2zVJd4fJ2FQ9onO8lISYOCvqNCOAllRvOKvNbfXB1m7ihxDniZHYmMg=s256" alt="Calmio" class="app-card-icon" loading="lazy" />
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">MINDFULNESS</span>
+                      <span class="app-card-badge">CALM</span>
+                    </div>
+                    <div class="app-card-title">Calmio - Calm Down &amp; Breathe</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">Guided deep-breathing patterns, relaxing ambient soundscapes and meditation timers designed to reduce anxiety swiftly.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">Box Breathing</span>
+                  <span class="app-tag">Ambient Audio</span>
+                  <span class="app-tag">Stress Relief</span>
+                  <span class="app-tag">Mindful Timer</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.calmio" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Calmio on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 7. Celebro -->
+              <div class="app-card" data-cat="tools">
+                <div class="app-card-header">
+                  <img src="https://play-lh.googleusercontent.com/qKpWnC2uuVy--egrDCMjVBuVGAeBBqa0BJI1AtNpY6QfEfnnFLAqybqetFz9koaWN_ExpOTVw9d0YsdntWii=s256" alt="Celebro" class="app-card-icon" loading="lazy" />
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">LIFESTYLE &amp; DATES</span>
+                      <span class="app-card-badge">REMINDER</span>
+                    </div>
+                    <div class="app-card-title">Celebro – Birthday Tracker</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">Never forget important birthdays or anniversaries. Live countdown clocks, timely notifications, and age/zodiac calculations.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">Live Countdowns</span>
+                  <span class="app-tag">Smart Alerts</span>
+                  <span class="app-tag">Zodiac Info</span>
+                  <span class="app-tag">Private Storage</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.celebro" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Celebro on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 8. Heart Dots -->
+              <div class="app-card" data-cat="health">
+                <div class="app-card-header">
+                  <img src="https://play-lh.googleusercontent.com/cDRcoL27Vz5XrciP1MZjzroXyBnsyYkM-r6zDE8p01Nrag9re3AjkjZBAXVGoeG3IJG3OkAej_X8MvSoYfmer3Y=s256" alt="Heart Dots" class="app-card-icon" loading="lazy" />
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">EMOTIONAL WELLBEING</span>
+                      <span class="app-card-badge">DIARY</span>
+                    </div>
+                    <div class="app-card-title">Heart Dots - Mood Diary</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">Record emotional balance with minimalist colored mood dots, private thoughts, monthly trend analytics and passcode protection.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">Visual Mood Dots</span>
+                  <span class="app-tag">Emotion Trends</span>
+                  <span class="app-tag">Encrypted Journal</span>
+                  <span class="app-tag">Passcode Lock</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.heartdots" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Heart Dots on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 9. Memorix -->
+              <div class="app-card" data-cat="tools">
+                <div class="app-card-header">
+                  <img src="https://play-lh.googleusercontent.com/ssiXQnhGf5rcpyXuYTSeCBQ4mflO_VblDnvwCNsT53-aR7sjzu1GW6f1clYWNOpauQSFaIChy9JYJ4gOxiyi-pE=s256" alt="Memorix" class="app-card-icon" loading="lazy" />
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">UTILITY &amp; PRIVACY</span>
+                      <span class="app-card-badge">OFFLINE</span>
+                    </div>
+                    <div class="app-card-title">Memorix - Offline Address Book</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">100% offline, zero cloud tracking address book and contact manager. Complete data privacy with encrypted local storage.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">100% Offline</span>
+                  <span class="app-tag">Zero Tracking</span>
+                  <span class="app-tag">Encrypted Export</span>
+                  <span class="app-tag">Instant Search</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.memorix" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Memorix on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 10. Unchain -->
+              <div class="app-card" data-cat="health">
+                <div class="app-card-header">
+                  <img src="https://play-lh.googleusercontent.com/7clKUm8TmFfcf7wAl03g4M5J3GKQPCka6yLkSIkXogKHqvwQ7G8m06aPhWvEtmsYWGLLfGF4A9p651wbaO7GZw=s256" alt="Unchain" class="app-card-icon" loading="lazy" />
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">SELF IMPROVEMENT</span>
+                      <span class="app-card-badge">RECOVERY</span>
+                    </div>
+                    <div class="app-card-title">Unchain - Addiction Recovery</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">Sobriety clock and milestone streak counter built to break harmful habits, overcome urges and celebrate clean days.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">Sobriety Clock</span>
+                  <span class="app-tag">Relapse Shield</span>
+                  <span class="app-tag">Milestone Badges</span>
+                  <span class="app-tag">Daily Motivation</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.unchain" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Unchain on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 11. Flipy -->
+              <div class="app-card" data-cat="games">
+                <div class="app-card-header">
+                  <img src="https://play-lh.googleusercontent.com/6_FLjSCNhgYJD7Lr9-KV86eFHgSJcVw984Bi1qu6oXMcshS7BHA-Qje5IO8UsAPpcM1cH_LRQ_zDaJIcCoPXBQ=s256" alt="Flipy" class="app-card-icon" loading="lazy" />
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">CASUAL &amp; TOOLS</span>
+                      <span class="app-card-badge">3D PHYSICS</span>
+                    </div>
+                    <div class="app-card-title">Flipy - Coin Toss &amp; Dice</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">Realistic 3D physics-based coin flipper and multi-dice roller with sound and haptic vibration for fair decisions.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">3D Physics</span>
+                  <span class="app-tag">Multi-Dice Roll</span>
+                  <span class="app-tag">Haptic &amp; Sound</span>
+                  <span class="app-tag">Decision Maker</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.flipy" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Flipy on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 12. Zamanname -->
+              <div class="app-card" data-cat="productivity">
+                <div class="app-card-header">
+                  <div class="app-card-icon-svg-wrap">
+                    <svg viewBox="0 0 48 48" fill="none" style="width:55%;height:55%;" xmlns="http://www.w3.org/2000/svg">
+                      <rect x="8" y="4" width="32" height="4" rx="1" fill="#000" opacity=".7"/>
+                      <rect x="8" y="40" width="32" height="4" rx="1" fill="#000" opacity=".7"/>
+                      <path d="M12 8v6l12 10L12 34v6h24v-6L24 24l12-10V8H12z" fill="#000" opacity=".6"/>
+                      <path d="M16 10h16l-8 8-8-8z" fill="#FFF" opacity=".4"/>
+                      <path d="M22 24l-6 8h16l-6-8" fill="#D4AF37" opacity=".6"/>
+                    </svg>
+                  </div>
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">PRODUCTIVITY</span>
+                      <span class="app-card-badge">ORIGINAL</span>
+                    </div>
+                    <div class="app-card-title">Zamanname - Timer &amp; Focus</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">Stylish countdown timer and Pomodoro focus app that helps you master your time with elegance and maximum efficiency.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">Pomodoro Focus</span>
+                  <span class="app-tag">Countdown Timer</span>
+                  <span class="app-tag">Luxury Aesthetic</span>
+                  <span class="app-tag">Max Efficiency</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.zamanname" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Zamanname on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 13. Chess AI -->
+              <div class="app-card" data-cat="games">
+                <div class="app-card-header">
+                  <img src="https://play-lh.googleusercontent.com/X5IEoyPJdrra8JrvoUmF32Ijk9L6Rvvf87JW0D0c-uWY5LCcpiYD8iNXzKncI4Tfk3Ri7mHXuridmDzBW4sn=s256" alt="Chess AI" class="app-card-icon" loading="lazy" />
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">BRAIN &amp; STRATEGY</span>
+                      <span class="app-card-badge">POPULAR</span>
+                    </div>
+                    <div class="app-card-title">Chess AI - Play Chess</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">Offline chess with smart AI. Play, train, and improve your strategic skills anytime with an adaptive engine and 12+ luxury board themes.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">Adaptive AI</span>
+                  <span class="app-tag">12+ Themes</span>
+                  <span class="app-tag">100% Offline</span>
+                  <span class="app-tag">Skill Training</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.chessai" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Chess AI on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 14. Mihrab -->
+              <div class="app-card" data-cat="tools">
+                <div class="app-card-header">
+                  <img src="https://play-lh.googleusercontent.com/x1PGeXzZfY9gcHK7yVydGdfFG0zQacgph-odvlFE4FH5hoDjzvHnt50H6rtL3rYdC-2Omf5Me_7qNmL8HP3l=s256" alt="Mihrab" class="app-card-icon" loading="lazy" />
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">LIFESTYLE &amp; ISLAMIC</span>
+                      <span class="app-card-badge">POPULAR</span>
+                    </div>
+                    <div class="app-card-title">Mihrab - Azan &amp; Prayer Times</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">Accurate prayer time alerts, authentic adhan sounds, smart dhikr counter and prayer countdown. 100% offline with precise Qibla compass.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">Prayer Times</span>
+                  <span class="app-tag">Qibla Compass</span>
+                  <span class="app-tag">Azan Alerts</span>
+                  <span class="app-tag">100% Offline</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.mihrab" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Mihrab on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- 15. Agenda -->
+              <div class="app-card" data-cat="productivity">
+                <div class="app-card-header">
+                  <img src="https://play-lh.googleusercontent.com/YrWB0M6zF0ErKo2E_K406lF_BJ3jVkzw_tOhxc87cXHbvSRC0bCF2xq-PqwkBnStTrdvsFHBd8BXF4jSz8fG_sQ=s256" alt="Agenda" class="app-card-icon" loading="lazy" />
+                  <div class="app-card-meta">
+                    <div class="app-card-meta-top">
+                      <span class="app-card-cat">PRODUCTIVITY</span>
+                      <span class="app-card-badge">ESSENTIAL</span>
+                    </div>
+                    <div class="app-card-title">Agenda - Personal Assistant</div>
+                  </div>
+                </div>
+                <p class="app-card-desc">Daily planning, smart task scheduling and customizable reminders in one elegant, distraction-free offline personal assistant.</p>
+                <div class="app-card-tags">
+                  <span class="app-tag">Daily Planner</span>
+                  <span class="app-tag">Task Scheduling</span>
+                  <span class="app-tag">Reminders</span>
+                  <span class="app-tag">Offline Ready</span>
+                </div>
+                <div class="app-card-action">
+                  <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.agenda" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Agenda on Google Play">
+                    <span class="play-triangle"></span>
+                    <span data-k="appDl">GET ON GOOGLE PLAY</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- DEVELOPER PAGE OFFICIAL BANNER -->
+            <div class="dev-store-banner">
+              <div class="dev-store-info">
+                <div class="dev-store-tag">GOOGLE PLAY DEVELOPER PROFILE</div>
+                <div class="dev-store-title">Mirza Academy on Google Play</div>
+                <div class="dev-store-desc">Discover our full mobile application catalog, future launches and early beta updates directly on the store.</div>
+              </div>
+              <a href="https://play.google.com/store/apps/dev?id=6432494574479024880" target="_blank" rel="noopener noreferrer" class="dev-store-btn" data-k="appDev">
+                <span>VIEW DEVELOPER PAGE</span>
+                <span>&rarr;</span>
               </a>
             </div>
           </div>
@@ -2295,17 +2955,17 @@ footer {
    TRANSLATIONS (11 Languages) — with app showcase keys
 ═══════════════════════════════════════════════════════ */
 const T={
-  en:{tag:"Mobile App Developer & Publisher",bApps:"&#9654;&nbsp;View My Apps",bCon:"Contact Me",cEye:"Contact",cTit:"Let\u2019s Connect",cDev:"Dev Page",aEye:"About",aTit:"Who Am I?",aP1:"I am a <strong>Mobile App Developer</strong> specializing in high-quality Android apps for Google Play Store, delivering real value to millions worldwide.",aP2:"Expert in <strong>React Native</strong>, <strong>TypeScript</strong> & <strong>Firebase</strong> \u2014 monetized apps with <strong>AdMob</strong>, optimized for ASO & retention.",sA:"Apps",sS:"Store",sP:"Passion",avail:"AVAILABLE",appEye:"Portfolio",appTit:"Featured App",appSub:"Timer \u2022 Pomodoro \u2022 Focus Timer",appCat:"PRODUCTIVITY",appDesc:"<strong>Zamanname</strong> \u2014 Stylish design, maximum efficiency. A premium countdown timer and Pomodoro focus app that helps you master your time with elegance.",appDl:"GET ON GOOGLE PLAY",appDev:"VIEW DEVELOPER PAGE \u2192",roles:["Mobile App Developer","React Native Expert","Google Play Publisher","AdMob Specialist","Android Developer","YouTuber"],foot:"\u00a9 2026 \u00b7 ALL RIGHTS RESERVED"},
-  tr:{tag:"Mobil Uygulama Geli\u015ftirici & Yay\u0131nc\u0131",bApps:"&#9654;&nbsp;Uygulamalar\u0131m\u0131 G\u00f6r",bCon:"\u0130leti\u015fime Ge\u00e7",cEye:"\u0130leti\u015fim",cTit:"Ba\u011flanal\u0131m",cDev:"Geli\u015ftirici",aEye:"Hakk\u0131nda",aTit:"Ben Kimim?",aP1:"Google Play Store i\u00e7in y\u00fcksek kaliteli Android uygulamalar\u0131 geli\u015ftiren bir <strong>Mobil Uygulama Geli\u015ftiricisiyim</strong>. Milyonlarca kullan\u0131c\u0131ya ger\u00e7ek de\u011fer sunuyorum.",aP2:"<strong>React Native</strong>, <strong>TypeScript</strong> ve <strong>Firebase</strong> uzman\u0131 \u2014 <strong>AdMob</strong> entegrasyonlu uygulamalar.",sA:"Uygulama",sS:"Ma\u011faza",sP:"Tutku",avail:"UYGUN",appEye:"Portf\u00f6y",appTit:"\u00d6ne \u00c7\u0131kan Uygulama",appSub:"Zamanlay\u0131c\u0131 \u2022 Pomodoro \u2022 Odak Zamanlay\u0131c\u0131",appCat:"\u00dcRET\u0130ML\u0130K",appDesc:"<strong>Zamanname</strong> \u2014 \u015e\u0131k tasar\u0131m, maksimum verimlilik. Zaman\u0131n\u0131z\u0131 zarafetle y\u00f6netmenize yard\u0131mc\u0131 olan premium geri say\u0131m ve Pomodoro odak uygulamas\u0131.",appDl:"GOOGLE PLAY'DEN \u0130ND\u0130R",appDev:"GEL\u0130\u015eT\u0130R\u0130C\u0130 SAYFASI \u2192",roles:["Mobil Uygulama Geli\u015ftirici","React Native Uzman\u0131","Google Play Yay\u0131nc\u0131s\u0131","AdMob Uzman\u0131","Android Geli\u015ftirici","YouTuber"],foot:"\u00a9 2026 \u00b7 T\u00dcM HAKLAR SAKLIDIR"},
-  es:{tag:"Desarrollador y Editor de Apps M\u00f3viles",bApps:"&#9654;&nbsp;Ver Mis Apps",bCon:"Contactar",cEye:"Contacto",cTit:"Conectemos",cDev:"Dev Page",aEye:"Sobre M\u00ed",aTit:"\u00bfQui\u00e9n Soy?",aP1:"Soy un <strong>Desarrollador de Apps M\u00f3viles</strong> especializado en apps Android para Google Play.",aP2:"Experto en <strong>React Native</strong>, <strong>TypeScript</strong> y <strong>Firebase</strong> \u2014 apps monetizadas con <strong>AdMob</strong>.",sA:"Apps",sS:"Tienda",sP:"Pasi\u00f3n",avail:"DISPONIBLE",appEye:"Portafolio",appTit:"App Destacada",appSub:"Temporizador \u2022 Pomodoro \u2022 Enfoque",appCat:"PRODUCTIVIDAD",appDesc:"<strong>Zamanname</strong> \u2014 Dise\u00f1o elegante, m\u00e1xima eficiencia.",appDl:"DESCARGAR EN GOOGLE PLAY",appDev:"VER P\u00c1GINA DEL DESARROLLADOR \u2192",roles:["Desarrollador M\u00f3vil","Experto React Native","Editor Google Play","Especialista AdMob","Dev Android","YouTuber"],foot:"\u00a9 2026 \u00b7 TODOS LOS DERECHOS RESERVADOS"},
-  pt:{tag:"Desenvolvedor e Editor de Apps M\u00f3veis",bApps:"&#9654;&nbsp;Ver Meus Apps",bCon:"Contato",cEye:"Contato",cTit:"Conectar",cDev:"Dev Page",aEye:"Sobre",aTit:"Quem Sou?",aP1:"Sou um <strong>Desenvolvedor de Apps M\u00f3veis</strong> especializado em apps Android para Google Play.",aP2:"Expert em <strong>React Native</strong>, <strong>TypeScript</strong> e <strong>Firebase</strong> \u2014 apps monetizados com <strong>AdMob</strong>.",sA:"Apps",sS:"Loja",sP:"Paix\u00e3o",avail:"DISPON\u00cdVEL",appEye:"Portf\u00f3lio",appTit:"App em Destaque",appSub:"Timer \u2022 Pomodoro \u2022 Foco",appCat:"PRODUTIVIDADE",appDesc:"<strong>Zamanname</strong> \u2014 Design elegante, efici\u00eancia m\u00e1xima.",appDl:"BAIXAR NO GOOGLE PLAY",appDev:"VER P\u00c1GINA DO DESENVOLVEDOR \u2192",roles:["Desenvolvedor Mobile","Especialista React Native","Editor Google Play","Especialista AdMob","Dev Android","YouTuber"],foot:"\u00a9 2026 \u00b7 TODOS OS DIREITOS RESERVADOS"},
-  hi:{tag:"\u092e\u094b\u092c\u093e\u0907\u0932 \u090f\u092a \u0921\u0947\u0935\u0932\u092a\u0930 \u0914\u0930 \u092a\u094d\u0930\u0915\u093e\u0936\u0915",bApps:"&#9654;&nbsp;\u092e\u0947\u0930\u0947 \u090f\u092a",bCon:"\u0938\u0902\u092a\u0930\u094d\u0915",cEye:"\u0938\u0902\u092a\u0930\u094d\u0915",cTit:"\u091c\u0941\u095c\u0947\u0902",cDev:"\u0921\u0947\u0935",aEye:"\u092a\u0930\u093f\u091a\u092f",aTit:"\u092e\u0948\u0902 \u0915\u094c\u0928?",aP1:"\u092e\u0948\u0902 \u090f\u0915 <strong>\u092e\u094b\u092c\u093e\u0907\u0932 \u090f\u092a \u0921\u0947\u0935\u0932\u092a\u0930</strong> \u0939\u0942\u0902\u0964",aP2:"<strong>React Native</strong> \u0914\u0930 <strong>Firebase</strong> \u2014 <strong>AdMob</strong> \u090f\u092a \u092c\u0928\u093e\u0924\u093e \u0939\u0942\u0902\u0964",sA:"\u090f\u092a\u094d\u0938",sS:"\u0938\u094d\u091f\u094b\u0930",sP:"\u091c\u0941\u0928\u0942\u0928",avail:"\u0909\u092a\u0932\u092c\u094d\u0927",appEye:"\u092a\u094b\u0930\u094d\u091f\u092b\u094b\u0932\u093f\u092f\u094b",appTit:"\u092b\u0940\u091a\u0930\u094d\u0921 \u090f\u092a",appSub:"\u091f\u093e\u0907\u092e\u0930 \u2022 \u092a\u094b\u092e\u094b\u0921\u094b\u0930\u094b \u2022 \u092b\u094b\u0915\u0938",appCat:"\u0909\u0924\u094d\u092a\u093e\u0926\u0915\u0924\u093e",appDesc:"<strong>Zamanname</strong> \u2014 \u0938\u094d\u091f\u093e\u0907\u0932\u093f\u0936 \u0921\u093f\u091c\u093e\u0907\u0928, \u0905\u0927\u093f\u0915\u0924\u092e \u0926\u0915\u094d\u0937\u0924\u093e\u0964",appDl:"GOOGLE PLAY \u0938\u0947 \u0921\u093e\u0909\u0928\u0932\u094b\u0921 \u0915\u0930\u0947\u0902",appDev:"\u0921\u0947\u0935\u0932\u092a\u0930 \u092a\u0947\u091c \u0926\u0947\u0916\u0947\u0902 \u2192",roles:["\u092e\u094b\u092c\u093e\u0907\u0932 \u090f\u092a \u0921\u0947\u0935\u0932\u092a\u0930","React Native \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e","Google Play \u092a\u094d\u0930\u0915\u093e\u0936\u0915","AdMob \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e","Android \u0921\u0947\u0935\u0932\u092a\u0930","YouTuber"],foot:"\u00a9 2026"},
-  id:{tag:"Pengembang & Penerbit Aplikasi Mobile",bApps:"&#9654;&nbsp;Lihat Aplikasi",bCon:"Hubungi",cEye:"Kontak",cTit:"Terhubung",cDev:"Dev Page",aEye:"Tentang",aTit:"Siapa Saya?",aP1:"Saya <strong>Pengembang Aplikasi Mobile</strong> untuk Google Play Store.",aP2:"Ahli <strong>React Native</strong>, <strong>TypeScript</strong> & <strong>Firebase</strong> \u2014 apps dengan <strong>AdMob</strong>.",sA:"Aplikasi",sS:"Toko",sP:"Semangat",avail:"TERSEDIA",appEye:"Portofolio",appTit:"Aplikasi Unggulan",appSub:"Timer \u2022 Pomodoro \u2022 Fokus",appCat:"PRODUKTIVITAS",appDesc:"<strong>Zamanname</strong> \u2014 Desain stylish, efisiensi maksimal.",appDl:"UNDUH DI GOOGLE PLAY",appDev:"LIHAT HALAMAN DEVELOPER \u2192",roles:["Pengembang App Mobile","Ahli React Native","Penerbit Google Play","Spesialis AdMob","Developer Android","YouTuber"],foot:"\u00a9 2026 \u00b7 HAK CIPTA DILINDUNGI"},
-  de:{tag:"Mobile App Entwickler & Publisher",bApps:"&#9654;&nbsp;Meine Apps",bCon:"Kontakt",cEye:"Kontakt",cTit:"Verbinden",cDev:"Dev Page",aEye:"\u00dcber mich",aTit:"Wer bin ich?",aP1:"Ich bin ein <strong>Mobile App Entwickler</strong> f\u00fcr Google Play Store.",aP2:"Experte in <strong>React Native</strong>, <strong>TypeScript</strong> & <strong>Firebase</strong> \u2014 Apps mit <strong>AdMob</strong>.",sA:"Apps",sS:"Store",sP:"Leidenschaft",avail:"VERF\u00dcGBAR",appEye:"Portfolio",appTit:"Featured App",appSub:"Timer \u2022 Pomodoro \u2022 Fokus",appCat:"PRODUKTIVIT\u00c4T",appDesc:"<strong>Zamanname</strong> \u2014 Stilvolles Design, maximale Effizienz.",appDl:"BEI GOOGLE PLAY HERUNTERLADEN",appDev:"ENTWICKLERSEITE ANSEHEN \u2192",roles:["Mobile App Entwickler","React Native Experte","Google Play Publisher","AdMob Spezialist","Android Entwickler","YouTuber"],foot:"\u00a9 2026 \u00b7 ALLE RECHTE VORBEHALTEN"},
-  fr:{tag:"D\u00e9veloppeur & \u00c9diteur d\u2019Apps",bApps:"&#9654;&nbsp;Voir mes Apps",bCon:"Contacter",cEye:"Contact",cTit:"Connectons-nous",cDev:"Dev Page",aEye:"\u00c0 propos",aTit:"Qui suis-je?",aP1:"Je suis un <strong>D\u00e9veloppeur d\u2019Apps Mobiles</strong> pour Google Play Store.",aP2:"Expert en <strong>React Native</strong>, <strong>TypeScript</strong> & <strong>Firebase</strong> \u2014 apps avec <strong>AdMob</strong>.",sA:"Apps",sS:"Store",sP:"Passion",avail:"DISPONIBLE",appEye:"Portfolio",appTit:"App en Vedette",appSub:"Minuteur \u2022 Pomodoro \u2022 Focus",appCat:"PRODUCTIVIT\u00c9",appDesc:"<strong>Zamanname</strong> \u2014 Design \u00e9l\u00e9gant, efficacit\u00e9 maximale.",appDl:"T\u00c9L\u00c9CHARGER SUR GOOGLE PLAY",appDev:"PAGE D\u00c9VELOPPEUR \u2192",roles:["D\u00e9veloppeur Mobile","Expert React Native","\u00c9diteur Google Play","Sp\u00e9cialiste AdMob","Dev Android","YouTuber"],foot:"\u00a9 2026 \u00b7 TOUS DROITS R\u00c9SERV\u00c9S"},
-  it:{tag:"Sviluppatore e Publisher di App Mobile",bApps:"&#9654;&nbsp;Vedi le mie App",bCon:"Contattami",cEye:"Contatto",cTit:"Connettiamoci",cDev:"Dev Page",aEye:"Chi Sono",aTit:"Chi Sono?",aP1:"Sono uno <strong>Sviluppatore di App Mobile</strong> per Google Play Store.",aP2:"Esperto in <strong>React Native</strong>, <strong>TypeScript</strong> & <strong>Firebase</strong> \u2014 apps con <strong>AdMob</strong>.",sA:"App",sS:"Store",sP:"Passione",avail:"DISPONIBILE",appEye:"Portfolio",appTit:"App in Evidenza",appSub:"Timer \u2022 Pomodoro \u2022 Focus",appCat:"PRODUTTIVIT\u00c0",appDesc:"<strong>Zamanname</strong> \u2014 Design elegante, massima efficienza.",appDl:"SCARICA SU GOOGLE PLAY",appDev:"PAGINA SVILUPPATORE \u2192",roles:["Sviluppatore Mobile","Esperto React Native","Publisher Google Play","Specialista AdMob","Dev Android","YouTuber"],foot:"\u00a9 2026 \u00b7 TUTTI I DIRITTI RISERVATI"},
-  ja:{tag:"\u30e2\u30d0\u30a4\u30eb\u30a2\u30d7\u30ea\u958b\u767a\u8005",bApps:"&#9654;&nbsp;\u30a2\u30d7\u30ea\u3092\u898b\u308b",bCon:"\u304a\u554f\u3044\u5408\u308f\u305b",cEye:"\u9023\u7d61\u5148",cTit:"\u3064\u306a\u304c\u308a",cDev:"\u30c7\u30d9\u30ed\u30c3\u30d1\u30fc",aEye:"\u81ea\u5df1\u7d39\u4ecb",aTit:"\u79c1\u306b\u3064\u3044\u3066",aP1:"\u79c1\u306f<strong>\u30e2\u30d0\u30a4\u30eb\u30a2\u30d7\u30ea\u958b\u767a\u8005</strong>\u3067\u3059\u3002",aP2:"<strong>React Native</strong>\u3001<strong>TypeScript</strong>\u3001<strong>Firebase</strong>\u2014<strong>AdMob</strong>\u7d71\u5408\u30a2\u30d7\u30ea\u3092\u958b\u767a\u3002",sA:"\u30a2\u30d7\u30ea",sS:"\u30b9\u30c8\u30a2",sP:"\u60c5\u71b1",avail:"\u53d7\u4ed8\u4e2d",appEye:"\u30dd\u30fc\u30c8\u30d5\u30a9\u30ea\u30aa",appTit:"\u6ce8\u76ee\u30a2\u30d7\u30ea",appSub:"\u30bf\u30a4\u30de\u30fc \u2022 \u30dd\u30e2\u30c9\u30fc\u30ed \u2022 \u96c6\u4e2d",appCat:"\u751f\u7523\u6027",appDesc:"<strong>Zamanname</strong> \u2014 \u30b9\u30bf\u30a4\u30ea\u30c3\u30b7\u30e5\u306a\u30c7\u30b6\u30a4\u30f3\u3001\u6700\u9ad8\u306e\u52b9\u7387\u3002",appDl:"GOOGLE PLAY\u3067\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9",appDev:"\u958b\u767a\u8005\u30da\u30fc\u30b8 \u2192",roles:["\u30e2\u30d0\u30a4\u30eb\u30a2\u30d7\u30ea\u958b\u767a\u8005","React Native\u30a8\u30ad\u30b9\u30d1\u30fc\u30c8","Google Play\u30d1\u30d6\u30ea\u30c3\u30b7\u30e3\u30fc","AdMob\u5c02\u9580\u5bb6","Android\u30c7\u30d9\u30ed\u30c3\u30d1\u30fc","YouTuber"],foot:"\u00a9 2026"},
-  ko:{tag:"\ubaa8\ubc14\uc77c \uc571 \uac1c\ubc1c\uc790",bApps:"&#9654;&nbsp;\ub0b4 \uc571 \ubcf4\uae30",bCon:"\uc5f0\ub77d",cEye:"\uc5f0\ub77d\ucc98",cTit:"\uc5f0\uacb0",cDev:"\uac1c\ubc1c\uc790",aEye:"\uc18c\uac1c",aTit:"\ub204\uad6c\uc778\uac00?",aP1:"\uc800\ub294 Google Play Store\uc758 <strong>\ubaa8\ubc14\uc77c \uc571 \uac1c\ubc1c\uc790</strong>\uc785\ub2c8\ub2e4.",aP2:"<strong>React Native</strong>, <strong>TypeScript</strong>, <strong>Firebase</strong> \uc804\ubb38\uac00\u2014<strong>AdMob</strong> \uc571 \uc81c\uc791.",sA:"\uc571",sS:"\uc2a4\ud1a0\uc5b4",sP:"\uc5f4\uc815",avail:"\uac00\ub2a5",appEye:"\ud3ec\ud2b8\ud3f4\ub9ac\uc624",appTit:"\uc8fc\uc694 \uc571",appSub:"\ud0c0\uc774\uba38 \u2022 \ud3ec\ubaa8\ub3c4\ub85c \u2022 \uc9d1\uc911",appCat:"\uc0dd\uc0b0\uc131",appDesc:"<strong>Zamanname</strong> \u2014 \uc2a4\ud0c0\uc77c\ub9ac\uc2dc\ud55c \ub514\uc790\uc778, \ucd5c\ub300 \ud6a8\uc728.",appDl:"GOOGLE PLAY\uc5d0\uc11c \ub2e4\uc6b4\ub85c\ub4dc",appDev:"\uac1c\ubc1c\uc790 \ud398\uc774\uc9c0 \ubcf4\uae30 \u2192",roles:["\ubaa8\ubc14\uc77c \uc571 \uac1c\ubc1c\uc790","React Native \uc804\ubb38\uac00","Google Play \ud37c\ube14\ub9ac\uc154","AdMob \uc804\ubb38\uac00","Android \uac1c\ubc1c\uc790","YouTuber"],foot:"\u00a9 2026 \u00b7 \ubaa8\ub4e0 \uad8c\ub9ac \ubcf4\uc720"}
+  en:{tag:"Mobile App Developer & Publisher",bApps:"&#9654;&nbsp;View My Apps",bCon:"Contact Me",cEye:"Contact",cTit:"Let\u2019s Connect",cDev:"Dev Page",aEye:"About",aTit:"Who Am I?",aP1:"I am a <strong>Mobile App Developer</strong> specializing in high-quality Android apps for Google Play Store, delivering real value to millions worldwide.",aP2:"Expert in <strong>React Native</strong>, <strong>TypeScript</strong> & <strong>Firebase</strong> \u2014 monetized apps with <strong>AdMob</strong>, optimized for ASO & retention.",sA:"Apps",sS:"Store",sP:"Passion",avail:"AVAILABLE",appEye:"Portfolio",appTit:"Mobile Applications",appSub:"Timer \u2022 Pomodoro \u2022 Focus Timer",appCat:"PRODUCTIVITY",appDesc:"<strong>Zamanname</strong> \u2014 Stylish design, maximum efficiency. A premium countdown timer and Pomodoro focus app that helps you master your time with elegance.",appDl:"GET ON GOOGLE PLAY",appDev:"VIEW DEVELOPER PAGE \u2192",roles:["Mobile App Developer","React Native Expert","Google Play Publisher","AdMob Specialist","Android Developer","YouTuber"],foot:"\u00a9 2026 \u00b7 ALL RIGHTS RESERVED"},
+  tr:{tag:"Mobil Uygulama Geli\u015ftirici & Yay\u0131nc\u0131",bApps:"&#9654;&nbsp;Uygulamalar\u0131m\u0131 G\u00f6r",bCon:"\u0130leti\u015fime Ge\u00e7",cEye:"\u0130leti\u015fim",cTit:"Ba\u011flanal\u0131m",cDev:"Geli\u015ftirici",aEye:"Hakk\u0131nda",aTit:"Ben Kimim?",aP1:"Google Play Store i\u00e7in y\u00fcksek kaliteli Android uygulamalar\u0131 geli\u015ftiren bir <strong>Mobil Uygulama Geli\u015ftiricisiyim</strong>. Milyonlarca kullan\u0131c\u0131ya ger\u00e7ek de\u011fer sunuyorum.",aP2:"<strong>React Native</strong>, <strong>TypeScript</strong> ve <strong>Firebase</strong> uzman\u0131 \u2014 <strong>AdMob</strong> entegrasyonlu uygulamalar.",sA:"Uygulama",sS:"Ma\u011faza",sP:"Tutku",avail:"UYGUN",appEye:"Portf\u00f6y",appTit:"Mobil Uygulamalar",appSub:"Zamanlay\u0131c\u0131 \u2022 Pomodoro \u2022 Odak Zamanlay\u0131c\u0131",appCat:"\u00dcRET\u0130ML\u0130K",appDesc:"<strong>Zamanname</strong> \u2014 \u015e\u0131k tasar\u0131m, maksimum verimlilik. Zaman\u0131n\u0131z\u0131 zarafetle y\u00f6netmenize yard\u0131mc\u0131 olan premium geri say\u0131m ve Pomodoro odak uygulamas\u0131.",appDl:"GOOGLE PLAY'DEN \u0130ND\u0130R",appDev:"GEL\u0130\u015eT\u0130R\u0130C\u0130 SAYFASI \u2192",roles:["Mobil Uygulama Geli\u015ftirici","React Native Uzman\u0131","Google Play Yay\u0131nc\u0131s\u0131","AdMob Uzman\u0131","Android Geli\u015ftirici","YouTuber"],foot:"\u00a9 2026 \u00b7 T\u00dcM HAKLAR SAKLIDIR"},
+  es:{tag:"Desarrollador y Editor de Apps M\u00f3viles",bApps:"&#9654;&nbsp;Ver Mis Apps",bCon:"Contactar",cEye:"Contacto",cTit:"Conectemos",cDev:"Dev Page",aEye:"Sobre M\u00ed",aTit:"\u00bfQui\u00e9n Soy?",aP1:"Soy un <strong>Desarrollador de Apps M\u00f3viles</strong> especializado en apps Android para Google Play.",aP2:"Experto en <strong>React Native</strong>, <strong>TypeScript</strong> y <strong>Firebase</strong> \u2014 apps monetizadas con <strong>AdMob</strong>.",sA:"Apps",sS:"Tienda",sP:"Pasi\u00f3n",avail:"DISPONIBLE",appEye:"Portafolio",appTit:"Aplicaciones M\u00f3viles",appSub:"Temporizador \u2022 Pomodoro \u2022 Enfoque",appCat:"PRODUCTIVIDAD",appDesc:"<strong>Zamanname</strong> \u2014 Dise\u00f1o elegante, m\u00e1xima eficiencia.",appDl:"DESCARGAR EN GOOGLE PLAY",appDev:"VER P\u00c1GINA DEL DESARROLLADOR \u2192",roles:["Desarrollador M\u00f3vil","Experto React Native","Editor Google Play","Especialista AdMob","Dev Android","YouTuber"],foot:"\u00a9 2026 \u00b7 TODOS LOS DERECHOS RESERVADOS"},
+  pt:{tag:"Desenvolvedor e Editor de Apps M\u00f3veis",bApps:"&#9654;&nbsp;Ver Meus Apps",bCon:"Contato",cEye:"Contato",cTit:"Conectar",cDev:"Dev Page",aEye:"Sobre",aTit:"Quem Sou?",aP1:"Sou um <strong>Desenvolvedor de Apps M\u00f3veis</strong> especializado em apps Android para Google Play.",aP2:"Expert em <strong>React Native</strong>, <strong>TypeScript</strong> e <strong>Firebase</strong> \u2014 apps monetizados com <strong>AdMob</strong>.",sA:"Apps",sS:"Loja",sP:"Paix\u00e3o",avail:"DISPON\u00cdVEL",appEye:"Portf\u00f3lio",appTit:"Aplicativos M\u00f3veis",appSub:"Timer \u2022 Pomodoro \u2022 Foco",appCat:"PRODUTIVIDADE",appDesc:"<strong>Zamanname</strong> \u2014 Design elegante, efici\u00eancia m\u00e1xima.",appDl:"BAIXAR NO GOOGLE PLAY",appDev:"VER P\u00c1GINA DO DESENVOLVEDOR \u2192",roles:["Desenvolvedor Mobile","Especialista React Native","Editor Google Play","Especialista AdMob","Dev Android","YouTuber"],foot:"\u00a9 2026 \u00b7 TODOS OS DIREITOS RESERVADOS"},
+  hi:{tag:"\u092e\u094b\u092c\u093e\u0907\u0932 \u090f\u092a \u0921\u0947\u0935\u0932\u092a\u0930 \u0914\u0930 \u092a\u094d\u0930\u0915\u093e\u0936\u0915",bApps:"&#9654;&nbsp;\u092e\u0947\u0930\u0947 \u090f\u092a",bCon:"\u0938\u0902\u092a\u0930\u094d\u0915",cEye:"\u0938\u0902\u092a\u0930\u094d\u0915",cTit:"\u091c\u0941\u095c\u0947\u0902",cDev:"\u0921\u0947\u0935",aEye:"\u092a\u0930\u093f\u091a\u092f",aTit:"\u092e\u0948\u0902 \u0915\u094c\u0928?",aP1:"\u092e\u0948\u0902 \u090f\u0915 <strong>\u092e\u094b\u092c\u093e\u0907\u0932 \u090f\u092a \u0921\u0947\u0935\u0932\u092a\u0930</strong> \u0939\u0942\u0902\u0964",aP2:"<strong>React Native</strong> \u0914\u0930 <strong>Firebase</strong> \u2014 <strong>AdMob</strong> \u090f\u092a \u092c\u0928\u093e\u0924\u093e \u0939\u0942\u0902\u0964",sA:"\u090f\u092a\u094d\u0938",sS:"\u0938\u094d\u091f\u094b\u0930",sP:"\u091c\u0941\u0928\u0942\u0928",avail:"\u0909\u092a\u0932\u092c\u094d\u0927",appEye:"\u092a\u094b\u0930\u094d\u091f\u092b\u094b\u0932\u093f\u092f\u094b",appTit:"\u092e\u094b\u092c\u093e\u0907\u0932 \u090f\u092a\u094d\u0938",appSub:"\u091f\u093e\u0907\u092e\u0930 \u2022 \u092a\u094b\u092e\u094b\u0921\u094b\u0930\u094b \u2022 \u092b\u094b\u0915\u0938",appCat:"\u0909\u0924\u094d\u092a\u093e\u0926\u0915\u0924\u093e",appDesc:"<strong>Zamanname</strong> \u2014 \u0938\u094d\u091f\u093e\u0907\u0932\u093f\u0936 \u0921\u093f\u091c\u093e\u0907\u0928, \u0905\u0927\u093f\u0915\u0924\u092e \u0926\u0915\u094d\u0937\u0924\u093e\u0964",appDl:"GOOGLE PLAY \u0938\u0947 \u0921\u093e\u0909\u0928\u0932\u094b\u0921 \u0915\u0930\u0947\u0902",appDev:"\u0921\u0947\u0935\u0932\u092a\u0930 \u092a\u0947\u091c \u0926\u0947\u0916\u0947\u0902 \u2192",roles:["\u092e\u094b\u092c\u093e\u0907\u0932 \u090f\u092a \u0921\u0947\u0935\u0932\u092a\u0930","React Native \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e","Google Play \u092a\u094d\u0930\u0915\u093e\u0936\u0915","AdMob \u0935\u093f\u0936\u0947\u0937\u091c\u094d\u091e","Android \u0921\u0947\u0935\u0932\u092a\u0930","YouTuber"],foot:"\u00a9 2026"},
+  id:{tag:"Pengembang & Penerbit Aplikasi Mobile",bApps:"&#9654;&nbsp;Lihat Aplikasi",bCon:"Hubungi",cEye:"Kontak",cTit:"Terhubung",cDev:"Dev Page",aEye:"Tentang",aTit:"Siapa Saya?",aP1:"Saya <strong>Pengembang Aplikasi Mobile</strong> untuk Google Play Store.",aP2:"Ahli <strong>React Native</strong>, <strong>TypeScript</strong> & <strong>Firebase</strong> \u2014 apps dengan <strong>AdMob</strong>.",sA:"Aplikasi",sS:"Toko",sP:"Semangat",avail:"TERSEDIA",appEye:"Portofolio",appTit:"Aplikasi Mobile",appSub:"Timer \u2022 Pomodoro \u2022 Fokus",appCat:"PRODUKTIVITAS",appDesc:"<strong>Zamanname</strong> \u2014 Desain stylish, efisiensi maksimal.",appDl:"UNDUH DI GOOGLE PLAY",appDev:"LIHAT HALAMAN DEVELOPER \u2192",roles:["Pengembang App Mobile","Ahli React Native","Penerbit Google Play","Spesialis AdMob","Developer Android","YouTuber"],foot:"\u00a9 2026 \u00b7 HAK CIPTA DILINDUNGI"},
+  de:{tag:"Mobile App Entwickler & Publisher",bApps:"&#9654;&nbsp;Meine Apps",bCon:"Kontakt",cEye:"Kontakt",cTit:"Verbinden",cDev:"Dev Page",aEye:"\u00dcber mich",aTit:"Wer bin ich?",aP1:"Ich bin ein <strong>Mobile App Entwickler</strong> f\u00fcr Google Play Store.",aP2:"Experte in <strong>React Native</strong>, <strong>TypeScript</strong> & <strong>Firebase</strong> \u2014 Apps mit <strong>AdMob</strong>.",sA:"Apps",sS:"Store",sP:"Leidenschaft",avail:"VERF\u00dcGBAR",appEye:"Portfolio",appTit:"Mobile Anwendungen",appSub:"Timer \u2022 Pomodoro \u2022 Fokus",appCat:"PRODUKTIVIT\u00c4T",appDesc:"<strong>Zamanname</strong> \u2014 Stilvolles Design, maximale Effizienz.",appDl:"BEI GOOGLE PLAY HERUNTERLADEN",appDev:"ENTWICKLERSEITE ANSEHEN \u2192",roles:["Mobile App Entwickler","React Native Experte","Google Play Publisher","AdMob Spezialist","Android Entwickler","YouTuber"],foot:"\u00a9 2026 \u00b7 ALLE RECHTE VORBEHALTEN"},
+  fr:{tag:"D\u00e9veloppeur & \u00c9diteur d\u2019Apps",bApps:"&#9654;&nbsp;Voir mes Apps",bCon:"Contacter",cEye:"Contact",cTit:"Connectons-nous",cDev:"Dev Page",aEye:"\u00c0 propos",aTit:"Qui suis-je?",aP1:"Je suis un <strong>D\u00e9veloppeur d\u2019Apps Mobiles</strong> pour Google Play Store.",aP2:"Expert en <strong>React Native</strong>, <strong>TypeScript</strong> & <strong>Firebase</strong> \u2014 apps avec <strong>AdMob</strong>.",sA:"Apps",sS:"Store",sP:"Passion",avail:"DISPONIBLE",appEye:"Portfolio",appTit:"Applications Mobiles",appSub:"Minuteur \u2022 Pomodoro \u2022 Focus",appCat:"PRODUCTIVIT\u00c9",appDesc:"<strong>Zamanname</strong> \u2014 Design \u00e9l\u00e9gant, efficacit\u00e9 maximale.",appDl:"T\u00c9L\u00c9CHARGER SUR GOOGLE PLAY",appDev:"PAGE D\u00c9VELOPPEUR \u2192",roles:["D\u00e9veloppeur Mobile","Expert React Native","\u00c9diteur Google Play","Sp\u00e9cialiste AdMob","Dev Android","YouTuber"],foot:"\u00a9 2026 \u00b7 TOUS DROITS R\u00c9SERV\u00c9S"},
+  it:{tag:"Sviluppatore e Publisher di App Mobile",bApps:"&#9654;&nbsp;Vedi le mie App",bCon:"Contattami",cEye:"Contatto",cTit:"Connettiamoci",cDev:"Dev Page",aEye:"Chi Sono",aTit:"Chi Sono?",aP1:"Sono uno <strong>Sviluppatore di App Mobile</strong> per Google Play Store.",aP2:"Esperto in <strong>React Native</strong>, <strong>TypeScript</strong> & <strong>Firebase</strong> \u2014 apps con <strong>AdMob</strong>.",sA:"App",sS:"Store",sP:"Passione",avail:"DISPONIBILE",appEye:"Portfolio",appTit:"Applicazioni Mobile",appSub:"Timer \u2022 Pomodoro \u2022 Focus",appCat:"PRODUTTIVIT\u00c0",appDesc:"<strong>Zamanname</strong> \u2014 Design elegante, massima efficienza.",appDl:"SCARICA SU GOOGLE PLAY",appDev:"PAGINA SVILUPPATORE \u2192",roles:["Sviluppatore Mobile","Esperto React Native","Publisher Google Play","Specialista AdMob","Dev Android","YouTuber"],foot:"\u00a9 2026 \u00b7 TUTTI I DIRITTI RISERVATI"},
+  ja:{tag:"\u30e2\u30d0\u30a4\u30eb\u30a2\u30d7\u30ea\u958b\u767a\u8005",bApps:"&#9654;&nbsp;\u30a2\u30d7\u30ea\u3092\u898b\u308b",bCon:"\u304a\u554f\u3044\u5408\u308f\u305b",cEye:"\u9023\u7d61\u5148",cTit:"\u3064\u306a\u304c\u308a",cDev:"\u30c7\u30d9\u30ed\u30c3\u30d1\u30fc",aEye:"\u81ea\u5df1\u7d39\u4ecb",aTit:"\u79c1\u306b\u3064\u3044\u3066",aP1:"\u79c1\u306f<strong>\u30e2\u30d0\u30a4\u30eb\u30a2\u30d7\u30ea\u958b\u767a\u8005</strong>\u3067\u3059\u3002",aP2:"<strong>React Native</strong>\u3001<strong>TypeScript</strong>\u3001<strong>Firebase</strong>\u2014<strong>AdMob</strong>\u7d71\u5408\u30a2\u30d7\u30ea\u3092\u958b\u767a\u3002",sA:"\u30a2\u30d7\u30ea",sS:"\u30b9\u30c8\u30a2",sP:"\u60c5\u71b1",avail:"\u53d7\u4ed8\u4e2d",appEye:"\u30dd\u30fc\u30c8\u30d5\u30a9\u30ea\u30aa",appTit:"\u30e2\u30d0\u30a4\u30eb\u30a2\u30d7\u30ea",appSub:"\u30bf\u30a4\u30de\u30fc \u2022 \u30dd\u30e2\u30c9\u30fc\u30ed \u2022 \u96c6\u4e2d",appCat:"\u751f\u7523\u6027",appDesc:"<strong>Zamanname</strong> \u2014 \u30b9\u30bf\u30a4\u30ea\u30c3\u30b7\u30e5\u306a\u30c7\u30b6\u30a4\u30f3\u3001\u6700\u9ad8\u306e\u52b9\u7387\u3002",appDl:"GOOGLE PLAY\u3067\u30c0\u30a6\u30f3\u30ed\u30fc\u30c9",appDev:"\u958b\u767a\u8005\u30da\u30fc\u30b8 \u2192",roles:["\u30e2\u30d0\u30a4\u30eb\u30a2\u30d7\u30ea\u958b\u767a\u8005","React Native\u30a8\u30ad\u30b9\u30d1\u30fc\u30c8","Google Play\u30d1\u30d6\u30ea\u30c3\u30b7\u30e3\u30fc","AdMob\u5c02\u9580\u5bb6","Android\u30c7\u30d9\u30ed\u30c3\u30d1\u30fc","YouTuber"],foot:"\u00a9 2026"},
+  ko:{tag:"\ubaa8\ubc14\uc77c \uc571 \uac1c\ubc1c\uc790",bApps:"&#9654;&nbsp;\ub0b4 \uc571 \ubcf4\uae30",bCon:"\uc5f0\ub77d",cEye:"\uc5f0\ub77d\ucc98",cTit:"\uc5f0\uacb0",cDev:"\uac1c\ubc1c\uc790",aEye:"\uc18c\uac1c",aTit:"\ub204\uad6c\uc778\uac00?",aP1:"\uc800\ub294 Google Play Store\uc758 <strong>\ubaa8\ubc14\uc77c \uc571 \uac1c\ubc1c\uc790</strong>\uc785\ub2c8\ub2e4.",aP2:"<strong>React Native</strong>, <strong>TypeScript</strong>, <strong>Firebase</strong> \uc804\ubb38\uac00\u2014<strong>AdMob</strong> \uc571 \uc81c\uc791.",sA:"\uc571",sS:"\uc2a4\ud1a0\uc5b4",sP:"\uc5f4\uc815",avail:"\uac00\ub2a5",appEye:"\ud3ec\ud2b8\ud3f4\ub9ac\uc624",appTit:"\ubaa8\ubc14\uc77c \uc571",appSub:"\ud0c0\uc774\uba38 \u2022 \ud3ec\ubaa8\ub3c4\ub85c \u2022 \uc9d1\uc911",appCat:"\uc0dd\uc0b0\uc131",appDesc:"<strong>Zamanname</strong> \u2014 \uc2a4\ud0c0\uc77c\ub9ac\uc2dc\ud55c \ub514\uc790\uc778, \ucd5c\ub300 \ud6a8\uc728.",appDl:"GOOGLE PLAY\uc5d0\uc11c \ub2e4\uc6b4\ub85c\ub4dc",appDev:"\uac1c\ubc1c\uc790 \ud398\uc774\uc9c0 \ubcf4\uae30 \u2192",roles:["\ubaa8\ubc14\uc77c \uc571 \uac1c\ubc1c\uc790","React Native \uc804\ubb38\uac00","Google Play \ud37c\ube14\ub9ac\uc154","AdMob \uc804\ubb38\uac00","Android \uac1c\ubc1c\uc790","YouTuber"],foot:"\u00a9 2026 \u00b7 \ubaa8\ub4e0 \uad8c\ub9ac \ubcf4\uc720"}
 };
 
 /* ═══════════════════════════════════════════════════════
@@ -2314,44 +2974,45 @@ const T={
 let LG='en', _tt=null, _ri=0, _ci=0, _del=false, _pause=false, _curTab=0;
 
 /* ═══════════════════════════════════════════════════════
-   INIT SHOWCASE — 3D tilt on the showcase card
+   INIT SHOWCASE & CARDS — 3D Tilt on Hover
 ═══════════════════════════════════════════════════════ */
 function initShowcase(){
   if(!matchMedia('(pointer:fine)').matches) return;
-  const card=document.getElementById('showcaseCard');
-  if(!card) return;
-  let scTick=false;
-  card.addEventListener('mousemove',e=>{
-    if(scTick) return; scTick=true;
-    requestAnimationFrame(()=>{
-      const r=card.getBoundingClientRect();
-      const x=(e.clientX-r.left)/r.width-.5;
-      const y=(e.clientY-r.top)/r.height-.5;
-      
-      // Set variables for dynamic holo glare
-      const pctX = (e.clientX-r.left)/r.width*100;
-      const pctY = (e.clientY-r.top)/r.height*100;
-      card.style.setProperty('--hx', pctX);
-      card.style.setProperty('--hy', pctY);
+  const cards = document.querySelectorAll('.app-card, .showcase-card');
+  cards.forEach(card => {
+    let scTick=false;
+    card.addEventListener('mousemove',e=>{
+      if(scTick) return; scTick=true;
+      requestAnimationFrame(()=>{
+        const r=card.getBoundingClientRect();
+        const x=(e.clientX-r.left)/r.width-.5;
+        const y=(e.clientY-r.top)/r.height-.5;
+        const rx=-y*8, ry=x*8;
+        card.style.transform=`perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+        scTick=false;
+      });
+    },{passive:true});
+    card.addEventListener('mouseleave',()=>{
+      card.style.transition='transform .5s var(--ease-spring)';
+      card.style.transform='';
+      setTimeout(()=>{card.style.transition='';},500);
+    },{passive:true});
+  });
+}
 
-      const rx=-y*12, ry=x*12;
-      card.style.transform=`perspective(1200px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(15px)`;
-      // Holo effect based on pure mouse pos instead of angle alone
-      const holo=card.querySelector('.showcase-holo');
-      if(holo){
-        holo.style.background=`radial-gradient(circle 350px at ${pctX}% ${pctY}%, rgba(255,255,255,.08) 0%, transparent 80%)`;
-        holo.style.opacity='1';
-      }
-      scTick=false;
-    });
-  },{passive:true});
-  card.addEventListener('mouseleave',()=>{
-    card.style.transition='transform .6s var(--ease-spring)';
-    card.style.transform='';
-    const holo=card.querySelector('.showcase-holo');
-    if(holo) holo.style.opacity='0';
-    setTimeout(()=>{card.style.transition='';},600);
-  },{passive:true});
+/* ═══════════════════════════════════════════════════════
+   FILTER APPS — Category Filter System
+═══════════════════════════════════════════════════════ */
+function filterApps(cat, el){
+  document.querySelectorAll('.app-filter-btn').forEach(b=>b.classList.toggle('on', b===el));
+  const cards = document.querySelectorAll('.app-card');
+  cards.forEach(card => {
+    if(cat === 'all' || card.dataset.cat === cat){
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -2372,7 +3033,7 @@ function switchTab(i){
   // Trigger staggered entrance animations
   const panel=document.getElementById('p'+i);
   if(panel){
-    panel.querySelectorAll('.lnk,.skill-tag').forEach(el=>{
+    panel.querySelectorAll('.lnk,.skill-tag,.app-card').forEach(el=>{
       el.classList.remove('entrance-animate');
       void el.offsetWidth; // force reflow
       el.classList.add('entrance-animate');
@@ -2391,10 +3052,10 @@ function animateStats(){
   if(!el) return;
   let v=0;
   const iv=setInterval(()=>{
-    v += 2;
-    if(v>=50) { v=50; clearInterval(iv); }
+    v += 1;
+    if(v>=15) { v=15; clearInterval(iv); }
     el.textContent=v+'+';
-  },35);
+  },70);
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -2716,31 +3377,21 @@ function startClock(){
 }
 
 /* ═══════════════════════════════════════════════════════
-   CINEMATIC LOADER
+   ULTRA-PREMIUM SPLASH CONTROLLER — Exactly 2.0s Synchronized
 ═══════════════════════════════════════════════════════ */
-const LOADER_MSGS=['LOADING ASSETS...','RENDERING ENGINE...','SYSTEM READY'];
 function runLoader(onDone){
-  const fill=document.getElementById('ldFill');
-  const pct=document.getElementById('ldPct');
-  const status=document.getElementById('ldstatus');
-  if(!fill||!pct) return setTimeout(onDone,50);
-  
-  let p=0, mi=0;
-  const STEPS=60;
-  const iv=setInterval(()=>{
-    p+=Math.random()*4+1;
-    if(p>=100) p=100;
-    fill.style.width=Math.round(p)+'%';
-    pct.textContent=Math.round(p)+'%';
-    const msgIdx=Math.min(Math.floor(p/35), LOADER_MSGS.length-1);
-    if(msgIdx!==mi){ mi=msgIdx; if(status) status.textContent=LOADER_MSGS[mi]; }
-    if(p>=100){ clearInterval(iv); setTimeout(onDone,300); }
-  },30);
+  setTimeout(()=>{
+    if(typeof onDone==='function') onDone();
+  }, 2000);
 }
 
 function hideLoader(){
   const ld=document.getElementById('loader');
-  if(ld) ld.classList.add('hide');
+  if(!ld) return;
+  ld.classList.add('hide');
+  setTimeout(()=>{
+    ld.style.display='none';
+  }, 450);
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -2864,21 +3515,19 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
   });
 
-  setTimeout(()=>{
-    runLoader(()=>{
-      applyTheme(st,null);
-      applyLang(sl);
-      startSnow();
-      initCursor();
-      initTilt();
-      init3DCards();
-      initMagnetic();
-      initShowcase();
-      initClickBurst();
-      initParallaxGeo();
-      hideLoader();
-    });
-  },400);
+  runLoader(()=>{
+    applyTheme(st,null);
+    applyLang(sl);
+    startSnow();
+    initCursor();
+    initTilt();
+    init3DCards();
+    initMagnetic();
+    initShowcase();
+    initClickBurst();
+    initParallaxGeo();
+    hideLoader();
+  });
 });
 </script>
 </body>
