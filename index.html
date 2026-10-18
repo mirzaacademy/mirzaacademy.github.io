@@ -2119,6 +2119,435 @@ body.modal-open { overflow: hidden !important; }
     scroll-behavior: auto !important;
   }
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   § 16. ZERO-SCROLL SINGLE-SCREEN ARCHITECTURE FOR ALL 3 SECTIONS (#p0, #p1, #p2)
+   ════════════════════════════════════════════════════════════════════════ */
+@media (min-width: 961px) {
+  .shell {
+    height: 100vh;
+    height: 100dvh;
+    grid-template-rows: 50px 1fr 34px;
+    overflow: hidden !important;
+  }
+
+  /* Compact Hero Sidebar — Zero vertical scrollbar */
+  .hero {
+    width: clamp(270px, 22vw, 330px);
+    min-width: 265px;
+    padding: clamp(10px, 1.5vh, 18px) clamp(14px, 1.4vw, 20px);
+    overflow: hidden !important;
+  }
+  .hero-inner {
+    gap: clamp(5px, 0.85vh, 10px);
+    max-width: 295px;
+  }
+  .hero-crest-wrap { width: 52px; height: 52px; margin-bottom: 0; }
+  .hero-crest-core { width: 40px; height: 40px; }
+  .hero-crest-svg { width: 22px; height: 22px; }
+  .brand-name { font-size: clamp(21px, 2.1vw, 29px); }
+  .role-line { font-size: clamp(13px, 1.1vw, 15px); min-height: 20px; }
+  .hero-manifesto { font-size: 11.5px; line-height: 1.4; margin: 0 auto 2px; }
+  .avail-badge { padding: 3px 12px; font-size: 9px; }
+  .hero-metrics { padding: 7px 6px; margin: 2px 0; }
+  .h-metric-val { font-size: 13px; }
+  .h-metric-lbl { font-size: 8.5px; }
+  .hero-ctas { gap: 6px; margin-top: 2px; }
+  .hero-ctas .btn { padding: 8px 14px; font-size: 10px; }
+  .hero-social-dock { margin-top: 2px; gap: 6px; }
+  .hsoc-btn { width: 30px; height: 30px; }
+
+}
+
+/* Mobile & Tablet Compact Layout */
+@media (max-width: 960px) {
+  .apps-single-top { display: flex; flex-direction: column; gap: 10px; }
+  .apps-top-brand { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .apps-inline-title { margin-bottom: 0 !important; font-size: 18px !important; }
+  .apps-inline-title::after { display: none; }
+  .flagship-mini { display: none; }
+  .apps-toolbar-right { display: flex; gap: 8px; width: 100%; align-items: center; }
+  .apps-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+    gap: 10px;
+  }
+}
+
+
+/* ════════════════════════════════════════════════════════
+   § 17. REFINED SECTIONS — tabs, contact, about, apps (list)
+   Tek ekrana sıkıştırma kaldırıldı; okunur tipografi, çizgi tabanlı sade yüzeyler.
+   ════════════════════════════════════════════════════════ */
+.bottom::before{display:none}
+.tab-bar{display:flex!important;gap:4px;padding:0 var(--sp-8)!important;background:transparent!important;box-shadow:none!important;border-bottom:1px solid var(--bd)!important}
+.tab{flex:0 0 auto;min-height:54px!important;padding:0 20px!important;gap:10px!important;border:0!important;border-radius:0!important;background:none!important;box-shadow:none!important;transform:none!important;color:var(--t3)}
+.tab::before{left:0!important;right:0!important;top:auto!important;bottom:-1px;height:2px!important;background:var(--a)!important;opacity:0!important;box-shadow:none!important;transform:scaleX(.35);transition:opacity .25s,transform .35s var(--ease-out)}
+.tab.on::before{opacity:1!important;transform:scaleX(1)}
+.tab-glow,.tab-kicker,.tab-pill-badge{display:none!important}
+.tab-icon-box{width:auto!important;height:auto!important;background:none!important;border:0!important;box-shadow:none!important;border-radius:0!important;color:inherit!important}
+.tab-icon-box svg{width:17px!important;height:17px!important}
+.tab-main-lbl{font-size:14px!important;font-weight:600!important;color:inherit!important}
+.tab:hover:not(.on){color:var(--t2)}
+.tab.on{color:var(--t)}
+.tab.on .tab-icon-box{color:var(--a)!important}
+
+.panel>.p-header,.apps-top-brand .p-num,.apps-top-brand .p-label{display:none!important}
+.p-title{font-size:clamp(24px,2.2vw,30px)!important;margin-bottom:22px!important;letter-spacing:.01em}
+.p-title::after{display:none}
+@media(min-width:961px){
+  .panel{display:block!important;overflow-y:auto!important;overflow-x:hidden!important;padding:38px clamp(28px,4vw,64px) 64px!important}
+  .panel>*{max-width:960px;margin-left:auto;margin-right:auto}
+}
+
+/* İletişim — satır listesi */
+.clinks{display:block!important;border-top:1px solid var(--bd)}
+.lnk,.lnk--tiktok{display:grid!important;grid-template-columns:44px minmax(0,1fr) auto;align-items:center;gap:0 18px;padding:18px 6px!important;border:0!important;border-bottom:1px solid var(--bd)!important;border-radius:0!important;background:none!important;box-shadow:none!important;transform:none!important;transition:background .2s}
+.lnk::before,.lnk::after{display:none!important}
+.lnk:hover{background:rgba(var(--snow),.045)!important;border-color:var(--bd)!important;box-shadow:none!important;transform:none!important}
+.lnk-top{display:contents}
+.lnk-badge{display:none}
+.lnk-icon{width:44px!important;height:44px!important;border-radius:12px!important;grid-column:1}
+.lnk-body{grid-column:2;gap:2px}
+.lnk-name{font-family:inherit!important;font-size:15px!important;font-weight:700;letter-spacing:0!important;text-transform:none!important;color:var(--t)!important}
+.lnk-val{font-size:13px!important;font-weight:600;color:var(--a)}
+.lnk-sub{font-size:13px!important;line-height:1.5;color:var(--t3)!important;display:block!important}
+.lnk-foot{grid-column:3;width:auto!important;border:0!important;padding:0!important;margin:0!important}
+.lnk-foot>span:first-child{display:none}
+.lnk-copy-chip{display:inline-block;font-family:inherit!important;font-size:12.5px!important;font-weight:600;letter-spacing:0!important;text-transform:lowercase;padding:7px 14px!important;border-radius:999px!important;background:none!important;color:var(--t2)!important}
+.lnk-copy-chip::first-letter{text-transform:uppercase}
+.lnk-copy-chip:hover{background:var(--a)!important;color:var(--on-a)!important}
+.collab-studio{margin-top:36px!important;padding:26px 28px!important;background:rgba(var(--snow),.035)!important;border:1px solid var(--bd)!important;border-radius:18px!important;box-shadow:none!important}
+.collab-studio::before,.collab-eyebrow{display:none}
+.collab-title{font-size:19px!important}
+.topic-chip{font-family:inherit!important;font-size:13px!important;font-weight:600;letter-spacing:0!important;text-transform:none!important;padding:8px 16px!important}
+.topic-chip.on{background:var(--a)!important;color:var(--on-a)!important;border-color:var(--a)!important}
+.collab-input{padding:13px 16px!important;font-size:14px!important;border-radius:12px!important}
+.collab-actions .btn{font-family:inherit!important;font-size:13px!important;letter-spacing:.01em!important;text-transform:none!important;padding:12px 20px!important}
+
+/* Hakkında — editoryal akış */
+.manifesto-banner{background:none!important;border:0!important;border-left:2px solid var(--a)!important;border-radius:0!important;padding:4px 0 4px 24px!important;margin:6px 0 34px!important;gap:22px}
+.aring{animation:none!important;width:64px!important;height:64px!important;box-shadow:none!important;background:var(--bd2);padding:2px}
+.aring img{animation:none!important}
+.manifesto-quote{font-size:clamp(19px,1.9vw,24px)!important;line-height:1.5;font-weight:500}
+.manifesto-cite{display:none}
+.about-body{display:block!important}
+.ap{font-size:15px!important;line-height:1.8;max-width:68ch;margin-bottom:16px!important}
+.stats{display:grid!important;grid-template-columns:repeat(4,1fr)!important;gap:0!important;margin:30px 0!important;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.stat{background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;transform:none!important;padding:22px 14px!important;text-align:left}
+.stat+.stat{border-left:1px solid var(--bd)!important}
+.stat::after{display:none}
+.sn{font-family:'Cinzel',serif!important;font-size:clamp(26px,2.6vw,34px)!important;font-weight:700;color:var(--t)}
+.sl{font-family:inherit!important;font-size:12.5px!important;letter-spacing:0!important;text-transform:none!important;color:var(--t3)!important}
+.pillars-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:30px 44px!important;margin-top:0!important}
+.pillar-card{background:none!important;border:0!important;border-top:1px solid var(--bd)!important;border-radius:0!important;box-shadow:none!important;transform:none!important;padding:18px 0 0!important}
+.pillar-card::after,.pillar-num{display:none}
+.pillar-title{font-size:17px!important;margin-bottom:6px!important}
+.pillar-desc{font-size:14px!important;line-height:1.65;color:var(--t2)}
+.skills-row{margin-top:34px!important;padding-top:0!important;border:0!important;gap:8px}
+.skill-tag{font-family:inherit!important;font-size:12.5px!important;font-weight:600;letter-spacing:0!important;color:var(--t2)!important;background:none!important;border:1px solid var(--bd)!important;padding:6px 14px!important;transform:none!important;box-shadow:none!important}
+
+/* Uygulamalar — kompakt liste */
+.apps-portfolio-wrap{gap:0!important;max-width:960px}
+.apps-single-top{display:flex;flex-direction:column;gap:14px;margin-bottom:4px}
+.apps-top-brand{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.apps-inline-title{font-size:clamp(24px,2.2vw,30px)!important;margin:0!important;white-space:normal}
+.apps-live-count{margin:0;border:0!important;background:none!important;padding:0!important;font-family:inherit!important;font-size:13px!important;font-weight:500;letter-spacing:0!important;text-transform:none!important;color:var(--t3)!important}
+.flagship-mini{display:none!important}
+.apps-toolbar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--bd)}
+.apps-filter-bar{display:flex;gap:2px;flex-wrap:wrap}
+.app-filter-btn{position:relative;font-family:inherit!important;font-size:13px!important;font-weight:600;letter-spacing:0!important;text-transform:none!important;background:none!important;border:0!important;border-radius:0!important;box-shadow:none!important;color:var(--t3)!important;padding:12px 14px!important}
+.app-filter-btn.on{color:var(--t)!important}
+.app-filter-btn.on::after{content:'';position:absolute;left:14px;right:14px;bottom:-1px;height:2px;background:var(--a)}
+.apps-toolbar-right{display:flex;align-items:center;gap:16px;padding:6px 0}
+.app-search-input{font-size:13px!important;padding:9px 34px!important;border-radius:10px!important;background:rgba(var(--snow),.04)!important}
+.dev-store-btn--compact{display:inline-block;background:none!important;box-shadow:none!important;color:var(--a)!important;font-family:inherit!important;font-size:13px!important;font-weight:700;letter-spacing:0!important;text-transform:lowercase!important;padding:0!important;border-radius:0!important}
+.dev-store-btn--compact::first-letter{text-transform:uppercase}
+
+.apps-grid{display:block!important}
+.app-card{display:grid!important;grid-template-columns:minmax(0,1.15fr) minmax(0,1.5fr) auto;align-items:center;gap:0 28px!important;padding:14px 8px!important;border:0!important;border-bottom:1px solid var(--bd)!important;border-radius:0!important;background:none!important;box-shadow:none!important;transform:none!important;transition:background .2s}
+.app-card::before,.app-card::after{display:none!important}
+.app-card:hover{background:rgba(var(--snow),.045)!important;box-shadow:none!important;transform:none!important}
+.app-card-header{cursor:pointer;gap:14px}
+.app-card-icon,.app-card-icon-svg-wrap{width:48px!important;height:48px!important;border-radius:12px!important;box-shadow:none!important;transform:none!important}
+.app-card-meta{display:flex;flex-direction:column;gap:3px}
+.app-card-title{order:1;font-family:inherit!important;font-size:15px!important;font-weight:700;line-height:1.3;letter-spacing:0;display:block!important}
+.app-card-meta-top{order:2;justify-content:flex-start;gap:10px;margin:0}
+.app-card-cat,.app-card-badge{display:inline-block;font-family:inherit!important;letter-spacing:0!important;text-transform:lowercase!important}
+.app-card-cat{font-size:12px!important;font-weight:600;color:var(--t3)!important}
+.app-card-badge{font-size:11px!important;font-weight:700;background:none!important;color:var(--a)!important;border:1px solid var(--bd2);padding:1px 8px!important}
+.app-card-cat::first-letter,.app-card-badge::first-letter{text-transform:uppercase}
+.app-card-desc{font-size:13px!important;line-height:1.55!important;color:var(--t2)!important;-webkit-line-clamp:2!important;margin:0!important}
+.app-card-tags{display:none!important}
+.app-card-action{margin:0!important;padding:0!important;gap:8px}
+.btn-app-dl{flex:none!important;height:38px;padding:0 18px!important;gap:8px!important;border:0!important;border-radius:999px!important;font-size:0!important;background:var(--a)!important;color:var(--on-a)!important}
+.btn-app-dl span[data-k]{display:none}
+.btn-app-dl::after{content:"Google Play";font-size:12.5px;font-weight:700;letter-spacing:0;font-family:inherit}
+.btn-app-info{width:38px!important;height:38px!important;border-radius:50%!important;background:none!important;color:var(--t2)!important}
+@media (hover:hover) and (pointer:fine){
+  .btn-app-dl:hover{background:var(--a2)!important;transform:none!important;box-shadow:none!important}
+  .btn-app-info:hover{background:rgba(var(--snow),.12)!important;color:var(--t)!important;transform:none!important;box-shadow:none!important}
+}
+
+@media(max-width:960px){
+  .tab-bar{padding:0 var(--sp-3)!important}
+  .tab{flex:1 1 0!important;justify-content:center!important;padding:0 6px!important;min-height:48px!important}
+  .app-card{grid-template-columns:minmax(0,1fr) auto!important;gap:8px 12px!important;padding:14px 2px!important}
+  .app-card-header{grid-column:1}
+  .app-card-desc{grid-column:1/-1;grid-row:2}
+  .app-card-action{grid-column:2;grid-row:1}
+  .btn-app-dl{width:38px;padding:0!important;justify-content:center}
+  .btn-app-dl::after,.btn-app-info{display:none}
+  .lnk,.lnk--tiktok{grid-template-columns:44px minmax(0,1fr)!important}
+  .lnk-foot{grid-column:2;margin-top:8px!important}
+  .stats{grid-template-columns:repeat(2,1fr)!important}
+  .stat:nth-child(odd){border-left:0!important}
+  .stat:nth-child(n+3){border-top:1px solid var(--bd)}
+  .pillars-grid{grid-template-columns:1fr!important}
+  .collab-studio{padding:20px!important}
+}
+
+
+/* ════════════════════════════════════════════════════════
+   § 18. MASAÜSTÜ — her bölüm kendi içinde TEK EKRAN (yüksekliğe duyarlı)
+   ════════════════════════════════════════════════════════ */
+@media (min-width:961px){
+  .tab{min-height:50px!important}
+  .panel{display:flex!important;flex-direction:column;gap:clamp(12px,2.1vh,24px);height:100%;
+    padding:clamp(14px,2.6vh,30px) max(clamp(28px,3.4vw,56px),calc((100% - 1040px)/2))!important}
+  .panel>*{max-width:none!important;margin:0!important}
+  .p-title,.apps-inline-title{font-size:clamp(22px,1.8vw + .5vh,30px)!important;margin:0!important;flex-shrink:0}
+
+  /* 01 Hakkında & İletişim — tek ekranda iki sütun */
+  #p1 .mg-grid{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  #p1 .mg-about,#p1 .mg-contact{display:flex;flex-direction:column;gap:clamp(10px,1.8vh,20px);min-height:0}
+  #p1 .mg-about{padding-right:clamp(26px,3.2vw,48px)}
+  #p1 .mg-contact{padding-left:clamp(26px,3.2vw,48px);border-left:1px solid var(--bd)}
+  #p1 .about-body,#p1 .about-copy{display:contents!important}
+  #p1 .manifesto-banner{margin:0!important;padding:2px 0 2px 18px!important;gap:16px}
+  #p1 .aring{width:52px!important;height:52px!important}
+  #p1 .manifesto-quote{font-size:clamp(15.5px,.7vw + .6vh,20px)!important;line-height:1.45}
+  #p1 .ap{margin:0!important;max-width:none;font-size:clamp(13px,.25vw + .65vh,15px)!important;line-height:1.65}
+  #p1 .stats{margin:auto 0 0!important}
+  #p1 .stat{padding:clamp(8px,1.4vh,16px) 12px!important}
+  #p1 .sn{font-size:clamp(20px,1.2vw + .8vh,28px)!important}
+  #p1 .pillars-grid{display:none!important}
+  #p1 .skills-row{margin:0!important;gap:6px}
+  #p1 .skill-tag{padding:4px 11px!important;font-size:11.5px!important}
+  #p1 .skill-tag:nth-last-child(-n+2){display:none}
+  #p1 .clinks{flex:1;min-height:0;display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));border-left:1px solid var(--bd)}
+  #p1 .lnk,#p1 .lnk--tiktok{grid-template-columns:36px minmax(0,1fr) auto!important;gap:0 12px;padding:8px 14px!important;border-right:1px solid var(--bd)!important;min-height:0;overflow:hidden}
+  #p1 .lnk-icon{grid-column:1;grid-row:1;width:36px!important;height:36px!important;border-radius:10px!important}
+  #p1 .lnk-body{grid-column:2;grid-row:1}
+  #p1 .lnk-name{font-size:14px!important}
+  #p1 .lnk-val{font-size:12.5px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #p1 .lnk-sub{display:none!important}
+  #p1 .lnk-foot{grid-column:3;grid-row:1}
+  #p1 .lnk-copy-chip{position:relative;width:30px;height:30px;padding:0!important;font-size:0!important;border:1px solid var(--bd)!important;border-radius:50%!important}
+  #p1 .lnk-copy-chip::before{content:'';position:absolute;inset:0;margin:auto;width:14px;height:14px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='11' height='11' rx='2'/%3E%3Cpath d='M5 15V6a2 2 0 0 1 2-2h9'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='9' y='9' width='11' height='11' rx='2'/%3E%3Cpath d='M5 15V6a2 2 0 0 1 2-2h9'/%3E%3C/svg%3E") center/contain no-repeat}
+  #p1 .collab-studio{margin:0!important;padding:clamp(12px,1.8vh,18px) 18px!important;display:flex;flex-direction:column;gap:10px;flex-shrink:0}
+  #p1 .collab-title{font-size:15.5px!important}
+  #p1 .collab-topics{margin:0;gap:6px}
+  #p1 .topic-chip{padding:5px 12px!important;font-size:12px!important}
+  #p1 .collab-Controls{flex-direction:column;gap:8px}
+  #p1 .collab-input{flex:none;min-width:0;padding:10px 14px!important}
+  #p1 .collab-actions .btn{flex:1;justify-content:center;padding:10px 14px!important;white-space:nowrap}
+
+  /* 03 Uygulamalar — 15 uygulama, 3 sütun × 5 satır kompakt liste */
+  #p2 .apps-portfolio-wrap{flex:1;min-height:0;max-width:none}
+  .apps-single-top{gap:clamp(6px,1vh,12px);margin:0}
+  #p2 .apps-toolbar{gap:8px 16px}
+  .app-filter-btn{padding:9px 12px!important}
+  .app-filter-btn.on::after{left:12px;right:12px}
+  .app-search-input{padding:7px 32px!important}
+  #p2 .apps-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:clamp(54px,calc((100vh - 380px)/5),100px);column-gap:clamp(18px,2.2vw,36px);align-content:start;margin-top:4px}
+  #p2 .app-card{grid-template-columns:minmax(0,1fr) auto!important;gap:0 10px!important;padding:0 4px!important;min-height:0}
+  #p2 .app-card-desc,#p2 .app-card-badge{display:none!important}
+  #p2 .app-card-icon,#p2 .app-card-icon-svg-wrap{width:clamp(38px,4.6vh,46px)!important;height:clamp(38px,4.6vh,46px)!important;border-radius:11px!important}
+  #p2 .app-card-header{gap:12px;min-width:0}
+  #p2 .app-card-meta{min-width:0}
+  #p2 .app-card-title{font-size:14px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #p2 .app-card-cat{font-size:11.5px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #p2 .app-card-action{grid-column:2;grid-row:1;gap:6px}
+  #p2 .btn-app-dl{width:32px;height:32px;padding:0!important;justify-content:center}
+  #p2 .btn-app-dl::after{display:none}
+  #p2 .btn-app-info{width:32px!important;height:32px!important}
+}
+@media (min-width:961px) and (max-height:700px){
+  .panel{gap:10px}
+  #p0 .lnk-sub{-webkit-line-clamp:1}
+  #p0 .collab-input{padding:7px 12px!important}
+  #p1 .ap{font-size:12.5px!important;line-height:1.55}
+  #p1 .pillar-desc{font-size:11.5px!important;line-height:1.45}
+  #p1 .stat{padding:8px 10px!important}
+  #p1 .manifesto-quote{font-size:15px!important}
+}
+
+@media (min-width:961px) and (min-height:860px){
+  #p1 .lnk-sub{display:-webkit-box!important;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:12px!important}
+}
+@media (min-width:961px) and (max-height:700px){
+  #p1 .ring-wrap{display:none}
+  #p1 .skills-row{display:none}
+}
+@media (max-width:960px){
+  .mg-contact{margin-top:36px;padding-top:8px;border-top:1px solid var(--bd)}
+}
+/* § 19. Genel cila — daha sakin, daha profesyonel */
+#geo-shapes,.volumetric-light,.hero-orbit,.hero-orbit2,.hero-orbit3,.hero-line,.hero-scan-line,.hero-inner::before,.hero-inner::after{display:none!important}
+#aurora{opacity:.55}
+.nav-center-pills .nav-pill{--pill-clr:var(--a)!important;--pill-bg:rgba(var(--snow),.1)!important;font-family:inherit!important;font-size:12.5px!important;font-weight:600;letter-spacing:0!important;text-transform:none!important}
+.nav-logo{letter-spacing:clamp(2px,.45vw,5px)}
+.nav-logo-icon{animation:none}
+.brand-name:hover,.hero-crest-wrap:hover{transform:none!important}
+.eyebrow{font-family:inherit!important;font-size:12px!important;font-weight:600;letter-spacing:.05em!important;text-transform:none!important;color:var(--t3)!important}
+.hero-manifesto{font-size:12.5px!important;line-height:1.6!important;color:var(--t2)}
+.h-metric-lbl{font-family:inherit!important;font-size:11px!important;letter-spacing:0!important;text-transform:none!important}
+.hero-ctas .btn,.collab-actions .btn{font-family:inherit!important;font-size:12.5px!important;font-weight:700;letter-spacing:.01em!important;text-transform:none!important;border-radius:12px!important}
+.hsoc-btn{border-radius:50%!important}
+footer .f-copy,footer .f-clock,footer .f-status{font-family:inherit!important;letter-spacing:.05em!important}
+/* § 20. Bölüm renkleri · mobil · çok dilli sağlamlık */
+#p1,.tab--about,.nav-pill--about{--a:#38BDF8;--a2:#7DD3FC;--a3:#0369A1;--on-a:#04121C;--snow:56,189,248;--bd:rgba(56,189,248,.17);--bd2:rgba(56,189,248,.38);--bd3:rgba(56,189,248,.08);--glow:rgba(56,189,248,.3);--glow2:rgba(56,189,248,.12);--tag-ink:#7DD3FC;--tag-bg:rgba(56,189,248,.1);--btn-grad:linear-gradient(135deg,#7DD3FC,#38BDF8 55%,#0EA5E9)}
+#p2,.tab--apps,.nav-pill--apps{--a:#F472B6;--a2:#F9A8D4;--a3:#BE185D;--on-a:#1F0612;--snow:244,114,182;--bd:rgba(244,114,182,.17);--bd2:rgba(244,114,182,.38);--bd3:rgba(244,114,182,.08);--glow:rgba(244,114,182,.3);--glow2:rgba(244,114,182,.12);--tag-ink:#F9A8D4;--tag-bg:rgba(244,114,182,.1);--btn-grad:linear-gradient(135deg,#F9A8D4,#F472B6 55%,#EC4899)}
+[data-theme="ivory"] #p1,[data-theme="ivory"] .tab--about,[data-theme="ivory"] .nav-pill--about{--a:#0369A1;--a2:#0284C7;--a3:#075985;--on-a:#FFFFFF;--snow:3,105,161;--bd:rgba(3,105,161,.17);--bd2:rgba(3,105,161,.38);--bd3:rgba(3,105,161,.08);--glow:rgba(3,105,161,.3);--glow2:rgba(3,105,161,.12);--tag-ink:#0284C7;--tag-bg:rgba(3,105,161,.1);--btn-grad:linear-gradient(135deg,#0284C7,#0369A1 60%,#075985)}
+[data-theme="ivory"] #p2,[data-theme="ivory"] .tab--apps,[data-theme="ivory"] .nav-pill--apps{--a:#BE185D;--a2:#DB2777;--a3:#9D174D;--on-a:#FFFFFF;--snow:190,24,93;--bd:rgba(190,24,93,.17);--bd2:rgba(190,24,93,.38);--bd3:rgba(190,24,93,.08);--glow:rgba(190,24,93,.3);--glow2:rgba(190,24,93,.12);--tag-ink:#DB2777;--tag-bg:rgba(190,24,93,.1);--btn-grad:linear-gradient(135deg,#DB2777,#BE185D 60%,#9D174D)}
+#p1,#p2{background:radial-gradient(780px 300px at 6% -8%,rgba(var(--snow),.15),transparent 70%),radial-gradient(520px 260px at 100% 100%,rgba(var(--snow),.08),transparent 70%)}
+[data-theme="ivory"] #p1,[data-theme="ivory"] #p2{background:radial-gradient(780px 300px at 6% -8%,rgba(var(--snow),.09),transparent 70%),radial-gradient(520px 260px at 100% 100%,rgba(var(--snow),.05),transparent 70%)}
+.p-title::before,.apps-inline-title::before{content:'';flex:none;width:4px;height:.95em;border-radius:3px;background:var(--btn-grad)}
+.sn{color:var(--a)!important}
+#p2 .app-card-cat{color:var(--a)!important}
+.tab-icon-box{color:var(--a)!important}
+.tab:not(.on) .tab-icon-box{opacity:.65}
+.tab.on{background:linear-gradient(180deg,transparent 25%,rgba(var(--snow),.13))!important}
+.tab.on::before{box-shadow:0 0 14px rgba(var(--snow),.6)!important}
+.nav-center-pills .nav-pill--about{--pill-clr:var(--a)!important;--pill-bg:rgba(var(--snow),.14)!important}
+.nav-center-pills .nav-pill--apps{--pill-clr:var(--a)!important;--pill-bg:rgba(var(--snow),.14)!important}
+.lnk-body,.app-card-meta,.tab-text-grp{min-width:0}
+.lnk-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sl,.sn{overflow-wrap:anywhere}
+html[lang="ja"] .ap,html[lang="ko"] .ap{line-height:1.85}
+@media (max-width:960px){
+  .tab{border-radius:12px 12px 0 0!important}
+  .apps-filter-bar{flex-wrap:nowrap;overflow-x:auto;width:100%;scrollbar-width:none}
+  .apps-filter-bar::-webkit-scrollbar{display:none}
+  .app-filter-btn{flex:none;white-space:nowrap}
+  .apps-toolbar{gap:2px}
+  .apps-toolbar-right{width:100%;padding:8px 0 10px}
+  .app-search-wrap{flex:1;max-width:none;min-width:0}
+  .dev-store-btn--compact{white-space:nowrap}
+  .collab-Controls{flex-direction:column}
+  .collab-input{flex:none;min-width:0;width:100%}
+  .collab-actions{width:100%}
+  .collab-actions .btn{flex:1;justify-content:center;white-space:normal;text-align:center}
+  .p-title,.apps-inline-title{font-size:clamp(21px,6vw,26px)!important}
+  .panel{padding-top:22px!important}
+}
+@media (max-width:680px){.tab-main-lbl{font-size:12.5px!important}}
+@media (max-width:360px){.tab-icon-box{display:none!important}}
+/* § 21. İnce ayar */
+@media (min-width:961px){
+  #p1 .mg-about{justify-content:space-between}
+  #p1 .stats{margin:0!important}
+  #p1 .ap{font-size:clamp(13.5px,.3vw + .75vh,16px)!important}
+  #p1 .clinks{gap:0!important}
+  #p1 .lnk,#p1 .lnk--tiktok{grid-template-columns:34px minmax(0,1fr) auto!important;gap:0 10px;padding:8px 12px!important}
+  #p1 .lnk-icon{width:34px!important;height:34px!important}
+  #p1 .lnk-val{font-size:12px!important}
+  #p1 .collab-head{margin:0!important}
+}
+html[lang="de"] .app-card-cat,html[lang="de"] .app-card-badge{text-transform:none!important}
+/* § 22. Mobil — yapışkan menü, üst çubuk, sekmeler */
+@media (max-width:960px){
+  html,body{overflow-x:clip!important;overflow-y:visible!important}
+  .tab{flex-direction:row!important;gap:8px!important}
+  .manifesto-banner{flex-direction:column!important;align-items:flex-start!important;gap:12px!important;padding-left:18px!important}
+  .manifesto-quote{font-size:17px!important}
+  .aring{width:56px!important;height:56px!important}
+}
+@media (max-width:560px){
+  .nav-logo{font-size:12.5px;letter-spacing:1.5px;gap:8px}
+  .nav-logo-icon,.nav-sep{display:none}
+  .lsel{padding-left:6px;padding-right:4px;font-size:12px}
+  .nav-r{gap:6px}
+  .tdots{gap:5px}
+}
+/* § 23. Hakkında (mavi) & Uygulamalar (pembe) — canlı bölüm kimliği · mobil · diller */
+#p1,#p2{--wash:.24}
+[data-theme="ivory"] #p1,[data-theme="ivory"] #p2{--wash:.12}
+#p1,#p2,[data-theme="ivory"] #p1,[data-theme="ivory"] #p2{background:linear-gradient(90deg,var(--a3),var(--a),var(--a2)) top/100% 3px no-repeat,radial-gradient(900px 380px at 0% -10%,rgba(var(--snow),var(--wash)),transparent 68%),radial-gradient(640px 320px at 100% 105%,rgba(var(--snow),calc(var(--wash)*.7)),transparent 70%)}
+.p-title,.apps-inline-title{background:linear-gradient(95deg,var(--a2),var(--a));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;font-weight:800;line-height:1.25}
+html[lang="hi"] .p-title,html[lang="hi"] .apps-inline-title{line-height:1.5}
+.p-label{color:var(--tag-ink)!important}
+.apps-live-count{color:var(--tag-ink)!important;font-weight:700}
+/* Sekmeler */
+.tab{min-width:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.tab--about:not(.on) .tab-main-lbl,.tab--apps:not(.on) .tab-main-lbl{color:var(--tag-ink)}
+.tab--about.on,.tab--apps.on{background:linear-gradient(180deg,rgba(var(--snow),.26),rgba(var(--snow),.06))!important}
+.tab--about .tab-icon-box,.tab--apps .tab-icon-box{width:30px!important;height:30px!important;display:inline-flex;align-items:center;justify-content:center;border-radius:9px!important;background:var(--tag-bg)!important;border:1px solid var(--bd2)!important}
+.tab--about.on .tab-icon-box,.tab--apps.on .tab-icon-box{background:var(--btn-grad)!important;color:var(--on-a)!important;border-color:transparent!important;box-shadow:0 4px 16px var(--glow)!important}
+.tab--apps .tab-pill-badge{background:var(--btn-grad)!important;color:var(--on-a)!important;border-color:transparent!important}
+.tab-main-lbl,.tab-kicker{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.tab:focus-visible,.app-filter-btn:focus-visible,.btn-app-dl:focus-visible,.btn-app-info:focus-visible{outline:2px solid var(--a);outline-offset:2px}
+/* Hakkında */
+.manifesto-banner{border-left-width:4px!important;border-radius:0 14px 14px 0!important;background:linear-gradient(90deg,rgba(var(--snow),.16),transparent 85%)!important}
+.aring{background:var(--btn-grad)!important;box-shadow:0 0 0 2px var(--a),0 0 24px var(--glow)!important}
+.stats{gap:10px!important;border:0!important}
+.stats .stat,.stats .stat:nth-child(n){background:linear-gradient(160deg,rgba(var(--snow),.2),rgba(var(--snow),.04))!important;border:1px solid var(--bd2)!important;border-radius:14px!important}
+.sn{background:linear-gradient(135deg,var(--a2),var(--a));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.pillar-card{background:linear-gradient(160deg,rgba(var(--snow),.14),rgba(var(--snow),.03))!important;border:1px solid var(--bd)!important;border-top:3px solid var(--a)!important;border-radius:14px!important;padding:18px!important}
+.skill-tag{background:var(--tag-bg)!important;border-color:var(--bd2)!important;color:var(--tag-ink)!important;border-radius:999px!important}
+.ap,.pillar-desc,.app-card-desc,.manifesto-quote{overflow-wrap:break-word;hyphens:auto}
+html[lang="ja"] :is(.ap,.pillar-desc,.app-card-desc,.manifesto-quote),html[lang="ko"] :is(.ap,.pillar-desc,.app-card-desc,.manifesto-quote){hyphens:manual}
+html[lang="hi"] :is(.ap,.pillar-desc,.app-card-desc,.manifesto-quote){line-height:1.9}
+/* Uygulamalar */
+.app-card{box-shadow:inset 3px 0 0 var(--bd2)!important;box-shadow:inset 3px 0 0 color-mix(in srgb,var(--ca,var(--a)) 55%,transparent)!important;transition:background .25s,box-shadow .25s}
+.app-card:hover,.app-card:focus-within{background:linear-gradient(90deg,rgba(var(--snow),.16),rgba(var(--snow),.03))!important;box-shadow:inset 3px 0 0 var(--ca,var(--a)),0 10px 28px -12px var(--glow)!important}
+#p2 .app-card{padding-left:14px!important}
+#p2 .app-card .app-card-cat{color:var(--ca,var(--a))!important}
+.app-card-icon,.app-card-icon-svg-wrap{box-shadow:0 0 0 1.5px var(--bd2),0 6px 16px -6px var(--glow)!important}
+.app-card-badge{background:var(--tag-bg)!important}
+.btn-app-dl{background:var(--btn-grad)!important;box-shadow:0 6px 18px -6px var(--glow)!important;touch-action:manipulation}
+.app-filter-btn{touch-action:manipulation}
+.app-filter-btn.on{background:var(--btn-grad)!important;color:var(--on-a)!important;border-radius:999px!important}
+.app-filter-btn.on::after{display:none!important}
+.app-search-input:focus{border-color:var(--a)!important;box-shadow:0 0 0 3px rgba(var(--snow),.22)!important;outline:0}
+/* Mobil */
+@media (max-width:960px){
+  .panel{padding-left:max(16px,var(--safe-left))!important;padding-right:max(16px,var(--safe-right))!important;padding-bottom:calc(36px + var(--safe-bottom))!important}
+  .tab{min-height:52px!important}
+  .manifesto-banner{padding:16px 16px 16px 18px!important;margin-bottom:22px!important}
+  .pillars-grid{gap:14px!important}
+  .app-filter-bar,.apps-filter-bar{gap:6px}
+  .app-filter-btn{min-height:44px;padding:0 16px!important}
+  .btn-app-dl{width:44px!important;height:44px!important}
+  #p2 .app-card{padding:14px 10px 14px 14px!important}
+  .app-card-title{white-space:normal;overflow-wrap:anywhere}
+}
+@media (max-width:420px){
+  .tab-pill-badge{display:none!important}
+  .stats .stat{padding:16px 12px!important}
+  .sn{font-size:clamp(24px,8vw,30px)!important}
+}
+@media (prefers-reduced-motion:reduce){.app-card{transition:none}}
+[data-theme="dark"] #p1,[data-theme="dark"] .tab--about,[data-theme="dark"] .nav-pill--about{--a:#7BA7F7;--a2:#B4CDFB;--a3:#3F67C9;--on-a:#07122B;--snow:123,167,247;--bd:rgba(123,167,247,.2);--bd2:rgba(123,167,247,.42);--bd3:rgba(123,167,247,.09);--glow:rgba(123,167,247,.34);--glow2:rgba(123,167,247,.14);--tag-ink:#B4CDFB;--tag-bg:rgba(123,167,247,.13);--btn-grad:linear-gradient(135deg,#B4CDFB,#7BA7F7)}
+[data-theme="dark"] #p2,[data-theme="dark"] .tab--apps,[data-theme="dark"] .nav-pill--apps{--a:#E8A38C;--a2:#F6CDBF;--a3:#B2634D;--on-a:#2A110A;--snow:232,163,140;--bd:rgba(232,163,140,.2);--bd2:rgba(232,163,140,.42);--bd3:rgba(232,163,140,.09);--glow:rgba(232,163,140,.34);--glow2:rgba(232,163,140,.14);--tag-ink:#F6CDBF;--tag-bg:rgba(232,163,140,.13);--btn-grad:linear-gradient(135deg,#F6CDBF,#E8A38C)}
+[data-theme="nebula"] #p1,[data-theme="nebula"] .tab--about,[data-theme="nebula"] .nav-pill--about{--a:#6DB8F2;--a2:#B1DAFA;--a3:#2F7FC2;--on-a:#06192B;--snow:109,184,242;--bd:rgba(109,184,242,.2);--bd2:rgba(109,184,242,.42);--bd3:rgba(109,184,242,.09);--glow:rgba(109,184,242,.34);--glow2:rgba(109,184,242,.14);--tag-ink:#B1DAFA;--tag-bg:rgba(109,184,242,.13);--btn-grad:linear-gradient(135deg,#B1DAFA,#6DB8F2)}
+[data-theme="nebula"] #p2,[data-theme="nebula"] .tab--apps,[data-theme="nebula"] .nav-pill--apps{--a:#F08FC9;--a2:#F8C4E2;--a3:#B8458C;--on-a:#2B0A1D;--snow:240,143,201;--bd:rgba(240,143,201,.2);--bd2:rgba(240,143,201,.42);--bd3:rgba(240,143,201,.09);--glow:rgba(240,143,201,.34);--glow2:rgba(240,143,201,.14);--tag-ink:#F8C4E2;--tag-bg:rgba(240,143,201,.13);--btn-grad:linear-gradient(135deg,#F8C4E2,#F08FC9)}
+[data-theme="crimson"] #p1,[data-theme="crimson"] .tab--about,[data-theme="crimson"] .nav-pill--about{--a:#8DB6E8;--a2:#C3D9F3;--a3:#4577B5;--on-a:#0A1A30;--snow:141,182,232;--bd:rgba(141,182,232,.2);--bd2:rgba(141,182,232,.42);--bd3:rgba(141,182,232,.09);--glow:rgba(141,182,232,.34);--glow2:rgba(141,182,232,.14);--tag-ink:#C3D9F3;--tag-bg:rgba(141,182,232,.13);--btn-grad:linear-gradient(135deg,#C3D9F3,#8DB6E8)}
+[data-theme="crimson"] #p2,[data-theme="crimson"] .tab--apps,[data-theme="crimson"] .nav-pill--apps{--a:#F0B35E;--a2:#F8D79D;--a3:#B87A1C;--on-a:#2A1802;--snow:240,179,94;--bd:rgba(240,179,94,.2);--bd2:rgba(240,179,94,.42);--bd3:rgba(240,179,94,.09);--glow:rgba(240,179,94,.34);--glow2:rgba(240,179,94,.14);--tag-ink:#F8D79D;--tag-bg:rgba(240,179,94,.13);--btn-grad:linear-gradient(135deg,#F8D79D,#F0B35E)}
+[data-theme="emerald"] #p1,[data-theme="emerald"] .tab--about,[data-theme="emerald"] .nav-pill--about{--a:#6AAEF5;--a2:#B0D3FB;--a3:#2F72C4;--on-a:#08182C;--snow:106,174,245;--bd:rgba(106,174,245,.2);--bd2:rgba(106,174,245,.42);--bd3:rgba(106,174,245,.09);--glow:rgba(106,174,245,.34);--glow2:rgba(106,174,245,.14);--tag-ink:#B0D3FB;--tag-bg:rgba(106,174,245,.13);--btn-grad:linear-gradient(135deg,#B0D3FB,#6AAEF5)}
+[data-theme="emerald"] #p2,[data-theme="emerald"] .tab--apps,[data-theme="emerald"] .nav-pill--apps{--a:#E2C06E;--a2:#F2DFA8;--a3:#A5832A;--on-a:#261B04;--snow:226,192,110;--bd:rgba(226,192,110,.2);--bd2:rgba(226,192,110,.42);--bd3:rgba(226,192,110,.09);--glow:rgba(226,192,110,.34);--glow2:rgba(226,192,110,.14);--tag-ink:#F2DFA8;--tag-bg:rgba(226,192,110,.13);--btn-grad:linear-gradient(135deg,#F2DFA8,#E2C06E)}
+[data-theme="ivory"] #p1,[data-theme="ivory"] .tab--about,[data-theme="ivory"] .nav-pill--about{--a:#1E4FB8;--a2:#2F63CF;--a3:#173A8A;--on-a:#FFFFFF;--snow:30,79,184;--bd:rgba(30,79,184,.2);--bd2:rgba(30,79,184,.42);--bd3:rgba(30,79,184,.09);--glow:rgba(30,79,184,.34);--glow2:rgba(30,79,184,.14);--tag-ink:#1B46A3;--tag-bg:rgba(30,79,184,.13);--btn-grad:linear-gradient(135deg,#2F63CF,#1E4FB8)}
+[data-theme="ivory"] #p2,[data-theme="ivory"] .tab--apps,[data-theme="ivory"] .nav-pill--apps{--a:#A3264F;--a2:#BE3A66;--a3:#7A1738;--on-a:#FFFFFF;--snow:163,38,79;--bd:rgba(163,38,79,.2);--bd2:rgba(163,38,79,.42);--bd3:rgba(163,38,79,.09);--glow:rgba(163,38,79,.34);--glow2:rgba(163,38,79,.14);--tag-ink:#8F1F44;--tag-bg:rgba(163,38,79,.13);--btn-grad:linear-gradient(135deg,#BE3A66,#A3264F)}
+/* § 24. Premium tema-uyumlu bölüm paletleri · belirgin uygulama simgeleri */
+#p1 .sl{color:var(--t2)!important}
+#p2{--ic:56px}
+@media (min-width:961px){#p2{--ic:clamp(44px,calc((100vh - 380px)/5 - 14px),60px)}}
+#p2 .app-card{--ca:var(--a)}
+#p2 .app-card .app-card-icon,#p2 .app-card .app-card-icon-svg-wrap{width:var(--ic)!important;height:var(--ic)!important;border-radius:22%!important;object-fit:cover;background:var(--bg3);box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--a),0 10px 24px -8px var(--glow)!important;transition:transform .25s,box-shadow .25s}
+@media (hover:hover) and (pointer:fine){#p2 .app-card:hover .app-card-icon,#p2 .app-card:hover .app-card-icon-svg-wrap{transform:scale(1.07)!important;box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px var(--a2),0 14px 30px -8px var(--glow)!important}}
+#p2 .app-card-header{gap:clamp(12px,1.2vw,16px)}
+.app-modal-icon{width:80px;height:80px;border-radius:22%;border-width:2px;box-shadow:0 0 0 2px var(--bg),0 10px 28px -8px var(--glow)}
+@media (prefers-reduced-motion:reduce){#p2 .app-card .app-card-icon{transition:none}}
 </style>
 </head>
 <body>
@@ -2180,13 +2609,9 @@ body.modal-open { overflow: hidden !important; }
       MIRZA ACADEMY
     </div>
     <div class="nav-center-pills" role="navigation" aria-label="Quick section jump">
-      <button type="button" class="nav-pill nav-pill--contact" id="navPill0" onclick="switchTab(0, true)">
-        <span class="nav-pill-dot"></span>
-        <span data-k="cEye">İletişim</span>
-      </button>
       <button type="button" class="nav-pill nav-pill--about" id="navPill1" onclick="switchTab(1, true)">
         <span class="nav-pill-dot"></span>
-        <span data-k="aEye">Hakkında</span>
+        <span><span data-k="aEye">Hakkında</span> &amp; <span data-k="cEye">İletişim</span></span>
       </button>
       <button type="button" class="nav-pill nav-pill--apps on" id="navPill2" onclick="switchTab(2, true)">
         <span class="nav-pill-dot"></span>
@@ -2311,20 +2736,6 @@ body.modal-open { overflow: hidden !important; }
     <!-- ── BOTTOM: TABBED CONTENT ── -->
     <div class="bottom">
       <div class="tab-bar" role="tablist" id="tabBar" aria-label="Main Content Sections" style="--tab-idx: 2;">
-        <button class="tab tab--contact" id="tab0" role="tab" aria-selected="false" aria-controls="p0" onclick="switchTab(0, true)">
-          <span class="tab-glow" aria-hidden="true"></span>
-          <span class="tab-icon-box" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
-            </svg>
-          </span>
-          <span class="tab-text-grp">
-            <span class="tab-kicker"><span class="tab-num">01</span> · <span data-k="tabSub0">KANALLAR</span></span>
-            <span class="tab-main-lbl" data-k="cEye">İletişim</span>
-          </span>
-          <span class="tab-pill-badge">6</span>
-        </button>
-
         <button class="tab tab--about" id="tab1" role="tab" aria-selected="false" aria-controls="p1" onclick="switchTab(1, true)">
           <span class="tab-glow" aria-hidden="true"></span>
           <span class="tab-icon-box" aria-hidden="true">
@@ -2334,7 +2745,7 @@ body.modal-open { overflow: hidden !important; }
           </span>
           <span class="tab-text-grp">
             <span class="tab-kicker"><span class="tab-num">02</span> · <span data-k="tabSub1">STÜDYO</span></span>
-            <span class="tab-main-lbl" data-k="aEye">Hakkında</span>
+            <span class="tab-main-lbl"><span data-k="aEye">Hakkında</span> &amp; <span data-k="cEye">İletişim</span></span>
           </span>
           <span class="tab-pill-badge">PRO</span>
         </button>
@@ -2359,13 +2770,89 @@ body.modal-open { overflow: hidden !important; }
 
       <div class="tab-content" id="main" tabindex="-1">
 
-        <!-- PANEL 01: CONNECT -->
-        <div class="panel" id="p0" role="tabpanel" aria-labelledby="tab0">
+        <!-- PANEL 02: ABOUT -->
+        <div class="panel" id="p1" role="tabpanel" aria-labelledby="tab1">
           <div class="p-header">
-            <span class="p-num">01</span>
-            <span class="p-label" data-k="cEye">İletişim</span>
+            <span class="p-num">02</span>
+            <span class="p-label" data-k="aEye">Hakkında</span>
           </div>
-          <div class="p-title" data-k="cTit">Bağlanalım</div>
+          <div class="mg-grid"><section class="mg-about">
+<div class="p-title" data-k="aTit">Ben Kimim?</div>
+
+          <div class="manifesto-banner">
+            <div class="ring-wrap">
+              <div class="aring">
+                <img width="64" height="64" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/s7JqGIojSWzOWUau5i2Qr08T48gmzWNaARiHJdBbF95FXPg8cyEFZplB9s-K8GnvkYk=s256" alt="Mirza Academy Official Emblem" loading="lazy">
+              </div>
+            </div>
+            <div>
+              <p class="manifesto-quote" data-k="mQuote">“Mirza Academy, fikirleri zarif ve sürdürülebilir dijital deneyimlere dönüştüren yenilikçi, kullanıcı odaklı mobil uygulamalar tasarlar.”</p>
+              <span class="manifesto-cite">MIRZA ACADEMY · GOOGLE PLAY PUBLISHER MANIFESTO</span>
+            </div>
+          </div>
+
+          <div class="about-body">
+            <div class="about-copy">
+              <p class="ap" data-k="aP1">Google Play Store için yüksek kaliteli Android uygulamaları geliştiren bir <strong>Mobil Uygulama Geliştiricisi ve Yayıncısıyım</strong>. Dünya çapında kullanıcılara gerçek değer sunuyorum.</p>
+              <p class="ap" data-k="aP2"><strong>React Native</strong>, <strong>TypeScript</strong> ve <strong>Firebase</strong> uzmanı — gizlilik odaklı, çevrimdışı çalışabilen, <strong>AdMob</strong> ve ASO optimizasyonlu premium uygulamalar.</p>
+              <div class="stats">
+                <div class="stat">
+                  <span class="sn" id="stat-apps">15+</span>
+                  <span class="sl" data-k="sA">Uygulama</span>
+                </div>
+                <div class="stat">
+                  <span class="sn">4</span>
+                  <span class="sl" data-k="sCat">Kategori</span>
+                </div>
+                <div class="stat">
+                  <span class="sn">100%</span>
+                  <span class="sl" data-k="sS">Çevrimdışı</span>
+                </div>
+                <div class="stat">
+                  <span class="sn">∞</span>
+                  <span class="sl" data-k="sP">Tutku</span>
+                </div>
+              </div>
+
+              <div class="pillars-grid">
+                <div class="pillar-card">
+                  <div class="pillar-num">01 // ARCHITECTURE</div>
+                  <div class="pillar-title" data-k="pil1T">Kusursuz Akıcılık</div>
+                  <p class="pillar-desc" data-k="pil1D">React Native ve TypeScript ile 60/120fps sıfır gecikmeli animasyonlar, haptik geri bildirim ve modüler mimari.</p>
+                </div>
+                <div class="pillar-card">
+                  <div class="pillar-num">02 // PRIVACY &amp; OFFLINE</div>
+                  <div class="pillar-title" data-k="pil2T">%100 Çevrimdışı Mimari</div>
+                  <p class="pillar-desc" data-k="pil2D">Yerel şifreli depolama ve sıfır izleme prensibiyle her yerde güvenle çalışan uygulamalar.</p>
+                </div>
+                <div class="pillar-card">
+                  <div class="pillar-num">03 // GROWTH &amp; ASO</div>
+                  <div class="pillar-title" data-k="pil3T">Google Play &amp; AdMob</div>
+                  <p class="pillar-desc" data-k="pil3D">Stratejik ASO optimizasyonu, çok dilli küresel yapı ve kullanıcı dostu AdMob gelir modeli.</p>
+                </div>
+                <div class="pillar-card">
+                  <div class="pillar-num">04 // CREATOR ECOSYSTEM</div>
+                  <div class="pillar-title" data-k="pil4T">TikTok &amp; YouTube Ekosistemi</div>
+                  <p class="pillar-desc" data-k="pil4D">@mirzaacademy ve @mmirzaacademy hesaplarında mobil yazılım, tasarım ve ürün geliştirme paylaşımları.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="skills-row">
+            <span class="skill-tag entrance-animate"><span>React Native</span></span>
+            <span class="skill-tag entrance-animate"><span>TypeScript</span></span>
+            <span class="skill-tag entrance-animate"><span>Firebase</span></span>
+            <span class="skill-tag entrance-animate"><span>AdMob</span></span>
+            <span class="skill-tag entrance-animate"><span>Google Play</span></span>
+            <span class="skill-tag entrance-animate"><span>ASO</span></span>
+            <span class="skill-tag entrance-animate"><span>Android</span></span>
+            <span class="skill-tag entrance-animate"><span>UI/UX Design</span></span>
+            <span class="skill-tag entrance-animate"><span>TikTok @mirzaacademy</span></span>
+            <span class="skill-tag entrance-animate"><span>YouTube</span></span>
+          </div>
+        </section>
+<section class="mg-contact">
+<div class="p-title" data-k="cTit">Bağlanalım</div>
           <div class="clinks">
             <!-- 1. TikTok (@mirzaacademy) -->
             <a href="https://www.tiktok.com/@mirzaacademy" target="_blank" rel="noopener noreferrer" class="lnk lnk--tiktok" aria-label="TikTok @mirzaacademy">
@@ -2504,153 +2991,62 @@ body.modal-open { overflow: hidden !important; }
               </div>
             </div>
           </div>
-        </div>
+        </section></div>
+</div>
 
-        <!-- PANEL 02: ABOUT -->
-        <div class="panel" id="p1" role="tabpanel" aria-labelledby="tab1">
-          <div class="p-header">
-            <span class="p-num">02</span>
-            <span class="p-label" data-k="aEye">Hakkında</span>
-          </div>
-          <div class="p-title" data-k="aTit">Ben Kimim?</div>
-
-          <div class="manifesto-banner">
-            <div class="ring-wrap">
-              <div class="aring">
-                <img width="84" height="84" decoding="async" src="https://play-lh.googleusercontent.com/s7JqGIojSWzOWUau5i2Qr08T48gmzWNaARiHJdBbF95FXPg8cyEFZplB9s-K8GnvkYk=s256" alt="Mirza Academy Official Emblem" loading="lazy">
-              </div>
-            </div>
-            <div>
-              <p class="manifesto-quote" data-k="mQuote">“Mirza Academy, fikirleri zarif ve sürdürülebilir dijital deneyimlere dönüştüren yenilikçi, kullanıcı odaklı mobil uygulamalar tasarlar.”</p>
-              <span class="manifesto-cite">MIRZA ACADEMY · GOOGLE PLAY PUBLISHER MANIFESTO</span>
-            </div>
-          </div>
-
-          <div class="about-body">
-            <div class="about-copy">
-              <p class="ap" data-k="aP1">Google Play Store için yüksek kaliteli Android uygulamaları geliştiren bir <strong>Mobil Uygulama Geliştiricisi ve Yayıncısıyım</strong>. Dünya çapında kullanıcılara gerçek değer sunuyorum.</p>
-              <p class="ap" data-k="aP2"><strong>React Native</strong>, <strong>TypeScript</strong> ve <strong>Firebase</strong> uzmanı — gizlilik odaklı, çevrimdışı çalışabilen, <strong>AdMob</strong> ve ASO optimizasyonlu premium uygulamalar.</p>
-              <div class="stats">
-                <div class="stat">
-                  <span class="sn" id="stat-apps">15+</span>
-                  <span class="sl" data-k="sA">Uygulama</span>
-                </div>
-                <div class="stat">
-                  <span class="sn">4</span>
-                  <span class="sl" data-k="sCat">Kategori</span>
-                </div>
-                <div class="stat">
-                  <span class="sn">100%</span>
-                  <span class="sl" data-k="sS">Çevrimdışı</span>
-                </div>
-                <div class="stat">
-                  <span class="sn">∞</span>
-                  <span class="sl" data-k="sP">Tutku</span>
-                </div>
-              </div>
-
-              <div class="pillars-grid">
-                <div class="pillar-card">
-                  <div class="pillar-num">01 // ARCHITECTURE</div>
-                  <div class="pillar-title" data-k="pil1T">Kusursuz Akıcılık</div>
-                  <p class="pillar-desc" data-k="pil1D">React Native ve TypeScript ile 60/120fps sıfır gecikmeli animasyonlar, haptik geri bildirim ve modüler mimari.</p>
-                </div>
-                <div class="pillar-card">
-                  <div class="pillar-num">02 // PRIVACY &amp; OFFLINE</div>
-                  <div class="pillar-title" data-k="pil2T">%100 Çevrimdışı Mimari</div>
-                  <p class="pillar-desc" data-k="pil2D">Yerel şifreli depolama ve sıfır izleme prensibiyle her yerde güvenle çalışan uygulamalar.</p>
-                </div>
-                <div class="pillar-card">
-                  <div class="pillar-num">03 // GROWTH &amp; ASO</div>
-                  <div class="pillar-title" data-k="pil3T">Google Play &amp; AdMob</div>
-                  <p class="pillar-desc" data-k="pil3D">Stratejik ASO optimizasyonu, çok dilli küresel yapı ve kullanıcı dostu AdMob gelir modeli.</p>
-                </div>
-                <div class="pillar-card">
-                  <div class="pillar-num">04 // CREATOR ECOSYSTEM</div>
-                  <div class="pillar-title" data-k="pil4T">TikTok &amp; YouTube Ekosistemi</div>
-                  <p class="pillar-desc" data-k="pil4D">@mirzaacademy ve @mmirzaacademy hesaplarında mobil yazılım, tasarım ve ürün geliştirme paylaşımları.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="skills-row">
-            <span class="skill-tag entrance-animate"><span>React Native</span></span>
-            <span class="skill-tag entrance-animate"><span>TypeScript</span></span>
-            <span class="skill-tag entrance-animate"><span>Firebase</span></span>
-            <span class="skill-tag entrance-animate"><span>AdMob</span></span>
-            <span class="skill-tag entrance-animate"><span>Google Play</span></span>
-            <span class="skill-tag entrance-animate"><span>ASO</span></span>
-            <span class="skill-tag entrance-animate"><span>Android</span></span>
-            <span class="skill-tag entrance-animate"><span>UI/UX Design</span></span>
-            <span class="skill-tag entrance-animate"><span>TikTok @mirzaacademy</span></span>
-            <span class="skill-tag entrance-animate"><span>YouTube</span></span>
-          </div>
-        </div>
-
-        <!-- PANEL 03: APPS — Google Play Store Portfolio -->
+                        <!-- PANEL 03: APPS — Single-Screen 5x3 Bento Grid Portfolio -->
         <div class="panel on" id="p2" role="tabpanel" aria-labelledby="tab2">
           <div class="apps-portfolio-wrap">
-            <div class="p-header">
-              <span class="p-num">03</span>
-              <span class="p-label" data-k="appEye">Portföy</span>
-            </div>
 
-            <div class="apps-headline-row">
-              <div class="apps-headline-left">
-                <div class="p-title" data-k="appTit">Mobil Uygulamalar</div>
-              </div>
-              <div class="apps-live-count">
-                <span class="apps-live-dot"></span>
-                <span data-k="livePlayBadge">Google Play’de 15+ Canlı Uygulama</span>
-              </div>
-            </div>
-
-            <!-- FLAGSHIP SPOTLIGHT SHOWCASE -->
-            <div class="flagship-spotlight">
-              <div class="flagship-left">
-                <img width="80" height="80" decoding="async" src="https://play-lh.googleusercontent.com/X5IEoyPJdrra8JrvoUmF32Ijk9L6Rvvf87JW0D0c-uWY5LCcpiYD8iNXzKncI4Tfk3Ri7mHXuridmDzBW4sn=s256" alt="Chess AI &amp; Flagship Suite" class="flagship-icon" id="spotlightIcon" loading="lazy">
-                <div class="flagship-copy">
-                  <div class="flagship-kicker">
-                    <span class="flagship-kicker-dot"></span>
-                    <span data-k="spotKicker">EDİTÖR VİTRİNİ · ÇEVRİMDIŞI YAPAY ZEKA SERİSİ</span>
-                  </div>
-                  <div class="flagship-title" id="spotlightTitle" data-k="spotTitle">Chess AI, Sudoku AI &amp; Mihrab</div>
-                  <p class="flagship-desc" id="spotlightDesc" data-k="spotDesc">React Native ve TypeScript ile geliştirilen sıfır gecikmeli çevrimdışı yapay zeka motorları ve kusursuz altın standartta arayüz deneyimi.</p>
-                  <div class="flagship-pills">
-                    <span class="flagship-pill" data-k="spPill1">60/120fps Akıcılık</span>
-                    <span class="flagship-pill" data-k="spPill2">%100 Çevrimdışı</span>
-                    <span class="flagship-pill" data-k="spPill3">Tam Veri Gizliliği</span>
-                  </div>
+            <!-- UNIFIED SINGLE-LINE EXECUTIVE COMMAND HEADER (Fits 15 Apps in 1 Viewport) -->
+            <div class="apps-single-top">
+              <div class="apps-top-brand">
+                <span class="p-num">03</span>
+                <span class="p-label" data-k="appEye">Portföy</span>
+                <h2 class="p-title apps-inline-title" data-k="appTit">Mobil Uygulamalar</h2>
+                <div class="apps-live-count">
+                  <span class="apps-live-dot"></span>
+                  <span data-k="livePlayBadge">Google Play’de 15+ Canlı Uygulama</span>
                 </div>
               </div>
-              <div class="flagship-actions">
-                <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.chessai" target="_blank" rel="noopener noreferrer" class="btn btn-gold" id="spotlightPlayLink" data-k="spotBtn">▶&nbsp;Google Play</a>
-                <a href="https://play.google.com/store/apps/dev?id=6432494574479024880" target="_blank" rel="noopener noreferrer" class="btn btn-wire" data-k="spotStoreBtn">Tüm 15+ Uygulama →</a>
+
+              <!-- Compact Flagship Pill (Preserves all IDs for zero-regression) -->
+              <div class="flagship-spotlight flagship-mini">
+                <img width="28" height="28" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/X5IEoyPJdrra8JrvoUmF32Ijk9L6Rvvf87JW0D0c-uWY5LCcpiYD8iNXzKncI4Tfk3Ri7mHXuridmDzBW4sn=s256" alt="Chess AI &amp; Flagship Suite" class="flagship-icon" id="spotlightIcon">
+                <div class="flagship-mini-meta">
+                  <span class="flagship-kicker-dot"></span>
+                  <span class="flagship-title" id="spotlightTitle" data-k="spotTitle">Chess AI, Sudoku AI &amp; Mihrab</span>
+                  <span class="flagship-desc" id="spotlightDesc" data-k="spotDesc" style="display:none">React Native ve TypeScript ile geliştirilen sıfır gecikmeli çevrimdışı yapay zeka motorları.</span>
+                </div>
+                <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.chessai" target="_blank" rel="noopener noreferrer" class="flagship-mini-btn" id="spotlightPlayLink" data-k="spotBtn">▶&nbsp;Google Play</a>
+              </div>
+
+              <!-- Filter Bar + Search + Official Dev Store CTA -->
+              <div class="apps-toolbar">
+                <div class="apps-filter-bar" role="group" aria-label="Filter applications">
+                  <button class="app-filter-btn on" data-filter="all" onclick="filterApps('all',this)" data-k="fltAll">Tümü (15)</button>
+                  <button class="app-filter-btn" data-filter="productivity" onclick="filterApps('productivity',this)" data-k="fltProd">Üretkenlik</button>
+                  <button class="app-filter-btn" data-filter="health" onclick="filterApps('health',this)" data-k="fltHealth">Sağlık &amp; Yaşam</button>
+                  <button class="app-filter-btn" data-filter="tools" onclick="filterApps('tools',this)" data-k="fltTools">Araçlar</button>
+                  <button class="app-filter-btn" data-filter="games" onclick="filterApps('games',this)" data-k="fltGames">Oyun &amp; Zeka</button>
+                </div>
+                <div class="apps-toolbar-right">
+                  <div class="app-search-wrap">
+                    <svg class="app-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5" stroke-linecap="round"></path></svg>
+                    <input type="search" id="appSearchInput" class="app-search-input" placeholder="15 uygulama içinde ara..." oninput="searchApps(this.value)" aria-label="Search applications">
+                    <button type="button" id="appSearchClear" class="app-search-clear" onclick="clearAppSearch()" aria-label="Clear search">×</button>
+                  </div>
+                  <a href="https://play.google.com/store/apps/dev?id=6432494574479024880" target="_blank" rel="noopener noreferrer" class="dev-store-btn dev-store-btn--compact" data-k="appDev">GELİŞTİRİCİ SAYFASI →</a>
+                </div>
               </div>
             </div>
 
-            <!-- CATEGORY FILTERS & INSTANT SEARCH -->
-            <div class="apps-toolbar">
-              <div class="apps-filter-bar" role="group" aria-label="Filter applications">
-                <button class="app-filter-btn on" data-filter="all" onclick="filterApps('all',this)" data-k="fltAll">Tümü (15)</button>
-                <button class="app-filter-btn" data-filter="productivity" onclick="filterApps('productivity',this)" data-k="fltProd">Üretkenlik</button>
-                <button class="app-filter-btn" data-filter="health" onclick="filterApps('health',this)" data-k="fltHealth">Sağlık &amp; Yaşam</button>
-                <button class="app-filter-btn" data-filter="tools" onclick="filterApps('tools',this)" data-k="fltTools">Araçlar</button>
-                <button class="app-filter-btn" data-filter="games" onclick="filterApps('games',this)" data-k="fltGames">Oyun &amp; Zeka</button>
-              </div>
-              <div class="app-search-wrap">
-                <svg class="app-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5" stroke-linecap="round"></path></svg>
-                <input type="search" id="appSearchInput" class="app-search-input" placeholder="15 uygulama içinde isim veya özellik ara..." oninput="searchApps(this.value)" aria-label="Search applications">
-                <button type="button" id="appSearchClear" class="app-search-clear" onclick="clearAppSearch()" aria-label="Clear search">×</button>
-              </div>
-            </div>
-
-            <!-- APPS GRID (All 11 official apps from Google Play developer page + Zamanname) -->
+            <!-- 5x3 BENTO GRID — ALL 15 OFFICIAL APPS ON ONE SINGLE SCREEN -->
             <div class="apps-grid" id="appsGrid">
               <!-- 1. Sudoku AI -->
-              <div class="app-card entrance-animate" data-cat="games" data-en-cat="BRAIN &amp; PUZZLE" data-en-badge="FEATURED" data-en-title="Sudoku AI - Play Sudoku" data-en-desc="Relax with classic Sudoku puzzles you can play anytime, completely offline with smart AI hints and customizable difficulties." data-en-tags="[&quot;Classic Sudoku&quot;,&quot;AI Hints&quot;,&quot;100% Offline&quot;,&quot;Daily Challenges&quot;]">
+              <div class="app-card entrance-animate" data-cat="games" data-pkg="com.mirzaacademy.sudokuai" data-en-cat="BRAIN &amp; PUZZLE" data-en-badge="FEATURED" data-en-title="Sudoku AI - Play Sudoku" data-en-desc="Relax with classic Sudoku puzzles you can play anytime, completely offline with smart AI hints and customizable difficulties." data-en-tags="[&quot;Classic Sudoku&quot;, &quot;AI Hints&quot;, &quot;100% Offline&quot;, &quot;Daily Challenges&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <img width="56" height="56" decoding="async" src="https://play-lh.googleusercontent.com/DR9c0MB8IulBADeTklup3gpNEQRk_1ZR_GJaVntm62_qtlv_4LhKL-uJs5jFy8NSyoTG-pBU06fJDJk6jdwA=s256" alt="Sudoku AI" class="app-card-icon" loading="lazy">
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/DR9c0MB8IulBADeTklup3gpNEQRk_1ZR_GJaVntm62_qtlv_4LhKL-uJs5jFy8NSyoTG-pBU06fJDJk6jdwA=s256" data-alt-src="https://play-lh.googleusercontent.com/DR9c0MB8IulBADeTklup3gpNEQRk_1ZR_GJaVntm62_qtlv_4LhKL-uJs5jFy8NSyoTG-pBU06fJDJk6jdwA=w240-h480-rw" alt="Sudoku AI" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">ZEKA &amp; BULMACA</span>
@@ -2671,13 +3067,14 @@ body.modal-open { overflow: hidden !important; }
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
 
               <!-- 2. Zikirmatik -->
-              <div class="app-card entrance-animate" data-cat="tools" data-en-cat="LIFESTYLE &amp; UTILITY" data-en-badge="POPULAR" data-en-title="Zikirmatik - Dhikr &amp; Tasbeeh" data-en-desc="Smart digital tasbeeh counter featuring real haptic feedback, customizable target limits and 12+ luxury themes." data-en-tags="[&quot;Haptic Vibration&quot;,&quot;12+ Themes&quot;,&quot;Target Limits&quot;,&quot;Offline Ready&quot;]">
+              <div class="app-card entrance-animate" data-cat="tools" data-pkg="com.mirzaacademy.zikirmatik" data-en-cat="LIFESTYLE &amp; UTILITY" data-en-badge="POPULAR" data-en-title="Zikirmatik - Dhikr &amp; Tasbeeh" data-en-desc="Smart digital tasbeeh counter featuring real haptic feedback, customizable target limits and 12+ luxury themes." data-en-tags="[&quot;Haptic Vibration&quot;, &quot;12+ Themes&quot;, &quot;Target Limits&quot;, &quot;Offline Ready&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <img width="56" height="56" decoding="async" src="https://play-lh.googleusercontent.com/4IAZHO9O_mJ62x4dRvnFviCnOQJra4cb87Y93LMA7uwa2qt4i7R3Vo5vN0xDWJgWHdv13WqLzuTuer-qMIKs=s256" alt="Zikirmatik" class="app-card-icon" loading="lazy">
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/4IAZHO9O_mJ62x4dRvnFviCnOQJra4cb87Y93LMA7uwa2qt4i7R3Vo5vN0xDWJgWHdv13WqLzuTuer-qMIKs=s256" data-alt-src="https://play-lh.googleusercontent.com/4IAZHO9O_mJ62x4dRvnFviCnOQJra4cb87Y93LMA7uwa2qt4i7R3Vo5vN0xDWJgWHdv13WqLzuTuer-qMIKs=w240-h480-rw" alt="Zikirmatik" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">YAŞAM &amp; İBADET</span>
@@ -2698,13 +3095,14 @@ body.modal-open { overflow: hidden !important; }
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
 
               <!-- 3. Kalemzar -->
-              <div class="app-card entrance-animate" data-cat="tools" data-en-cat="ART &amp; DESIGN" data-en-badge="AR TECH" data-en-title="Kalemzar - AR Trace &amp; Draw" data-en-desc="Turn your smartphone into an augmented reality drawing projector. Trace sketches onto paper with surgical precision." data-en-tags="[&quot;AR Projection&quot;,&quot;Camera Tracing&quot;,&quot;Sketch Filters&quot;,&quot;Art Library&quot;]">
+              <div class="app-card entrance-animate" data-cat="tools" data-pkg="com.mirzaacademy.kalemzar" data-en-cat="ART &amp; DESIGN" data-en-badge="AR TECH" data-en-title="Kalemzar - AR Trace &amp; Draw" data-en-desc="Turn your smartphone into an augmented reality drawing projector. Trace sketches onto paper with surgical precision." data-en-tags="[&quot;AR Projection&quot;, &quot;Camera Tracing&quot;, &quot;Sketch Filters&quot;, &quot;Art Library&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <img width="56" height="56" decoding="async" src="https://play-lh.googleusercontent.com/Ey2Q2_iEPfky5mKvYolhSVEiLJaMr3J3Gzn4N4eeZ5GIAdoj74S-YDwY-7CWv8lyx2x2oP8vhixzTAbYeDjclZU=s256" alt="Kalemzar" class="app-card-icon" loading="lazy">
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/Ey2Q2_iEPfky5mKvYolhSVEiLJaMr3J3Gzn4N4eeZ5GIAdoj74S-YDwY-7CWv8lyx2x2oP8vhixzTAbYeDjclZU=s256" data-alt-src="https://play-lh.googleusercontent.com/Ey2Q2_iEPfky5mKvYolhSVEiLJaMr3J3Gzn4N4eeZ5GIAdoj74S-YDwY-7CWv8lyx2x2oP8vhixzTAbYeDjclZU=w240-h480-rw" alt="Kalemzar" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">SANAT &amp; TASARIM</span>
@@ -2725,13 +3123,14 @@ body.modal-open { overflow: hidden !important; }
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
 
               <!-- 4. Mind Craft -->
-              <div class="app-card entrance-animate" data-cat="productivity" data-en-cat="PRODUCTIVITY" data-en-badge="PRO" data-en-title="Mind Craft - Mind &amp; Ideas Maps" data-en-desc="Visualize thoughts, build brainstorming node graphs, and organize complex project hierarchies on an infinite canvas." data-en-tags="[&quot;Visual Nodes&quot;,&quot;Infinite Canvas&quot;,&quot;Brainstorming&quot;,&quot;Fast Export&quot;]">
+              <div class="app-card entrance-animate" data-cat="productivity" data-pkg="com.mirzaacademy.mindcraft" data-en-cat="PRODUCTIVITY" data-en-badge="PRO" data-en-title="Mind Craft - Mind &amp; Ideas Maps" data-en-desc="Visualize thoughts, build brainstorming node graphs, and organize complex project hierarchies on an infinite canvas." data-en-tags="[&quot;Visual Nodes&quot;, &quot;Infinite Canvas&quot;, &quot;Brainstorming&quot;, &quot;Fast Export&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <img width="56" height="56" decoding="async" src="https://play-lh.googleusercontent.com/V73wry7TI1gJRVw179LVNaq8IX3Sg_WT6EtQUrbPWF5PLLBvxbkgWD9qHCn6q37bpXZoDZGbT94R2nJ-3paE=s256" alt="Mind Craft" class="app-card-icon" loading="lazy">
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/V73wry7TI1gJRVw179LVNaq8IX3Sg_WT6EtQUrbPWF5PLLBvxbkgWD9qHCn6q37bpXZoDZGbT94R2nJ-3paE=s256" data-alt-src="https://play-lh.googleusercontent.com/V73wry7TI1gJRVw179LVNaq8IX3Sg_WT6EtQUrbPWF5PLLBvxbkgWD9qHCn6q37bpXZoDZGbT94R2nJ-3paE=w240-h480-rw" alt="Mind Craft" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">ÜRETKENLİK</span>
@@ -2752,13 +3151,14 @@ body.modal-open { overflow: hidden !important; }
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
 
               <!-- 5. Waterly -->
-              <div class="app-card entrance-animate" data-cat="health" data-en-cat="HEALTH &amp; FITNESS" data-en-badge="DAILY" data-en-title="Waterly - Water Reminder" data-en-desc="Daily hydration tracker and smart drink reminder with personalized intake goals, streaks, and battery-friendly alerts." data-en-tags="[&quot;Smart Reminders&quot;,&quot;Intake Goals&quot;,&quot;Hydration Stats&quot;,&quot;Quick Log&quot;]">
+              <div class="app-card entrance-animate" data-cat="health" data-pkg="com.mirzaacademy.waterly" data-en-cat="HEALTH &amp; FITNESS" data-en-badge="DAILY" data-en-title="Waterly - Water Reminder" data-en-desc="Daily hydration tracker and smart drink reminder with personalized intake goals, streaks, and battery-friendly alerts." data-en-tags="[&quot;Smart Reminders&quot;, &quot;Intake Goals&quot;, &quot;Hydration Stats&quot;, &quot;Quick Log&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <img width="56" height="56" decoding="async" src="https://play-lh.googleusercontent.com/hktIFpzsRMC2-ez3AcddcailTVf7qUvZbSlvcTziaV0JYQ8Tym-HzfqpnvUTW75DdcekKKweK2PQI-9fu5pWq5Y=s256" alt="Waterly" class="app-card-icon" loading="lazy">
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/hktIFpzsRMC2-ez3AcddcailTVf7qUvZbSlvcTziaV0JYQ8Tym-HzfqpnvUTW75DdcekKKweK2PQI-9fu5pWq5Y=s256" data-alt-src="https://play-lh.googleusercontent.com/hktIFpzsRMC2-ez3AcddcailTVf7qUvZbSlvcTziaV0JYQ8Tym-HzfqpnvUTW75DdcekKKweK2PQI-9fu5pWq5Y=w240-h480-rw" alt="Waterly" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">SAĞLIK &amp; YAŞAM</span>
@@ -2779,13 +3179,14 @@ body.modal-open { overflow: hidden !important; }
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
 
               <!-- 6. Calmio -->
-              <div class="app-card entrance-animate" data-cat="health" data-en-cat="MINDFULNESS" data-en-badge="CALM" data-en-title="Calmio - Calm Down &amp; Breathe" data-en-desc="Guided deep-breathing patterns, relaxing ambient soundscapes and meditation timers designed to reduce anxiety swiftly." data-en-tags="[&quot;Box Breathing&quot;,&quot;Ambient Audio&quot;,&quot;Stress Relief&quot;,&quot;Mindful Timer&quot;]">
+              <div class="app-card entrance-animate" data-cat="health" data-pkg="com.mirzaacademy.calmio" data-en-cat="MINDFULNESS" data-en-badge="CALM" data-en-title="Calmio - Calm Down &amp; Breathe" data-en-desc="Guided deep-breathing patterns, relaxing ambient soundscapes and meditation timers designed to reduce anxiety swiftly." data-en-tags="[&quot;Box Breathing&quot;, &quot;Ambient Audio&quot;, &quot;Stress Relief&quot;, &quot;Mindful Timer&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <img width="56" height="56" decoding="async" src="https://play-lh.googleusercontent.com/B16ef5LK-44iCMHluGylCgkcEq4oImH2zVJd4fJ2FQ9onO8lISYOCvqNCOAllRvOKvNbfXB1m7ihxDniZHYmMg=s256" alt="Calmio" class="app-card-icon" loading="lazy">
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/B16ef5LK-44iCMHluGylCgkcEq4oImH2zVJd4fJ2FQ9onO8lISYOCvqNCOAllRvOKvNbfXB1m7ihxDniZHYmMg=s256" data-alt-src="https://play-lh.googleusercontent.com/B16ef5LK-44iCMHluGylCgkcEq4oImH2zVJd4fJ2FQ9onO8lISYOCvqNCOAllRvOKvNbfXB1m7ihxDniZHYmMg=w240-h480-rw" alt="Calmio" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">FARKINDALIK &amp; NEFES</span>
@@ -2806,13 +3207,14 @@ body.modal-open { overflow: hidden !important; }
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
 
               <!-- 7. Celebro -->
-              <div class="app-card entrance-animate" data-cat="tools" data-en-cat="LIFESTYLE &amp; DATES" data-en-badge="REMINDER" data-en-title="Celebro – Birthday Tracker" data-en-desc="Never forget important birthdays or anniversaries. Live countdown clocks, timely notifications, and age/zodiac calculations." data-en-tags="[&quot;Live Countdowns&quot;,&quot;Smart Alerts&quot;,&quot;Zodiac Info&quot;,&quot;Private Storage&quot;]">
+              <div class="app-card entrance-animate" data-cat="tools" data-pkg="com.mirzaacademy.celebro" data-en-cat="LIFESTYLE &amp; DATES" data-en-badge="REMINDER" data-en-title="Celebro – Birthday Tracker" data-en-desc="Never forget important birthdays or anniversaries. Live countdown clocks, timely notifications, and age/zodiac calculations." data-en-tags="[&quot;Live Countdowns&quot;, &quot;Smart Alerts&quot;, &quot;Zodiac Info&quot;, &quot;Private Storage&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <img width="56" height="56" decoding="async" src="https://play-lh.googleusercontent.com/qKpWnC2uuVy--egrDCMjVBuVGAeBBqa0BJI1AtNpY6QfEfnnFLAqybqetFz9koaWN_ExpOTVw9d0YsdntWii=s256" alt="Celebro" class="app-card-icon" loading="lazy">
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/qKpWnC2uuVy--egrDCMjVBuVGAeBBqa0BJI1AtNpY6QfEfnnFLAqybqetFz9koaWN_ExpOTVw9d0YsdntWii=s256" data-alt-src="https://play-lh.googleusercontent.com/qKpWnC2uuVy--egrDCMjVBuVGAeBBqa0BJI1AtNpY6QfEfnnFLAqybqetFz9koaWN_ExpOTVw9d0YsdntWii=w240-h480-rw" alt="Celebro" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">YAŞAM &amp; TAKVİM</span>
@@ -2833,13 +3235,14 @@ body.modal-open { overflow: hidden !important; }
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
 
               <!-- 8. Heart Dots -->
-              <div class="app-card entrance-animate" data-cat="health" data-en-cat="EMOTIONAL WELLBEING" data-en-badge="DIARY" data-en-title="Heart Dots - Mood Diary" data-en-desc="Record emotional balance with minimalist colored mood dots, private thoughts, monthly trend analytics and passcode protection." data-en-tags="[&quot;Visual Mood Dots&quot;,&quot;Emotion Trends&quot;,&quot;Encrypted Journal&quot;,&quot;Passcode Lock&quot;]">
+              <div class="app-card entrance-animate" data-cat="health" data-pkg="com.mirzaacademy.heartdots" data-en-cat="EMOTIONAL WELLBEING" data-en-badge="DIARY" data-en-title="Heart Dots - Mood Diary" data-en-desc="Record emotional balance with minimalist colored mood dots, private thoughts, monthly trend analytics and passcode protection." data-en-tags="[&quot;Visual Mood Dots&quot;, &quot;Emotion Trends&quot;, &quot;Encrypted Journal&quot;, &quot;Passcode Lock&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <img width="56" height="56" decoding="async" src="https://play-lh.googleusercontent.com/cDRcoL27Vz5XrciP1MZjzroXyBnsyYkM-r6zDE8p01Nrag9re3AjkjZBAXVGoeG3IJG3OkAej_X8MvSoYfmer3Y=s256" alt="Heart Dots" class="app-card-icon" loading="lazy">
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/cDRcoL27Vz5XrciP1MZjzroXyBnsyYkM-r6zDE8p01Nrag9re3AjkjZBAXVGoeG3IJG3OkAej_X8MvSoYfmer3Y=s256" data-alt-src="https://play-lh.googleusercontent.com/cDRcoL27Vz5XrciP1MZjzroXyBnsyYkM-r6zDE8p01Nrag9re3AjkjZBAXVGoeG3IJG3OkAej_X8MvSoYfmer3Y=w240-h480-rw" alt="Heart Dots" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">DUYGUSAL DENGE</span>
@@ -2860,13 +3263,14 @@ body.modal-open { overflow: hidden !important; }
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
 
               <!-- 9. Memorix -->
-              <div class="app-card entrance-animate" data-cat="tools" data-en-cat="UTILITY &amp; PRIVACY" data-en-badge="OFFLINE" data-en-title="Memorix - Offline Address Book" data-en-desc="100% offline, zero cloud tracking address book and contact manager. Complete data privacy with encrypted local storage." data-en-tags="[&quot;100% Offline&quot;,&quot;Zero Tracking&quot;,&quot;Encrypted Export&quot;,&quot;Instant Search&quot;]">
+              <div class="app-card entrance-animate" data-cat="tools" data-pkg="com.mirzaacademy.memorix" data-en-cat="UTILITY &amp; PRIVACY" data-en-badge="OFFLINE" data-en-title="Memorix - Offline Address Book" data-en-desc="100% offline, zero cloud tracking address book and contact manager. Complete data privacy with encrypted local storage." data-en-tags="[&quot;100% Offline&quot;, &quot;Zero Tracking&quot;, &quot;Encrypted Export&quot;, &quot;Instant Search&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <img width="56" height="56" decoding="async" src="https://play-lh.googleusercontent.com/ssiXQnhGf5rcpyXuYTSeCBQ4mflO_VblDnvwCNsT53-aR7sjzu1GW6f1clYWNOpauQSFaIChy9JYJ4gOxiyi-pE=s256" alt="Memorix" class="app-card-icon" loading="lazy">
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/ssiXQnhGf5rcpyXuYTSeCBQ4mflO_VblDnvwCNsT53-aR7sjzu1GW6f1clYWNOpauQSFaIChy9JYJ4gOxiyi-pE=s256" data-alt-src="https://play-lh.googleusercontent.com/ssiXQnhGf5rcpyXuYTSeCBQ4mflO_VblDnvwCNsT53-aR7sjzu1GW6f1clYWNOpauQSFaIChy9JYJ4gOxiyi-pE=w240-h480-rw" alt="Memorix" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">ARAÇLAR &amp; GİZLİLİK</span>
@@ -2887,13 +3291,14 @@ body.modal-open { overflow: hidden !important; }
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
 
               <!-- 10. Unchain -->
-              <div class="app-card entrance-animate" data-cat="health" data-en-cat="SELF IMPROVEMENT" data-en-badge="RECOVERY" data-en-title="Unchain - Addiction Recovery" data-en-desc="Sobriety clock and milestone streak counter built to break harmful habits, overcome urges and celebrate clean days." data-en-tags="[&quot;Sobriety Clock&quot;,&quot;Relapse Shield&quot;,&quot;Milestone Badges&quot;,&quot;Daily Motivation&quot;]">
+              <div class="app-card entrance-animate" data-cat="health" data-pkg="com.mirzaacademy.unchain" data-en-cat="SELF IMPROVEMENT" data-en-badge="RECOVERY" data-en-title="Unchain - Addiction Recovery" data-en-desc="Sobriety clock and milestone streak counter built to break harmful habits, overcome urges and celebrate clean days." data-en-tags="[&quot;Sobriety Clock&quot;, &quot;Relapse Shield&quot;, &quot;Milestone Badges&quot;, &quot;Daily Motivation&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <img width="56" height="56" decoding="async" src="https://play-lh.googleusercontent.com/7clKUm8TmFfcf7wAl03g4M5J3GKQPCka6yLkSIkXogKHqvwQ7G8m06aPhWvEtmsYWGLLfGF4A9p651wbaO7GZw=s256" alt="Unchain" class="app-card-icon" loading="lazy">
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/7clKUm8TmFfcf7wAl03g4M5J3GKQPCka6yLkSIkXogKHqvwQ7G8m06aPhWvEtmsYWGLLfGF4A9p651wbaO7GZw=s256" data-alt-src="https://play-lh.googleusercontent.com/7clKUm8TmFfcf7wAl03g4M5J3GKQPCka6yLkSIkXogKHqvwQ7G8m06aPhWvEtmsYWGLLfGF4A9p651wbaO7GZw=w240-h480-rw" alt="Unchain" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">KİŞİSEL GELİŞİM</span>
@@ -2914,13 +3319,14 @@ body.modal-open { overflow: hidden !important; }
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
 
               <!-- 11. Flipy -->
-              <div class="app-card entrance-animate" data-cat="games" data-en-cat="CASUAL &amp; TOOLS" data-en-badge="3D PHYSICS" data-en-title="Flipy - Coin Toss &amp; Dice" data-en-desc="Realistic 3D physics-based coin flipper and multi-dice roller with sound and haptic vibration for fair decisions." data-en-tags="[&quot;3D Physics&quot;,&quot;Multi-Dice Roll&quot;,&quot;Haptic &amp; Sound&quot;,&quot;Decision Maker&quot;]">
+              <div class="app-card entrance-animate" data-cat="games" data-pkg="com.mirzaacademy.flipy" data-en-cat="CASUAL &amp; TOOLS" data-en-badge="3D PHYSICS" data-en-title="Flipy - Coin Toss &amp; Dice" data-en-desc="Realistic 3D physics-based coin flipper and multi-dice roller with sound and haptic vibration for fair decisions." data-en-tags="[&quot;3D Physics&quot;, &quot;Multi-Dice Roll&quot;, &quot;Haptic & Sound&quot;, &quot;Decision Maker&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <img width="56" height="56" decoding="async" src="https://play-lh.googleusercontent.com/6_FLjSCNhgYJD7Lr9-KV86eFHgSJcVw984Bi1qu6oXMcshS7BHA-Qje5IO8UsAPpcM1cH_LRQ_zDaJIcCoPXBQ=s256" alt="Flipy" class="app-card-icon" loading="lazy">
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/6_FLjSCNhgYJD7Lr9-KV86eFHgSJcVw984Bi1qu6oXMcshS7BHA-Qje5IO8UsAPpcM1cH_LRQ_zDaJIcCoPXBQ=s256" data-alt-src="https://play-lh.googleusercontent.com/6_FLjSCNhgYJD7Lr9-KV86eFHgSJcVw984Bi1qu6oXMcshS7BHA-Qje5IO8UsAPpcM1cH_LRQ_zDaJIcCoPXBQ=w240-h480-rw" alt="Flipy" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">EĞLENCE &amp; ARAÇLAR</span>
@@ -2933,7 +3339,7 @@ body.modal-open { overflow: hidden !important; }
                 <div class="app-card-tags">
                   <span class="app-tag">3D Fizik Motoru</span>
                   <span class="app-tag">Çoklu Zar</span>
-                  <span class="app-tag">Haptik &amp; Ses</span>
+                  <span class="app-tag">Haptik & Ses</span>
                   <span class="app-tag">Hızlı Karar</span>
                 </div>
                 <div class="app-card-action">
@@ -2941,48 +3347,42 @@ body.modal-open { overflow: hidden !important; }
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
 
               <!-- 12. Zamanname -->
-              <div class="app-card entrance-animate" data-cat="productivity" data-en-cat="PRODUCTIVITY" data-en-badge="ORIGINAL" data-en-title="Zamanname - Timer &amp; Focus" data-en-desc="Stylish countdown timer and Pomodoro focus app that helps you master your time with elegance and maximum efficiency." data-en-tags="[&quot;Pomodoro Focus&quot;,&quot;Countdown Timer&quot;,&quot;Luxury Aesthetic&quot;,&quot;Max Efficiency&quot;]">
+              <div class="app-card entrance-animate" data-cat="productivity" data-pkg="com.mirzaacademy.zamanname" data-en-cat="PRODUCTIVITY" data-en-badge="ORIGINAL" data-en-title="Zamanname - Time Ledger" data-en-desc="Track your habits, build unbroken daily chains, and master your personal time ledger with 100% offline privacy." data-en-tags="[&quot;Habit Chains&quot;, &quot;Time Ledger&quot;, &quot;100% Offline&quot;, &quot;Streak Analytics&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <div class="app-card-icon-svg-wrap">
-                    <svg viewBox="0 0 48 48" fill="none" style="width:55%;height:55%;" xmlns="http://www.w3.org/2000/svg">
-                      <rect x="8" y="4" width="32" height="4" rx="1" fill="#000" opacity=".7"></rect>
-                      <rect x="8" y="40" width="32" height="4" rx="1" fill="#000" opacity=".7"></rect>
-                      <path d="M12 8v6l12 10L12 34v6h24v-6L24 24l12-10V8H12z" fill="#000" opacity=".6"></path>
-                      <path d="M16 10h16l-8 8-8-8z" fill="#FFF" opacity=".4"></path>
-                      <path d="M22 24l-6 8h16l-6-8" fill="#D4AF37" opacity=".6"></path>
-                    </svg>
-                  </div>
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/3gG7z30mBTrmJ4p4w1Fx4NAFfRP-PjNAssuo5V7bEWsEUKaeeRYxQCe07A3bZxPeB3omXbcm4hzlU-RhBA92UQ=s256" data-alt-src="https://play-lh.googleusercontent.com/3gG7z30mBTrmJ4p4w1Fx4NAFfRP-PjNAssuo5V7bEWsEUKaeeRYxQCe07A3bZxPeB3omXbcm4hzlU-RhBA92UQ=w240-h480-rw" alt="Zamanname" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">ÜRETKENLİK</span>
                       <span class="app-card-badge">ORİJİNAL</span>
                     </div>
-                    <div class="app-card-title">Zamanname - Odak &amp; Pomodoro</div>
+                    <div class="app-card-title">Zamanname - Zaman Defteri</div>
                   </div>
                 </div>
-                <p class="app-card-desc">Zamanınızı zarafet ve maksimum verimlilikle yönetmenize yardımcı olan lüks tasarımlı geri sayım ve Pomodoro odak uygulaması.</p>
+                <p class="app-card-desc">Alışkanlıklarınızı takip edin, günlük zincirlerinizi kırmadan hedeflerinize ulaşın ve zamanınızı %100 çevrimdışı yönetin.</p>
                 <div class="app-card-tags">
-                  <span class="app-tag">Pomodoro Odak</span>
-                  <span class="app-tag">Geri Sayım</span>
-                  <span class="app-tag">Lüks Estetik</span>
-                  <span class="app-tag">Maksimum Verim</span>
+                  <span class="app-tag">Zinciri Kırma</span>
+                  <span class="app-tag">Zaman Defteri</span>
+                  <span class="app-tag">%100 Çevrimdışı</span>
+                  <span class="app-tag">Seri Analizi</span>
                 </div>
                 <div class="app-card-action">
                   <a href="https://play.google.com/store/apps/details?id=com.mirzaacademy.zamanname" target="_blank" rel="noopener noreferrer" class="btn-app-dl" aria-label="Get Zamanname on Google Play">
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
 
               <!-- 13. Chess AI -->
-              <div class="app-card entrance-animate" data-cat="games" data-en-cat="BRAIN &amp; STRATEGY" data-en-badge="POPULAR" data-en-title="Chess AI - Play Chess" data-en-desc="Offline chess with smart AI. Play, train, and improve your strategic skills anytime with an adaptive engine and 12+ luxury board themes." data-en-tags="[&quot;Adaptive AI&quot;,&quot;12+ Themes&quot;,&quot;100% Offline&quot;,&quot;Skill Training&quot;]">
+              <div class="app-card entrance-animate" data-cat="games" data-pkg="com.mirzaacademy.chessai" data-en-cat="BRAIN &amp; STRATEGY" data-en-badge="POPULAR" data-en-title="Chess AI - Play Chess" data-en-desc="Offline chess with smart AI. Play, train, and improve your strategic skills anytime with an adaptive engine and 12+ luxury board themes." data-en-tags="[&quot;Adaptive AI&quot;, &quot;12+ Themes&quot;, &quot;100% Offline&quot;, &quot;Skill Training&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <img width="56" height="56" decoding="async" src="https://play-lh.googleusercontent.com/X5IEoyPJdrra8JrvoUmF32Ijk9L6Rvvf87JW0D0c-uWY5LCcpiYD8iNXzKncI4Tfk3Ri7mHXuridmDzBW4sn=s256" alt="Chess AI" class="app-card-icon" loading="lazy">
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/X5IEoyPJdrra8JrvoUmF32Ijk9L6Rvvf87JW0D0c-uWY5LCcpiYD8iNXzKncI4Tfk3Ri7mHXuridmDzBW4sn=s256" data-alt-src="https://play-lh.googleusercontent.com/X5IEoyPJdrra8JrvoUmF32Ijk9L6Rvvf87JW0D0c-uWY5LCcpiYD8iNXzKncI4Tfk3Ri7mHXuridmDzBW4sn=w240-h480-rw" alt="Chess AI" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">STRATEJİ &amp; ZEKA</span>
@@ -3003,13 +3403,14 @@ body.modal-open { overflow: hidden !important; }
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
 
               <!-- 14. Mihrab -->
-              <div class="app-card entrance-animate" data-cat="tools" data-en-cat="LIFESTYLE &amp; ISLAMIC" data-en-badge="POPULAR" data-en-title="Mihrab - Azan &amp; Prayer Times" data-en-desc="Accurate prayer time alerts, authentic adhan sounds, smart dhikr counter and prayer countdown. 100% offline with precise Qibla compass." data-en-tags="[&quot;Prayer Times&quot;,&quot;Qibla Compass&quot;,&quot;Azan Alerts&quot;,&quot;100% Offline&quot;]">
+              <div class="app-card entrance-animate" data-cat="tools" data-pkg="com.mirzaacademy.mihrab" data-en-cat="LIFESTYLE &amp; ISLAMIC" data-en-badge="POPULAR" data-en-title="Mihrab - Azan &amp; Prayer Times" data-en-desc="Accurate prayer time alerts, authentic adhan sounds, smart dhikr counter and prayer countdown. 100% offline with precise Qibla compass." data-en-tags="[&quot;Prayer Times&quot;, &quot;Qibla Compass&quot;, &quot;Azan Alerts&quot;, &quot;100% Offline&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <img width="56" height="56" decoding="async" src="https://play-lh.googleusercontent.com/x1PGeXzZfY9gcHK7yVydGdfFG0zQacgph-odvlFE4FH5hoDjzvHnt50H6rtL3rYdC-2Omf5Me_7qNmL8HP3l=s256" alt="Mihrab" class="app-card-icon" loading="lazy">
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/x1PGeXzZfY9gcHK7yVydGdfFG0zQacgph-odvlFE4FH5hoDjzvHnt50H6rtL3rYdC-2Omf5Me_7qNmL8HP3l=s256" data-alt-src="https://play-lh.googleusercontent.com/x1PGeXzZfY9gcHK7yVydGdfFG0zQacgph-odvlFE4FH5hoDjzvHnt50H6rtL3rYdC-2Omf5Me_7qNmL8HP3l=w240-h480-rw" alt="Mihrab" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">YAŞAM &amp; İBADET</span>
@@ -3030,13 +3431,14 @@ body.modal-open { overflow: hidden !important; }
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
 
               <!-- 15. Agenda -->
-              <div class="app-card entrance-animate" data-cat="productivity" data-en-cat="PRODUCTIVITY" data-en-badge="ESSENTIAL" data-en-title="Agenda - Personal Assistant" data-en-desc="Daily planning, smart task scheduling and customizable reminders in one elegant, distraction-free offline personal assistant." data-en-tags="[&quot;Daily Planner&quot;,&quot;Task Scheduling&quot;,&quot;Reminders&quot;,&quot;Offline Ready&quot;]">
+              <div class="app-card entrance-animate" data-cat="productivity" data-pkg="com.mirzaacademy.agenda" data-en-cat="PRODUCTIVITY" data-en-badge="ESSENTIAL" data-en-title="Agenda - Personal Assistant" data-en-desc="Daily planning, smart task scheduling and customizable reminders in one elegant, distraction-free offline personal assistant." data-en-tags="[&quot;Daily Planner&quot;, &quot;Task Scheduling&quot;, &quot;Reminders&quot;, &quot;Offline Ready&quot;]">
                 <div class="app-card-header" onclick="openAppModalFromCard(this.closest('.app-card'), event)">
-                  <img width="56" height="56" decoding="async" src="https://play-lh.googleusercontent.com/YrWB0M6zF0ErKo2E_K406lF_BJ3jVkzw_tOhxc87cXHbvSRC0bCF2xq-PqwkBnStTrdvsFHBd8BXF4jSz8fG_sQ=s256" alt="Agenda" class="app-card-icon" loading="lazy">
+                  <img width="42" height="42" decoding="async" referrerpolicy="no-referrer" src="https://play-lh.googleusercontent.com/YrWB0M6zF0ErKo2E_K406lF_BJ3jVkzw_tOhxc87cXHbvSRC0bCF2xq-PqwkBnStTrdvsFHBd8BXF4jSz8fG_sQ=s256" data-alt-src="https://play-lh.googleusercontent.com/YrWB0M6zF0ErKo2E_K406lF_BJ3jVkzw_tOhxc87cXHbvSRC0bCF2xq-PqwkBnStTrdvsFHBd8BXF4jSz8fG_sQ=w240-h480-rw" alt="Agenda" class="app-card-icon">
                   <div class="app-card-meta">
                     <div class="app-card-meta-top">
                       <span class="app-card-cat">ÜRETKENLİK</span>
@@ -3057,7 +3459,8 @@ body.modal-open { overflow: hidden !important; }
                     <span class="play-triangle"></span>
                     <span data-k="appDl">GOOGLE PLAY'DEN İNDİR</span>
                   </a>
-                <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest(\'.app-card\'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button></div>
+                  <button type="button" class="btn-app-info" onclick="openAppModalFromCard(this.closest('.app-card'), event)" title="App Specs &amp; Quick Preview" aria-label="App Specs and Quick Preview"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg></button>
+                </div>
               </div>
             </div>
 
@@ -3065,16 +3468,6 @@ body.modal-open { overflow: hidden !important; }
             <div class="apps-empty-state" id="appsEmptyState">
               <div class="p-label" data-k="noAppFound">ARAMANIZLA EŞLEŞEN UYGULAMA BULUNAMADI</div>
               <button type="button" class="btn btn-wire" onclick="clearAppSearch(); filterApps('all', document.querySelector('.app-filter-btn[data-filter=all]'));" data-k="resetSearchBtn">Filtreyi Sıfırla</button>
-            </div>
-
-            <!-- DEVELOPER PAGE OFFICIAL BANNER -->
-            <div class="dev-store-banner">
-              <div class="dev-store-info">
-                <div class="dev-store-tag" data-k="devBannerTag">GOOGLE PLAY GELİŞTİRİCİ PROFİLİ</div>
-                <div class="dev-store-title" data-k="devBannerTit">Google Play’de Mirza Academy</div>
-                <div class="dev-store-desc" data-k="devBannerDesc">Tüm mobil uygulama kataloğumuzu, yeni lansmanları ve erken erişim güncellemelerini doğrudan mağazada keşfedin.</div>
-              </div>
-              <a href="https://play.google.com/store/apps/dev?id=6432494574479024880" target="_blank" rel="noopener noreferrer" class="dev-store-btn" data-k="appDev">GELİŞTİRİCİ SAYFASI →</a>
             </div>
           </div>
         </div>
@@ -3108,7 +3501,7 @@ body.modal-open { overflow: hidden !important; }
   <div class="app-modal-card">
     <button type="button" class="app-modal-close" onclick="closeAppModal()" aria-label="Close modal">×</button>
     <div class="app-modal-head">
-      <img width="66" height="66" decoding="async" id="appModalIcon" src="https://play-lh.googleusercontent.com/DR9c0MB8IulBADeTklup3gpNEQRk_1ZR_GJaVntm62_qtlv_4LhKL-uJs5jFy8NSyoTG-pBU06fJDJk6jdwA=s256" alt="App Icon" class="app-modal-icon">
+      <img width="66" height="66" decoding="async" referrerpolicy="no-referrer" id="appModalIcon" src="https://play-lh.googleusercontent.com/DR9c0MB8IulBADeTklup3gpNEQRk_1ZR_GJaVntm62_qtlv_4LhKL-uJs5jFy8NSyoTG-pBU06fJDJk6jdwA=s256" alt="App Icon" class="app-modal-icon">
       <div>
         <span class="app-card-cat" id="appModalCat">CATEGORY</span>
         <h3 class="app-card-title" id="appModalTitle" style="font-size:var(--fs-xl);white-space:normal;">App Title</h3>
@@ -3683,95 +4076,185 @@ function detectLang(){
 ═══════════════════════════════════════════════════════ */
 
 const APP_I18N_TR = {
-  'com.mirzaacademy.sudokuai': {
-    cat: 'ZEKA & BULMACA', badge: 'ÖNE ÇIKAN',
-    title: 'Sudoku AI - Klasik Sudoku',
-    desc: 'Akıllı yapay zeka ipuçları ve özelleştirilebilir zorluk seviyeleriyle %100 çevrimdışı oynayabileceğiniz klasik Sudoku deneyimi.',
-    tags: ['Klasik Sudoku', 'YZ İpuçları', '%100 Çevrimdışı', 'Günlük Görevler']
+  "com.mirzaacademy.chessai": {
+    "cat": "STRATEJİ & ZEKA",
+    "badge": "POPÜLER",
+    "title": "Chess AI - Satranç Oyna",
+    "desc": "Akıllı yapay zeka ile %100 çevrimdışı satranç. Uyarlanabilir zorluk motoru, hamle analizi ve 12+ lüks tahta temasıyla stratejinizi geliştirin.",
+    "tags": [
+      "Uyarlanabilir YZ",
+      "12+ Lüks Tema",
+      "%100 Çevrimdışı",
+      "Hamle Analizi"
+    ]
   },
-  'com.mirzaacademy.zikirmatik': {
-    cat: 'YAŞAM & İBADET', badge: 'POPÜLER',
-    title: 'Zikirmatik - Akıllı Tesbih',
-    desc: 'Gerçekçi haptik titreşim geri bildirimi, hedef belirleme ve 12+ lüks tema seçeneği sunan akıllı dijital tesbih ve zikir sayacı.',
-    tags: ['Haptik Titreşim', '12+ Lüks Tema', 'Hedef Limiti', 'Çevrimdışı']
+  "com.mirzaacademy.sudokuai": {
+    "cat": "ZEKA & BULMACA",
+    "badge": "ÖNE ÇIKAN",
+    "title": "Sudoku AI - Klasik Sudoku",
+    "desc": "Akıllı yapay zeka ipuçları, otomatik not alma ve 4 farklı zorluk seviyesiyle istediğiniz an çevrimdışı oynayabileceğiniz klasik Sudoku deneyimi.",
+    "tags": [
+      "Klasik Sudoku",
+      "YZ İpuçları",
+      "%100 Çevrimdışı",
+      "Günlük Görevler"
+    ]
   },
-  'com.mirzaacademy.kalemzar': {
-    cat: 'SANAT & TASARIM', badge: 'AR TEKNOLOJİ',
-    title: 'Kalemzar - AR Çizim Projektörü',
-    desc: 'Akıllı telefonunuzu artırılmış gerçeklik (AR) çizim projektörüne dönüştürün. Eskizleri kağıda milimetrik hassasiyetle aktarın.',
-    tags: ['AR Projeksiyon', 'Kamera İzleme', 'Eskiz Filtreleri', 'Sanat Arşivi']
+  "com.mirzaacademy.mihrab": {
+    "cat": "YAŞAM & İBADET",
+    "badge": "POPÜLER",
+    "title": "Mihrab - Ezan & Namaz Vakitleri",
+    "desc": "Diyanet uyumlu hassas namaz vakti bildirimleri, makamlı ezan sesleri, akıllı zikirmatik ve %100 çevrimdışı çalışan hassas Kıble pusulası.",
+    "tags": [
+      "Namaz Vakitleri",
+      "Kıble Pusulası",
+      "Ezan Bildirimi",
+      "%100 Çevrimdışı"
+    ]
   },
-  'com.mirzaacademy.mindcraft': {
-    cat: 'ÜRETKENLİK', badge: 'PRO',
-    title: 'Mind Craft - Zihin Haritası',
-    desc: 'Düşüncelerinizi görselleştirin, beyin fırtınası düğümleri oluşturun ve karmaşık projeleri sonsuz tuval üzerinde organize edin.',
-    tags: ['Görsel Düğümler', 'Sonsuz Tuval', 'Beyin Fırtınası', 'Hızlı Dışa Aktar']
+  "com.mirzaacademy.zikirmatik": {
+    "cat": "YAŞAM & İBADET",
+    "badge": "POPÜLER",
+    "title": "Zikirmatik - Akıllı Tesbih",
+    "desc": "Gerçekçi haptik titreşim geri bildirimi, hedef belirleme, detaylı zikir geçmişi ve 12+ lüks tema seçeneği sunan akıllı dijital tesbih.",
+    "tags": [
+      "Haptik Titreşim",
+      "12+ Lüks Tema",
+      "Hedef Limiti",
+      "Çevrimdışı"
+    ]
   },
-  'com.mirzaacademy.waterly': {
-    cat: 'SAĞLIK & YAŞAM', badge: 'GÜNLÜK',
-    title: 'Waterly - Su Hatırlatıcı',
-    desc: 'Kişiselleştirilmiş su tüketim hedefleri, seri takibi ve pil dostu bildirimlerle günlük su içme alışkanlığınızı koruyun.',
-    tags: ['Akıllı Bildirim', 'Günlük Hedef', 'Su İstatistikleri', 'Hızlı Kayıt']
+  "com.mirzaacademy.kalemzar": {
+    "cat": "SANAT & TASARIM",
+    "badge": "AR TEKNOLOJİ",
+    "title": "Kalemzar - AR Çizim Projektörü",
+    "desc": "Telefonunuzu artırılmış gerçeklik (AR) çizim projektörüne dönüştürün. Kamera izleme ve eskiz filtreleriyle kağıda kusursuz çizim yapın.",
+    "tags": [
+      "AR Projeksiyon",
+      "Kamera İzleme",
+      "Eskiz Filtreleri",
+      "Sanat Arşivi"
+    ]
   },
-  'com.mirzaacademy.calmio': {
-    cat: 'FARKINDALIK & NEFES', badge: 'HUZUR',
-    title: 'Calmio - Nefes & Meditasyon',
-    desc: 'Stresi hızla azaltmak için tasarlanmış rehberli derin nefes egzersizleri, rahatlatıcı doğa sesleri ve odak zamanlayıcısı.',
-    tags: ['Kutu Nefesi', 'Ortam Sesleri', 'Stres Yönetimi', 'Meditasyon']
+  "com.mirzaacademy.mindcraft": {
+    "cat": "ÜRETKENLİK",
+    "badge": "PRO",
+    "title": "Mind Craft - Zihin Haritası",
+    "desc": "Fikirlerinizi görselleştirin, renk kodlu beyin fırtınası düğümleri oluşturun ve karmaşık projeleri sonsuz tuval üzerinde kolayca yönetin.",
+    "tags": [
+      "Görsel Düğümler",
+      "Sonsuz Tuval",
+      "Beyin Fırtınası",
+      "Hızlı Dışa Aktar"
+    ]
   },
-  'com.mirzaacademy.celebro': {
-    cat: 'YAŞAM & TAKVİM', badge: 'HATIRLATICI',
-    title: 'Celebro – Doğum Günü Takibi',
-    desc: 'Önemli doğum günlerini ve yıl dönümlerini asla unutmayın. Canlı geri sayım, akıllı bildirimler ve burç/yaş hesaplamaları.',
-    tags: ['Canlı Geri Sayım', 'Akıllı Uyarılar', 'Burç Analizi', 'Gizli Depolama']
+  "com.mirzaacademy.waterly": {
+    "cat": "SAĞLIK & YAŞAM",
+    "badge": "GÜNLÜK",
+    "title": "Waterly - Su Hatırlatıcı",
+    "desc": "Kişiselleştirilmiş günlük su tüketim hedefleri, seri takibi, içecek analitiği ve akıllı bildirimlerle sağlıklı su içme alışkanlığı kazanın.",
+    "tags": [
+      "Akıllı Bildirim",
+      "Günlük Hedef",
+      "Su İstatistikleri",
+      "Hızlı Kayıt"
+    ]
   },
-  'com.mirzaacademy.heartdots': {
-    cat: 'DUYGUSAL DENGE', badge: 'GÜNLÜK',
-    title: 'Heart Dots - Ruh Hali Günlüğü',
-    desc: 'Minimalist renkli noktalar, özel notlar, aylık duygu analizleri ve şifre korumasıyla duygusal dengenizi güvenle kaydedin.',
-    tags: ['Görsel Noktalar', 'Duygu Analizi', 'Şifreli Günlük', 'PIN Kilidi']
+  "com.mirzaacademy.calmio": {
+    "cat": "FARKINDALIK & NEFES",
+    "badge": "HUZUR",
+    "title": "Calmio - Nefes & Meditasyon",
+    "desc": "Stresi ve kaygıyı azaltmak için tasarlanmış rehberli derin nefes egzersizleri (4-7-8, Kutu nefesi), rahatlatıcı doğa sesleri ve odak sayacı.",
+    "tags": [
+      "Kutu Nefesi",
+      "Ortam Sesleri",
+      "Stres Yönetimi",
+      "Meditasyon"
+    ]
   },
-  'com.mirzaacademy.memorix': {
-    cat: 'ARAÇLAR & GİZLİLİK', badge: 'ÇEVRİMDIŞI',
-    title: 'Memorix - Çevrimdışı Rehber',
-    desc: '%100 çevrimdışı, bulut izlemesi olmayan güvenli adres defteri ve kişi yöneticisi. Şifreli yerel depolama ile tam veri gizliliği.',
-    tags: ['%100 Çevrimdışı', 'Sıfır İzleme', 'Şifreli Yedek', 'Anında Arama']
+  "com.mirzaacademy.celebro": {
+    "cat": "YAŞAM & TAKVİM",
+    "badge": "HATIRLATICI",
+    "title": "Celebro – Doğum Günü Takibi",
+    "desc": "Sevdiklerinizin doğum günlerini ve özel yıl dönümlerini asla unutmayın. Canlı geri sayım, zamanında bildirimler ve burç/yaş hesaplamaları.",
+    "tags": [
+      "Canlı Geri Sayım",
+      "Akıllı Uyarılar",
+      "Burç Analizi",
+      "Gizli Depolama"
+    ]
   },
-  'com.mirzaacademy.unchain': {
-    cat: 'KİŞİSEL GELİŞİM', badge: 'İRADE',
-    title: 'Unchain - Alışkanlık Bırakma',
-    desc: 'Zararlı alışkanlıkları geride bırakmak, iradenizi güçlendirmek ve temiz günlerinizi kutlamak için tasarlanan kilometre taşı sayacı.',
-    tags: ['İrade Sayacı', 'Kriz Kalkanı', 'Başarı Rozetleri', 'Günlük Motivasyon']
+  "com.mirzaacademy.heartdots": {
+    "cat": "DUYGUSAL DENGE",
+    "badge": "GÜNLÜK",
+    "title": "Heart Dots - Ruh Hali Günlüğü",
+    "desc": "Minimalist renkli noktalar, özel günlük notları, aylık duygu grafikleri ve PIN kilidi korumasıyla duygusal dengenizi güvenle takip edin.",
+    "tags": [
+      "Görsel Noktalar",
+      "Duygu Analizi",
+      "Şifreli Günlük",
+      "PIN Kilidi"
+    ]
   },
-  'com.mirzaacademy.flipy': {
-    cat: 'EĞLENCE & ARAÇLAR', badge: '3D FİZİK',
-    title: 'Flipy - Yazı Tura & Zar',
-    desc: 'Adil kararlar için gerçekçi 3D fizik tabanlı yazı tura ve çoklu zar atma simülasyonu; gerçek ses ve haptik titreşim destekli.',
-    tags: ['3D Fizik Motoru', 'Çoklu Zar', 'Haptik & Ses', 'Hızlı Karar']
+  "com.mirzaacademy.memorix": {
+    "cat": "ARAÇLAR & GİZLİLİK",
+    "badge": "ÇEVRİMDIŞI",
+    "title": "Memorix - Çevrimdışı Rehber",
+    "desc": "%100 çevrimdışı, bulut senkronizasyonu veya izleme içermeyen özel adres defteri ve kişi yöneticisi. Şifreli yerel depolama ile tam gizlilik.",
+    "tags": [
+      "%100 Çevrimdışı",
+      "Sıfır İzleme",
+      "Şifreli Yedek",
+      "Anında Arama"
+    ]
   },
-  'com.mirzaacademy.zamanname': {
-    cat: 'ÜRETKENLİK', badge: 'ORİJİNAL',
-    title: 'Zamanname - Odak & Pomodoro',
-    desc: 'Zamanınızı zarafet ve maksimum verimlilikle yönetmenize yardımcı olan lüks tasarımlı geri sayım ve Pomodoro odak uygulaması.',
-    tags: ['Pomodoro Odak', 'Geri Sayım', 'Lüks Estetik', 'Maksimum Verim']
+  "com.mirzaacademy.unchain": {
+    "cat": "KİŞİSEL GELİŞİM",
+    "badge": "İRADE",
+    "title": "Unchain - Alışkanlık Bırakma",
+    "desc": "Zararlı alışkanlıkları geride bırakmak, iradenizi güçlendirmek ve temiz günlerinizi kutlamak için tasarlanan canlı sayaç ve motivasyon kalkanı.",
+    "tags": [
+      "İrade Sayacı",
+      "Kriz Kalkanı",
+      "Başarı Rozetleri",
+      "Günlük Motivasyon"
+    ]
   },
-  'com.mirzaacademy.chessai': {
-    cat: 'STRATEJİ & ZEKA', badge: 'POPÜLER',
-    title: 'Chess AI - Satranç Oyna',
-    desc: 'Akıllı yapay zeka ile çevrimdışı satranç. Uyarlanabilir motor ve 12+ lüks tahta temasıyla stratejik becerilerinizi geliştirin.',
-    tags: ['Uyarlanabilir YZ', '12+ Lüks Tema', '%100 Çevrimdışı', 'Strateji Eğitimi']
+  "com.mirzaacademy.flipy": {
+    "cat": "EĞLENCE & ARAÇLAR",
+    "badge": "3D FİZİK",
+    "title": "Flipy - Yazı Tura & Zar",
+    "desc": "Hızlı ve adil kararlar için gerçekçi 3D fizik tabanlı yazı tura ve çoklu zar atma simülasyonu; gerçek ses ve haptik titreşim destekli.",
+    "tags": [
+      "3D Fizik Motoru",
+      "Çoklu Zar",
+      "Haptik & Ses",
+      "Hızlı Karar"
+    ]
   },
-  'com.mirzaacademy.mihrab': {
-    cat: 'YAŞAM & İBADET', badge: 'POPÜLER',
-    title: 'Mihrab - Ezan & Namaz Vakitleri',
-    desc: 'Hassas namaz vakti bildirimleri, makamlı ezan sesleri, akıllı zikirmatik ve %100 çevrimdışı çalışan hassas Kıble pusulası.',
-    tags: ['Namaz Vakitleri', 'Kıble Pusulası', 'Ezan Bildirimi', '%100 Çevrimdışı']
+  "com.mirzaacademy.agenda": {
+    "cat": "ÜRETKENLİK",
+    "badge": "TEMEL ARAÇ",
+    "title": "Agenda - Kişisel Asistan",
+    "desc": "Günlük planlama, akıllı görev takvimi, öncelik listeleri ve özelleştirilebilir hatırlatıcıları tek bir zarif ve çevrimdışı asistanda birleştirir.",
+    "tags": [
+      "Günlük Planlayıcı",
+      "Görev Takvimi",
+      "Hatırlatıcılar",
+      "Çevrimdışı"
+    ]
   },
-  'com.mirzaacademy.agenda': {
-    cat: 'ÜRETKENLİK', badge: 'TEMEL ARAÇ',
-    title: 'Agenda - Kişisel Asistan',
-    desc: 'Günlük planlama, akıllı görev takvimi ve özelleştirilebilir hatırlatıcıları tek bir zarif ve çevrimdışı asistanda birleştirir.',
-    tags: ['Günlük Planlayıcı', 'Görev Takvimi', 'Hatırlatıcılar', 'Çevrimdışı']
+  "com.mirzaacademy.zamanname": {
+    "cat": "ÜRETKENLİK & ODAK",
+    "badge": "ORİJİNAL",
+    "title": "Zamanname - Odak & Pomodoro",
+    "desc": "Önemli tarihleri, sınavları ve hedefleri saniye hassasiyetiyle takip eden şık geri sayım sayacı ve Pomodoro odaklanma asistanı.",
+    "tags": [
+      "Pomodoro Odak",
+      "Canlı Geri Sayım",
+      "Lüks Estetik",
+      "Hedef Takibi"
+    ]
   }
 };
 
@@ -3790,9 +4273,9 @@ const CAT_I18N = {
 
 /* Card title subtitles & badges for the 9 non-TR/EN languages (arrays are aligned to APP_ORDER / BADGE_ORDER;
    brand names stay untouched; any missing value falls back to English per field). */
-const APP_ORDER=["Sudoku AI","Zikirmatik","Kalemzar","Mind Craft","Waterly","Calmio","Celebro","Heart Dots","Memorix","Unchain","Flipy","Zamanname","Chess AI","Mihrab","Agenda"];
+const APP_ORDER=["Chess AI", "Sudoku AI", "Mihrab", "Zikirmatik", "Kalemzar", "Mind Craft", "Waterly", "Calmio", "Celebro", "Heart Dots", "Memorix", "Unchain", "Flipy", "Agenda", "Zamanname"];
 const BADGE_ORDER=["FEATURED","POPULAR","AR TECH","PRO","DAILY","CALM","REMINDER","DIARY","OFFLINE","RECOVERY","3D PHYSICS","ORIGINAL","ESSENTIAL"];
-const SUB_I18N={"es":["Juega al Sudoku","Dhikr y Tasbeeh","Calca y Dibuja en AR","Mapas Mentales y de Ideas","Recordatorio de Agua","Calma y Respira","Registro de Cumpleaños","Diario de Ánimo","Agenda Offline","Recuperación de Adicciones","Moneda y Dados","Temporizador y Enfoque","Juega al Ajedrez","Azan y Horarios de Oración","Asistente Personal"],"pt":["Jogue Sudoku","Dhikr e Tasbeeh","Trace e Desenhe em RA","Mapas Mentais e de Ideias","Lembrete de Água","Acalme-se e Respire","Rastreador de Aniversários","Diário de Humor","Agenda Offline","Recuperação de Vícios","Moeda e Dados","Timer e Foco","Jogue Xadrez","Azan e Horários de Oração","Assistente Pessoal"],"de":["Sudoku spielen","Dhikr & Tasbih","AR-Zeichenhilfe","Mindmaps & Ideen","Wassererinnerung","Entspannen & Atmen","Geburtstagskalender","Stimmungstagebuch","Offline-Adressbuch","Sucht überwinden","Münzwurf & Würfel","Timer & Fokus","Schach spielen","Azan & Gebetszeiten","Persönlicher Assistent"],"fr":["Jouer au Sudoku","Dhikr & Tasbih","Calquer & Dessiner en RA","Cartes Mentales & Idées","Rappel d’Eau","Calme & Respiration","Suivi des Anniversaires","Journal d’Humeur","Carnet d’Adresses Hors Ligne","Sortir de l’Addiction","Pile ou Face & Dés","Minuteur & Concentration","Jouer aux Échecs","Adhan & Heures de Prière","Assistant Personnel"],"it":["Gioca a Sudoku","Dhikr e Tasbih","Traccia e Disegna in AR","Mappe Mentali e Idee","Promemoria Acqua","Calma e Respira","Tracker Compleanni","Diario dell’Umore","Rubrica Offline","Uscire dalle Dipendenze","Moneta e Dadi","Timer e Concentrazione","Gioca a Scacchi","Azan e Orari di Preghiera","Assistente Personale"],"hi":["सुडोकू खेलें","ज़िक्र और तस्बीह","AR से ट्रेस करें और बनाएँ","माइंड और आइडिया मैप","पानी रिमाइंडर","शांत रहें और साँस लें","जन्मदिन ट्रैकर","मूड डायरी","ऑफ़लाइन एड्रेस बुक","नशा मुक्ति","सिक्का उछालें और पासा","टाइमर और फ़ोकस","शतरंज खेलें","अज़ान और नमाज़ का समय","पर्सनल असिस्टेंट"],"id":["Main Sudoku","Dzikir & Tasbih","Jiplak & Gambar AR","Peta Pikiran & Ide","Pengingat Minum","Tenang & Bernapas","Pelacak Ulang Tahun","Buku Harian Suasana Hati","Buku Alamat Offline","Pulih dari Kecanduan","Lempar Koin & Dadu","Timer & Fokus","Main Catur","Azan & Waktu Salat","Asisten Pribadi"],"ja":["数独をプレイ","ズィクル＆タスビーフ","ARでなぞって描く","マインド＆アイデアマップ","水分補給リマインダー","落ち着いて深呼吸","誕生日トラッカー","気分ダイアリー","オフライン住所録","依存症からの回復","コイントス＆サイコロ","タイマー＆集中","チェスをプレイ","アザーン＆礼拝時刻","パーソナルアシスタント"],"ko":["스도쿠 플레이","지크르 & 타스비","AR 따라 그리기","마인드 & 아이디어 맵","물 마시기 알림","진정 & 호흡","생일 트래커","감정 다이어리","오프라인 주소록","중독 회복","동전 던지기 & 주사위","타이머 & 집중","체스 플레이","아잔 & 기도 시간","개인 비서"]};
+const SUB_I18N={"es": ["Juega al Ajedrez", "Juega al Sudoku", "Azan y Horarios de Oración", "Dhikr y Tasbeeh", "Calca y Dibuja en AR", "Mapas Mentales y de Ideas", "Recordatorio de Agua", "Calma y Respira", "Registro de Cumpleaños", "Diario de Ánimo", "Agenda Offline", "Recuperación de Adicciones", "Moneda y Dados", "Asistente Personal", "Temporizador y Enfoque"], "pt": ["Jogue Xadrez", "Jogue Sudoku", "Azan e Horários de Oração", "Dhikr e Tasbeeh", "Trace e Desenhe em RA", "Mapas Mentais e de Ideias", "Lembrete de Água", "Acalme-se e Respire", "Rastreador de Aniversários", "Diário de Humor", "Agenda Offline", "Recuperação de Vícios", "Moeda e Dados", "Assistente Pessoal", "Timer e Foco"], "de": ["Schach spielen", "Sudoku spielen", "Azan & Gebetszeiten", "Dhikr & Tasbih", "AR-Zeichenhilfe", "Mindmaps & Ideen", "Wassererinnerung", "Entspannen & Atmen", "Geburtstagskalender", "Stimmungstagebuch", "Offline-Adressbuch", "Sucht überwinden", "Münzwurf & Würfel", "Persönlicher Assistent", "Timer & Fokus"], "fr": ["Jouer aux Échecs", "Jouer au Sudoku", "Adhan & Heures de Prière", "Dhikr & Tasbih", "Calquer & Dessiner en RA", "Cartes Mentales & Idées", "Rappel d’Eau", "Calme & Respiration", "Suivi des Anniversaires", "Journal d’Humeur", "Carnet d’Adresses Hors Ligne", "Sortir de l’Addiction", "Pile ou Face & Dés", "Assistant Personnel", "Minuteur & Concentration"], "it": ["Gioca a Scacchi", "Gioca a Sudoku", "Azan e Orari di Preghiera", "Dhikr e Tasbih", "Traccia e Disegna in AR", "Mappe Mentali e Idee", "Promemoria Acqua", "Calma e Respira", "Tracker Compleanni", "Diario dell’Umore", "Rubrica Offline", "Uscire dalle Dipendenze", "Moneta e Dadi", "Assistente Personale", "Timer e Concentrazione"], "hi": ["शतरंज खेलें", "सुडोकू खेलें", "अज़ान और नमाज़ का समय", "ज़िक्र और तस्बीह", "AR से ट्रेस करें और बनाएँ", "माइंड और आइडिया मैप", "पानी रिमाइंडर", "शांत रहें और साँस लें", "जन्मदिन ट्रैकर", "मूड डायरी", "ऑफ़लाइन एड्रेस बुक", "नशा मुक्ति", "सिक्का उछालें और पासा", "पर्सनल असिस्टेंट", "टाइमर और फ़ोकस"], "id": ["Main Catur", "Main Sudoku", "Azan & Waktu Salat", "Dzikir & Tasbih", "Jiplak & Gambar AR", "Peta Pikiran & Ide", "Pengingat Minum", "Tenang & Bernapas", "Pelacak Ulang Tahun", "Buku Harian Suasana Hati", "Buku Alamat Offline", "Pulih dari Kecanduan", "Lempar Koin & Dadu", "Asisten Pribadi", "Timer & Fokus"], "ja": ["チェスをプレイ", "数独をプレイ", "アザーン＆礼拝時刻", "ズィクル＆タスビーフ", "ARでなぞって描く", "マインド＆アイデアマップ", "水分補給リマインダー", "落ち着いて深呼吸", "誕生日トラッカー", "気分ダイアリー", "オフライン住所録", "依存症からの回復", "コイントス＆サイコロ", "パーソナルアシスタント", "タイマー＆集中"], "ko": ["체스 플레이", "스도쿠 플레이", "아잔 & 기도 시간", "지크르 & 타스비", "AR 따라 그리기", "마인드 & 아이디어 맵", "물 마시기 알림", "진정 & 호흡", "생일 트래커", "감정 다이어리", "오프라인 주소록", "중독 회복", "동전 던지기 & 주사위", "개인 비서", "타이머 & 집중"]};
 const BADGE_I18N={"es":["DESTACADO","POPULAR","TECNOLOGÍA AR","PRO","CADA DÍA","CALMA","RECORDATORIO","DIARIO","SIN CONEXIÓN","RECUPERACIÓN","FÍSICA 3D","ORIGINAL","ESENCIAL"],"pt":["DESTAQUE","POPULAR","TECNOLOGIA RA","PRO","TODO DIA","CALMA","LEMBRETE","DIÁRIO","OFFLINE","RECUPERAÇÃO","FÍSICA 3D","ORIGINAL","ESSENCIAL"],"de":["EMPFOHLEN","BELIEBT","AR-TECHNIK","PRO","TÄGLICH","RUHE","ERINNERUNG","TAGEBUCH","OFFLINE","GENESUNG","3D-PHYSIK","ORIGINAL","UNVERZICHTBAR"],"fr":["À LA UNE","POPULAIRE","TECH RA","PRO","QUOTIDIEN","CALME","RAPPEL","JOURNAL","HORS LIGNE","RÉTABLISSEMENT","PHYSIQUE 3D","ORIGINAL","ESSENTIEL"],"it":["IN EVIDENZA","POPOLARE","TECNOLOGIA AR","PRO","QUOTIDIANO","CALMA","PROMEMORIA","DIARIO","OFFLINE","RINASCITA","FISICA 3D","ORIGINALE","ESSENZIALE"],"hi":["फ़ीचर्ड","लोकप्रिय","AR तकनीक","PRO","रोज़ाना","शांति","रिमाइंडर","डायरी","ऑफ़लाइन","रिकवरी","3D फ़िज़िक्स","ओरिजिनल","ज़रूरी"],"id":["UNGGULAN","POPULER","TEKNOLOGI AR","PRO","HARIAN","TENANG","PENGINGAT","JURNAL","OFFLINE","PEMULIHAN","FISIKA 3D","ORIGINAL","ESENSIAL"],"ja":["注目","人気","AR技術","PRO","毎日","安らぎ","リマインダー","日記","オフライン","回復","3D物理","オリジナル","必須"],"ko":["추천","인기","AR 기술","PRO","매일","평온","알림","일기","오프라인","회복","3D 물리","오리지널","필수"]};
 
 function localizeAppCards(lang){
@@ -4061,6 +4544,7 @@ function copyModalAppLink(){
    § 3. TAB SYSTEM & SMOOTH MOBILE SCROLL COORDINATION
 ═══════════════════════════════════════════════════════ */
 function switchTab(i, userInitiated){
+  if(i===0) i=1; /* İletişim, Hakkında ile birleştirildi */
   for(let n=0;n<3;n++){
     const t=document.getElementById('tab'+n);
     const p=document.getElementById('p'+n);
@@ -4710,7 +5194,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const FB = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E0E24'/%3E%3Cpath d='M18 44V20l14 14 14-14v24' fill='none' stroke='%23D4AF37' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E";
   document.addEventListener('error', e => {
     const t = e.target;
-    if(t && t.tagName === 'IMG' && !t.dataset.fb){ t.dataset.fb = '1'; t.src = FB; }
+    if(!t || t.tagName !== 'IMG') return;
+    if(!t.dataset.retried && t.dataset.altSrc && t.src !== t.dataset.altSrc){
+      t.dataset.retried = '1';
+      t.src = t.dataset.altSrc;
+      return;
+    }
+    if(!t.dataset.fb){
+      t.dataset.fb = '1';
+      const frame = t.closest && t.closest('.app-icon-frame');
+      if(frame){
+        frame.classList.add('use-svg-fb');
+      } else {
+        t.src = FB;
+      }
+    }
   }, true);
 })();
 </script>
