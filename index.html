@@ -19,7 +19,7 @@
 <title>Mirza Academy — Mobile App Developer &amp; Publisher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&amp;family=Cinzel:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Rajdhani:wght@400;500;600;700&amp;family=Orbitron:wght@400;500;700;900&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Noto+Sans+JP:wght@300;400;500&amp;family=Noto+Sans+KR:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&amp;family=Cinzel:wght@400;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Rajdhani:wght@400;500;600;700&amp;family=Orbitron:wght@400;500;700;900&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Noto+Sans+JP:wght@300;400;500&amp;family=Noto+Sans+KR:wght@300;400;500&amp;family=Noto+Sans+Devanagari:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 <style>
 /* ════════════════════════════════════════════════════════
    § DESIGN SYSTEM — THEME TOKENS
@@ -3450,6 +3450,48 @@ footer {
   transform: scale(1.25);
 }
 
+
+/* ════════ § MOBILE POLISH & I18N ROBUSTNESS (override layer) ════════ */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html,body{max-width:100%;overflow-x:clip}
+img,svg,canvas{max-width:100%}
+.app-card-title,.app-card-desc,.lnk-sub,.lnk-val,.pillar-title,.pillar-desc,.flagship-title,.flagship-desc,.p-title,.dev-store-desc,.tab-main-lbl,.btn,.app-filter-btn,.topic-chip{overflow-wrap:anywhere;hyphens:auto}
+html[lang=hi] :is(body,h1,h2,h3,p,span,div,a,button,input,select,label,strong){font-family:'Noto Sans Devanagari','Plus Jakarta Sans',system-ui,sans-serif!important;letter-spacing:normal!important;text-transform:none!important}
+html[lang=ko] body{word-break:keep-all}
+html[lang=ja] body{line-break:strict}
+.cmd-list{max-height:min(60dvh,420px);overflow-y:auto;overscroll-behavior:contain}
+@media (max-width:680px){
+  .nav{gap:8px;padding-left:max(var(--sp-4),var(--safe-left));padding-right:max(var(--sp-4),var(--safe-right))}
+  .nav-center-pills{display:none}
+  .nav-logo{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .nav-r{gap:6px;flex-shrink:0}
+  .nav-export-lbl,.nav-cmd-kbd{display:none}
+  .nav-cmd-btn{min-width:40px;min-height:40px;justify-content:center}
+  .tdots{gap:4px}
+  .td{position:relative}
+  .td::after{content:"";position:absolute;inset:-8px}
+  .lsel{min-height:40px;font-size:14px}
+  :root{--fs-micro:10px;--fs-xs:11px;--fs-sm:12px}
+  .tab-kicker,.tab-pill-badge{font-size:9px!important}
+  .tab-main-lbl{font-size:12px!important}
+  .apps-toolbar{flex-direction:column;align-items:stretch;gap:10px}
+  .apps-filter-bar{display:flex;flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .apps-filter-bar::-webkit-scrollbar{display:none}
+  .app-filter-btn{flex:0 0 auto;min-height:40px;scroll-snap-align:start}
+  .topic-chip,.lnk-copy-chip{min-height:36px;display:inline-flex;align-items:center}
+  .btn-app-info,.app-modal-close{min-width:44px;min-height:44px}
+  .clinks{grid-template-columns:1fr}
+  .flagship-spotlight{flex-direction:column;align-items:stretch}
+  .flagship-actions{flex-direction:column}
+  .flagship-actions .btn{justify-content:center}
+  .dev-store-banner{flex-direction:column;align-items:stretch;text-align:center}
+  .app-modal-backdrop,.cmd-backdrop{align-items:flex-end;padding:0}
+  .app-modal-card,.cmd-dialog{width:100%;max-width:none;max-height:calc(100dvh - 24px - var(--safe-top));overflow-y:auto;border-radius:var(--r-xl) var(--r-xl) 0 0;padding-bottom:calc(16px + var(--safe-bottom));overscroll-behavior:contain}
+  .app-modal-specs{grid-template-columns:1fr}
+  footer{padding-bottom:calc(8px + var(--safe-bottom))}
+}
+@media (pointer:coarse){input,select,textarea{font-size:16px!important}}
+@media (hover:none){.app-card:hover{transform:none}}
 </style>
 </head>
 <body>
@@ -4988,6 +5030,28 @@ const T={
 ═══════════════════════════════════════════════════════ */
 let LG='en', _tt=null, _ri=0, _ci=0, _del=false, _pause=false, _curTab=0;
 
+/* UI strings for interactive feedback (toasts, palette, default mail text) — all 11 languages */
+const UI={
+ en:{copied:'COPIED: ',mail:'OPENING EMAIL CLIENT...',brief:'INQUIRY BRIEF COPIED',link:'PLAY STORE LINK COPIED',hello:'Hello Mirza Academy, I would like to connect regarding a collaboration.',cmdPh:'Jump to a section, app, theme or language...'},
+ tr:{copied:'KOPYALANDI: ',mail:'E-POSTA İSTEMCİSİ AÇILIYOR...',brief:'PROJE METNİ KOPYALANDI',link:'UYGULAMA LİNKİ KOPYALANDI',hello:'Merhaba Mirza Academy, iş birliği hakkında görüşmek istiyorum.',cmdPh:'Bölüm, uygulama, tema veya dile git...'},
+ es:{copied:'COPIADO: ',mail:'ABRIENDO CORREO...',brief:'MENSAJE COPIADO',link:'ENLACE DE PLAY STORE COPIADO',hello:'Hola Mirza Academy, me gustaría hablar sobre una colaboración.',cmdPh:'Ir a una sección, app, tema o idioma...'},
+ pt:{copied:'COPIADO: ',mail:'ABRINDO E-MAIL...',brief:'MENSAGEM COPIADA',link:'LINK DA PLAY STORE COPIADO',hello:'Olá Mirza Academy, gostaria de conversar sobre uma colaboração.',cmdPh:'Ir para seção, app, tema ou idioma...'},
+ de:{copied:'KOPIERT: ',mail:'E-MAIL-PROGRAMM WIRD GEÖFFNET...',brief:'ANFRAGE KOPIERT',link:'PLAY-STORE-LINK KOPIERT',hello:'Hallo Mirza Academy, ich möchte gern über eine Zusammenarbeit sprechen.',cmdPh:'Zu Bereich, App, Design oder Sprache springen...'},
+ fr:{copied:'COPIÉ : ',mail:'OUVERTURE DE LA MESSAGERIE...',brief:'MESSAGE COPIÉ',link:'LIEN PLAY STORE COPIÉ',hello:'Bonjour Mirza Academy, je souhaite discuter d’une collaboration.',cmdPh:'Aller à une section, app, thème ou langue...'},
+ it:{copied:'COPIATO: ',mail:'APERTURA CLIENT E-MAIL...',brief:'MESSAGGIO COPIATO',link:'LINK PLAY STORE COPIATO',hello:'Ciao Mirza Academy, vorrei parlare di una collaborazione.',cmdPh:'Vai a sezione, app, tema o lingua...'},
+ hi:{copied:'कॉपी किया: ',mail:'ईमेल ऐप खुल रहा है...',brief:'संदेश कॉपी हो गया',link:'Play Store लिंक कॉपी हो गया',hello:'नमस्ते Mirza Academy, मैं सहयोग के बारे में बात करना चाहता हूँ।',cmdPh:'सेक्शन, ऐप, थीम या भाषा खोजें...'},
+ id:{copied:'DISALIN: ',mail:'MEMBUKA APLIKASI EMAIL...',brief:'PESAN DISALIN',link:'TAUTAN PLAY STORE DISALIN',hello:'Halo Mirza Academy, saya ingin membahas kolaborasi.',cmdPh:'Cari bagian, aplikasi, tema, atau bahasa...'},
+ ja:{copied:'コピーしました：',mail:'メールアプリを開いています...',brief:'メッセージをコピーしました',link:'Playストアのリンクをコピーしました',hello:'こんにちは、Mirza Academy さん。コラボレーションについてご相談したいです。',cmdPh:'セクション・アプリ・テーマ・言語へ移動...'},
+ ko:{copied:'복사됨: ',mail:'이메일 앱을 여는 중...',brief:'문의 내용을 복사했습니다',link:'Play 스토어 링크를 복사했습니다',hello:'안녕하세요 Mirza Academy, 협업에 대해 이야기하고 싶습니다.',cmdPh:'섹션, 앱, 테마 또는 언어로 이동...'}
+};
+const U=k=>(UI[LG]||UI.en)[k];
+const LNAME={en:'English',tr:'Türkçe',es:'Español',pt:'Português',hi:'हिन्दी',id:'Bahasa Indonesia',de:'Deutsch',fr:'Français',it:'Italiano',ja:'日本語',ko:'한국어'};
+function detectLang(){
+  const c=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||'en'];
+  for(const x of c){ const b=String(x).toLowerCase().split('-')[0]; if(T[b]) return b; }
+  return 'en';
+}
+
 /* ═══════════════════════════════════════════════════════
    INIT SHOWCASE & CARDS — 3D Tilt on Hover
 ═══════════════════════════════════════════════════════ */
@@ -5098,6 +5162,13 @@ const CAT_I18N = {
   ko: { 'BRAIN & PUZZLE':'두뇌 및 퍼즐', 'LIFESTYLE & UTILITY':'라이프스타일', 'ART & DESIGN':'아트 및 디자인', 'PRODUCTIVITY':'생산성', 'HEALTH & FITNESS':'건강 및 피트니스', 'MINDFULNESS':'마음챙김', 'LIFESTYLE & DATES':'기념일 및 생일', 'EMOTIONAL WELLBEING':'감정 다이어리', 'UTILITY & PRIVACY':'개인정보 보호', 'SELF IMPROVEMENT':'자기계발', 'CASUAL & TOOLS':'캐주얼 및 도구', 'BRAIN & STRATEGY':'두뇌 및 전략', 'LIFESTYLE & ISLAMIC':'라이프스타일' }
 };
 
+/* Card title subtitles & badges for the 9 non-TR/EN languages (arrays are aligned to APP_ORDER / BADGE_ORDER;
+   brand names stay untouched; any missing value falls back to English per field). */
+const APP_ORDER=["Sudoku AI","Zikirmatik","Kalemzar","Mind Craft","Waterly","Calmio","Celebro","Heart Dots","Memorix","Unchain","Flipy","Zamanname","Chess AI","Mihrab","Agenda"];
+const BADGE_ORDER=["FEATURED","POPULAR","AR TECH","PRO","DAILY","CALM","REMINDER","DIARY","OFFLINE","RECOVERY","3D PHYSICS","ORIGINAL","ESSENTIAL"];
+const SUB_I18N={"es":["Juega al Sudoku","Dhikr y Tasbeeh","Calca y Dibuja en AR","Mapas Mentales y de Ideas","Recordatorio de Agua","Calma y Respira","Registro de Cumpleaños","Diario de Ánimo","Agenda Offline","Recuperación de Adicciones","Moneda y Dados","Temporizador y Enfoque","Juega al Ajedrez","Azan y Horarios de Oración","Asistente Personal"],"pt":["Jogue Sudoku","Dhikr e Tasbeeh","Trace e Desenhe em RA","Mapas Mentais e de Ideias","Lembrete de Água","Acalme-se e Respire","Rastreador de Aniversários","Diário de Humor","Agenda Offline","Recuperação de Vícios","Moeda e Dados","Timer e Foco","Jogue Xadrez","Azan e Horários de Oração","Assistente Pessoal"],"de":["Sudoku spielen","Dhikr & Tasbih","AR-Zeichenhilfe","Mindmaps & Ideen","Wassererinnerung","Entspannen & Atmen","Geburtstagskalender","Stimmungstagebuch","Offline-Adressbuch","Sucht überwinden","Münzwurf & Würfel","Timer & Fokus","Schach spielen","Azan & Gebetszeiten","Persönlicher Assistent"],"fr":["Jouer au Sudoku","Dhikr & Tasbih","Calquer & Dessiner en RA","Cartes Mentales & Idées","Rappel d’Eau","Calme & Respiration","Suivi des Anniversaires","Journal d’Humeur","Carnet d’Adresses Hors Ligne","Sortir de l’Addiction","Pile ou Face & Dés","Minuteur & Concentration","Jouer aux Échecs","Adhan & Heures de Prière","Assistant Personnel"],"it":["Gioca a Sudoku","Dhikr e Tasbih","Traccia e Disegna in AR","Mappe Mentali e Idee","Promemoria Acqua","Calma e Respira","Tracker Compleanni","Diario dell’Umore","Rubrica Offline","Uscire dalle Dipendenze","Moneta e Dadi","Timer e Concentrazione","Gioca a Scacchi","Azan e Orari di Preghiera","Assistente Personale"],"hi":["सुडोकू खेलें","ज़िक्र और तस्बीह","AR से ट्रेस करें और बनाएँ","माइंड और आइडिया मैप","पानी रिमाइंडर","शांत रहें और साँस लें","जन्मदिन ट्रैकर","मूड डायरी","ऑफ़लाइन एड्रेस बुक","नशा मुक्ति","सिक्का उछालें और पासा","टाइमर और फ़ोकस","शतरंज खेलें","अज़ान और नमाज़ का समय","पर्सनल असिस्टेंट"],"id":["Main Sudoku","Dzikir & Tasbih","Jiplak & Gambar AR","Peta Pikiran & Ide","Pengingat Minum","Tenang & Bernapas","Pelacak Ulang Tahun","Buku Harian Suasana Hati","Buku Alamat Offline","Pulih dari Kecanduan","Lempar Koin & Dadu","Timer & Fokus","Main Catur","Azan & Waktu Salat","Asisten Pribadi"],"ja":["数独をプレイ","ズィクル＆タスビーフ","ARでなぞって描く","マインド＆アイデアマップ","水分補給リマインダー","落ち着いて深呼吸","誕生日トラッカー","気分ダイアリー","オフライン住所録","依存症からの回復","コイントス＆サイコロ","タイマー＆集中","チェスをプレイ","アザーン＆礼拝時刻","パーソナルアシスタント"],"ko":["스도쿠 플레이","지크르 & 타스비","AR 따라 그리기","마인드 & 아이디어 맵","물 마시기 알림","진정 & 호흡","생일 트래커","감정 다이어리","오프라인 주소록","중독 회복","동전 던지기 & 주사위","타이머 & 집중","체스 플레이","아잔 & 기도 시간","개인 비서"]};
+const BADGE_I18N={"es":["DESTACADO","POPULAR","TECNOLOGÍA AR","PRO","CADA DÍA","CALMA","RECORDATORIO","DIARIO","SIN CONEXIÓN","RECUPERACIÓN","FÍSICA 3D","ORIGINAL","ESENCIAL"],"pt":["DESTAQUE","POPULAR","TECNOLOGIA RA","PRO","TODO DIA","CALMA","LEMBRETE","DIÁRIO","OFFLINE","RECUPERAÇÃO","FÍSICA 3D","ORIGINAL","ESSENCIAL"],"de":["EMPFOHLEN","BELIEBT","AR-TECHNIK","PRO","TÄGLICH","RUHE","ERINNERUNG","TAGEBUCH","OFFLINE","GENESUNG","3D-PHYSIK","ORIGINAL","UNVERZICHTBAR"],"fr":["À LA UNE","POPULAIRE","TECH RA","PRO","QUOTIDIEN","CALME","RAPPEL","JOURNAL","HORS LIGNE","RÉTABLISSEMENT","PHYSIQUE 3D","ORIGINAL","ESSENTIEL"],"it":["IN EVIDENZA","POPOLARE","TECNOLOGIA AR","PRO","QUOTIDIANO","CALMA","PROMEMORIA","DIARIO","OFFLINE","RINASCITA","FISICA 3D","ORIGINALE","ESSENZIALE"],"hi":["फ़ीचर्ड","लोकप्रिय","AR तकनीक","PRO","रोज़ाना","शांति","रिमाइंडर","डायरी","ऑफ़लाइन","रिकवरी","3D फ़िज़िक्स","ओरिजिनल","ज़रूरी"],"id":["UNGGULAN","POPULER","TEKNOLOGI AR","PRO","HARIAN","TENANG","PENGINGAT","JURNAL","OFFLINE","PEMULIHAN","FISIKA 3D","ORIGINAL","ESENSIAL"],"ja":["注目","人気","AR技術","PRO","毎日","安らぎ","リマインダー","日記","オフライン","回復","3D物理","オリジナル","必須"],"ko":["추천","인기","AR 기술","PRO","매일","평온","알림","일기","오프라인","회복","3D 물리","오리지널","필수"]};
+
 function localizeAppCards(lang){
   document.querySelectorAll('.app-card').forEach(card => {
     const link = card.querySelector('.btn-app-dl');
@@ -5137,6 +5208,15 @@ function localizeAppCards(lang){
         tagEls.forEach((t, idx) => { if(origTags[idx]) t.textContent = origTags[idx]; });
       } catch(_){}
     }
+    if(lang !== 'tr' && lang !== 'en' && card.dataset.enTitle){
+      const m2 = card.dataset.enTitle.match(/^(.*?)(\s[-–]\s)(.*)$/);
+      const ai = m2 ? APP_ORDER.indexOf(m2[1]) : -1;
+      const sub = (ai > -1 && SUB_I18N[lang]) ? SUB_I18N[lang][ai] : '';
+      if(m2 && sub && titleEl) titleEl.textContent = m2[1] + m2[2] + sub;
+      const bi = BADGE_ORDER.indexOf(card.dataset.enBadge);
+      const bl = (bi > -1 && BADGE_I18N[lang]) ? BADGE_I18N[lang][bi] : '';
+      if(bl && badgeEl) badgeEl.textContent = bl;
+    }
   });
 }
 
@@ -5162,16 +5242,13 @@ function renderCmdItems(q){
   if(!list) return;
   const query = (q || '').trim().toLowerCase();
   const d = T[LG] || T.en;
-  const isTr = (LG === 'tr');
   const items = [
-    { badge: isTr ? 'BÖLÜM' : 'SECTION', title: isTr ? 'Mobil Uygulama Portföyü (15+ Uygulama)' : 'Mobile Applications Portfolio (15+ Apps)', sub: 'TAB 03', act: ()=>{ switchTab(2); closeCmdPalette(); } },
-    { badge: isTr ? 'BÖLÜM' : 'SECTION', title: isTr ? 'Hakkımda & Stüdyo Manifestosu' : 'About & Studio Manifesto', sub: 'TAB 02', act: ()=>{ switchTab(1); closeCmdPalette(); } },
-    { badge: isTr ? 'BÖLÜM' : 'SECTION', title: isTr ? 'İletişim & Resmi Sosyal Medya' : 'Contact & Official Social Channels', sub: 'TAB 01', act: ()=>{ switchTab(0); closeCmdPalette(); } },
-    { badge: 'TEMA', title: isTr ? 'Onyx Siyah & Altın Teması' : 'Switch Theme: Onyx Dark Gold', sub: 'ONYX', act: ()=>{ applyTheme('dark', document.querySelector('.td[data-t=dark]')); closeCmdPalette(); } },
-    { badge: 'TEMA', title: isTr ? 'Ivory Açık Lüks Teması' : 'Switch Theme: Ivory Executive Light', sub: 'IVORY', act: ()=>{ applyTheme('ivory', document.querySelector('.td[data-t=ivory]')); closeCmdPalette(); } },
-    { badge: 'DİL', title: 'Türkçe Diline Geç (TR)', sub: '🇹🇷 TR', act: ()=>{ applyLang('tr'); closeCmdPalette(); } },
-    { badge: 'LANG', title: 'Switch Language to English (EN)', sub: '🇬🇧 EN', act: ()=>{ applyLang('en'); closeCmdPalette(); } }
+    { badge: d.tabSub2, title: d.appTit, sub: '03', act: ()=>{ switchTab(2); closeCmdPalette(); } },
+    { badge: d.tabSub1, title: d.aEye, sub: '02', act: ()=>{ switchTab(1); closeCmdPalette(); } },
+    { badge: d.tabSub0, title: d.cEye, sub: '01', act: ()=>{ switchTab(0); closeCmdPalette(); } }
   ];
+  [['dark','ONYX'],['ivory','IVORY'],['nebula','NEBULA'],['crimson','CRIMSON'],['emerald','EMERALD']].forEach(([k,n])=>items.push({ badge:'◐', title:n, sub:n, act:()=>{ applyTheme(k, document.querySelector('.td[data-t='+k+']')); closeCmdPalette(); } }));
+  document.querySelectorAll('#lsel option').forEach(o=>items.push({ badge:'🌐', title:LNAME[o.value]||o.value, sub:o.textContent, act:()=>{ applyLang(o.value); closeCmdPalette(); } }));
 
   document.querySelectorAll('.app-card').forEach(card => {
     const title = card.querySelector('.app-card-title')?.textContent || '';
@@ -5186,7 +5263,7 @@ function renderCmdItems(q){
 
   const filtered = items.filter(it => !query || it.title.toLowerCase().includes(query) || it.sub.toLowerCase().includes(query) || it.badge.toLowerCase().includes(query));
   list.innerHTML = '';
-  filtered.slice(0, 12).forEach(it => {
+  filtered.slice(0, 40).forEach(it => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'cmd-item';
@@ -5361,7 +5438,7 @@ function copySiteHtml(){
 function copySocial(val, ev){
   if(ev){ ev.preventDefault(); ev.stopPropagation(); }
   copyTextSafe(val);
-  showLuxToast((LG==='tr' ? 'KOPYALANDI: ' : 'COPIED: ') + val);
+  showLuxToast(U('copied') + val);
 }
 
 let _selectedTopic = 'App Partnership & Publishing';
@@ -5372,19 +5449,19 @@ function selectTopic(btn){
 
 function sendQuickInquiry(){
   const inp = document.getElementById('collabMsg');
-  const msg = (inp && inp.value.trim()) ? inp.value.trim() : (LG==='tr' ? 'Merhaba Mirza Academy, iş birliği hakkında görüşmek istiyorum.' : 'Hello Mirza Academy, I would like to connect regarding a collaboration.');
+  const msg = (inp && inp.value.trim()) ? inp.value.trim() : U('hello');
   const subj = encodeURIComponent('[Mirza Academy] ' + _selectedTopic);
   const body = encodeURIComponent(msg + '\n\n— Sent via Mirza Academy Official Portfolio');
   window.open('mailto:999furkan1001@gmail.com?subject=' + subj + '&body=' + body, '_self');
-  showLuxToast(LG==='tr' ? 'E-POSTA İSTEMCİSİ AÇILIYOR...' : 'OPENING EMAIL CLIENT...');
+  showLuxToast(U('mail'));
 }
 
 function copyQuickInquiry(){
   const inp = document.getElementById('collabMsg');
-  const msg = (inp && inp.value.trim()) ? inp.value.trim() : (LG==='tr' ? 'Merhaba Mirza Academy, iş birliği hakkında görüşmek istiyorum.' : 'Hello Mirza Academy, I would like to connect regarding a collaboration.');
+  const msg = (inp && inp.value.trim()) ? inp.value.trim() : U('hello');
   const full = 'To: 999furkan1001@gmail.com\nSubject: [Mirza Academy] ' + _selectedTopic + '\n\n' + msg;
   copyTextSafe(full);
-  showLuxToast(LG==='tr' ? 'PROJE METNİ KOPYALANDI' : 'INQUIRY BRIEF COPIED');
+  showLuxToast(U('brief'));
 }
 
 let _currentModalUrl = '';
@@ -5432,7 +5509,7 @@ function closeAppModal(){
 function copyModalAppLink(){
   if(_currentModalUrl){
     copyTextSafe(_currentModalUrl);
-    showLuxToast(LG==='tr' ? 'UYGULAMA LİNKİ KOPYALANDI' : 'PLAY STORE LINK COPIED');
+    showLuxToast(U('link'));
   }
 }
 
@@ -5525,6 +5602,14 @@ function applyLang(l){
   const cInp = document.getElementById('collabMsg');
   if(cInp && d.colPh) cInp.placeholder = d.colPh;
   localizeAppCards(l);
+  const ttl='Mirza Academy — '+d.tag;
+  document.title=ttl;
+  const mm=(s,v)=>{const e=document.querySelector(s); if(e) e.setAttribute('content',v);};
+  mm('meta[name="description"]',ttl+'. React Native, TypeScript & Firebase · Google Play.');
+  mm('meta[property="og:title"]',ttl); mm('meta[name="twitter:title"]',ttl);
+  const cp=document.getElementById('cmdSearchInp'); if(cp) cp.placeholder=U('cmdPh');
+  const cb=document.querySelector('.nav-cmd-btn'); if(cb){ cb.setAttribute('aria-label',d.cmdBtn); cb.title=d.cmdBtn+' (Ctrl+K)'; }
+  document.querySelectorAll('.app-card').forEach(c=>{const a=c.querySelector('.btn-app-dl'),t=c.querySelector('.app-card-title'); if(a&&t) a.setAttribute('aria-label',d.appDl+' — '+t.textContent);});
   document.getElementById('fcp').textContent=d.foot;
   try{ localStorage.setItem('ma-l',l); }catch(_){}
   resetType();
@@ -5928,10 +6013,12 @@ function initParallaxGeo(){
    INIT — Launch Sequence
 ═══════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded',()=>{
-  let st='dark', sl='tr';
-  try{ st=localStorage.getItem('ma-t')||'dark'; sl=localStorage.getItem('ma-l')||'tr'; }catch(_){}
+  let st='dark', sl=detectLang();
+  try{ st=localStorage.getItem('ma-t')||'dark'; sl=localStorage.getItem('ma-l')||sl; }catch(_){}
   // Validate saved theme
   if(!['dark','ivory','nebula','crimson','emerald'].includes(st)) st='dark';
+  try{ const qp=new URLSearchParams(location.search).get('lang'); if(qp&&T[qp]) sl=qp; }catch(_){}
+  if(!T[sl]) sl='en';
 
   startClock();
   initSwipe();
